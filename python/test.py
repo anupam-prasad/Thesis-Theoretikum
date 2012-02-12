@@ -1,0 +1,3 @@
+from tensor import *
+
+test()
