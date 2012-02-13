@@ -16,13 +16,17 @@ import time
 from axis import *
 
 n=100
-order=5
+order=6
 bctype='x'
 
 lb=0.
 ub=10.
 
-y=Axis(bctype,n,lb,ub,'fem',order)#+Axis('x',n,lb,ub,'fem',order)#+Axis('r',2,2.,3.,'fem')
+y=Axis(bctype,n,lb,ub,'fem',order)
+
+ax_cos=Axis('cos',10,0.,1.,'fem',order)
+for k in range(1,10):
+        ax_cos=ax_cos+Axis('cos',10,0.,1.,'fem',order)
 
 npart=np.floor(n/(order-1))
 
@@ -65,7 +69,7 @@ for e in y.e:
 
 [evals,evecs]=la.eig(B/2+V1,y.overlap())
 
-[mom_evals, mom_evecs]=la.eig(B/2,overlap)
+#[mom_evals, mom_evecs]=la.eig(B/2,overlap)
 
 #Normalization
 for l in range(0,int(nelem)):
@@ -84,13 +88,11 @@ Etot=np.linspace(4.5,5,nenergy)+2j
 #Momentum Eigenstates - Not sure if this works
 momentum_eigenstates=np.zeros([nenergy,nelem])+0j
 for k in range(0,nenergy):
-	momentum_eigenstates[k]=y.FEM_MomentumEigenstate(np.sqrt(Etot[k]))
+	momentum_eigenstates[k]=ax_cos.FEM_MomentumEigenstate(np.sqrt(Etot[k]))
 
 niter=40
 eps=2j
 
-#for k in range(0,nenergy):
-#	print abs(y.FEM_InnerProduct(momentum_eigenstates[0],momentum_eigenstates[k]))
 
 
 for l in range(0,nenergy):

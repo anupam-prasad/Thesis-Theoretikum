@@ -174,37 +174,37 @@ class Axis:
 
     #Added Tuesday 31.01.2012 by Anupam - Returns vector corresponding to fem representation of
     #a momentum eigenstate for given axis and a specified momentum eigenstate - Have to change
-#    def FEM_MomentumEigenstate(self,momentum):
-#
-#        nelem=self.n
-#
-#        #Convert momentum eigenstate into finite element representation
-#        fem_vec=np.zeros(int(nelem))+0j
-#        invert_vec=np.zeros(int(nelem))+0j
-#        iter1=0
-#
-#	
-#        
-#        for e in self.e:
-#                (x,w) = e.quadrature(add=10)
-#                (temp_a,temp_b)=e.val(x[0])
-#                iter2=len(temp_a)
-#                quad_iter=len(x)
-#                v=np.zeros([quad_iter,iter2])+0j
-#                
-#                for k in range(0,quad_iter):
-#                        (a,b) = e.val(x[k])+0j
-#                        c=a * np.exp(-momentum*x[k]*1j)
-#                        for l in range(0,iter2):
-#                                v[k][l]=c[l]*w[k]
-#
-#                integral=v.sum(axis=0)
-#                for k in range(0,iter2):
-#                        invert_vec[iter1+k]=invert_vec[iter1+k]+integral[k]
-#                iter1=iter1+iter2-1
-#	
-#	fem_vec=np.dot(invert_vec,self.overlap_inv())
-#	return fem_vec
+    def FEM_MomentumEigenstate(self,momentum):
+
+        nelem=self.n
+
+        #Convert momentum eigenstate into finite element representation
+        fem_vec=np.zeros(int(nelem))+0j
+        invert_vec=np.zeros(int(nelem))+0j
+        iter1=0
+
+	
+        
+        for e in self.e:
+                (x,w) = e.quadrature(add=10)
+                (temp_a,temp_b)=e.val(x[0])
+                iter2=len(temp_a)
+                quad_iter=len(x)
+                v=np.zeros([quad_iter,iter2])+0j
+                
+                for k in range(0,quad_iter):
+                        (a,b) = e.val(x[k])+0j
+                        c=a * np.exp(-momentum*x[k]*1j)
+                        for l in range(0,iter2):
+                                v[k][l]=c[l]*w[k]
+
+                integral=v.sum(axis=0)
+                for k in range(0,iter2):
+                        invert_vec[iter1+k]=invert_vec[iter1+k]+integral[k]
+                iter1=iter1+iter2-1
+	
+	fem_vec=np.dot(invert_vec,self.overlap_inv())
+	return fem_vec
 
 
 if __name__ == "__main__": 
