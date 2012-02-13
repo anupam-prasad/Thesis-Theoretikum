@@ -15,8 +15,8 @@ import time
 
 from axis import *
 
-n=75
-order=4
+n=100
+order=5
 bctype='x'
 
 lb=0.
@@ -89,8 +89,8 @@ for k in range(0,nenergy):
 niter=40
 eps=2j
 
-for k in range(0,nenergy):
-	print abs(y.FEM_InnerProduct(momentum_eigenstates[0],momentum_eigenstates[k]))
+#for k in range(0,nenergy):
+#	print abs(y.FEM_InnerProduct(momentum_eigenstates[0],momentum_eigenstates[k]))
 
 
 for l in range(0,nenergy):
