@@ -37,12 +37,15 @@ elif bctype=='r' or bctype=='rho':
 else:
         nelem=npart*(order-1)-1
 
+nelem_cos=nelem+2
+
 #Overlap Matrix
 overlap=y.overlap()
 overlap_inv=y.overlap_inv()
 
 #d|d matrix
 B=np.zeros([nelem,nelem])
+B_cos=np.zeros([nelem_cos,nelem_cos])
 #Potential Matrix
 V1=np.zeros([nelem,nelem])
 V2=np.zeros([nelem,nelem])
@@ -51,9 +54,6 @@ V2=np.zeros([nelem,nelem])
 Lambda=1
 
 iter1=0
-
-#Coefficient Matrix
-U=np.zeros(nelem)
 
 for e in y.e:
         b=e.matrix('d|d')
@@ -65,6 +65,15 @@ for e in y.e:
                         B[iter1+k1,iter1+k2]=B[iter1+k1,iter1+k2]+b[k1][k2]
                         V1[iter1+k1,iter1+k2]=V1[iter1+k1,iter1+k2]+v[k1][k2]
                         V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
+        iter1=iter1+iter2-1
+
+iter1=0
+for e in ax_cos.e:
+        b=e.matrix('d|d')
+        iter2=int(np.sqrt(np.size(b)))
+        for k1 in range(0,iter2):
+                for k2 in range(0,iter2):
+                        B_cos[iter1+k1,iter1+k2]=B_cos[iter1+k1,iter1+k2]+b[k1][k2]
         iter1=iter1+iter2-1
 
 [evals,evecs]=la.eig(B/2+V1,y.overlap())
@@ -83,36 +92,15 @@ for k in range(0,int(nelem)):
 
 #Scattering Energy
 nenergy=20
-Etot=np.linspace(4.5,5,nenergy)+2j
+Etot=np.linspace(0,19,nenergy)
 
 #Momentum Eigenstates - Not sure if this works
-momentum_eigenstates=np.zeros([nenergy,nelem])+0j
+momentum_eigenstates=np.zeros([nenergy,nelem_cos])+0j
 for k in range(0,nenergy):
 	momentum_eigenstates[k]=ax_cos.FEM_MomentumEigenstate(np.sqrt(Etot[k]))
 
+print ax_cos.FEM_InnerProduct(momentum_eigenstates[0],momentum_eigenstates[1])
+
+#print Etot
 niter=40
 eps=2j
-
-
-
-for l in range(0,nenergy):
-	E=Etot[l]
-	#G0=la.inv(E*y.overlap()-B/2-V2+eps)
-	G0_orig=la.inv(E*y.overlap()-B/2)
-	#T=V1-V2
-	#tempmat=np.dot(V1-V2,G0)
-
-	#Gex=la.inv(E*y.overlap()-B/2-V1+eps)
-	#tempmat2=np.dot(Gex,V1)
-	#Tex=V1+np.dot(V1,np.dot(Gex,V1))
-
-	#for k in range(0,niter):
-	#	T=V1-V2+np.dot(tempmat,T)
-	#	t[l][k]=la.norm(T)
-
-	#print A
-	#print Aex
-
-	#print a
-
-	#print la.norm(a)

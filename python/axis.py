@@ -184,7 +184,6 @@ class Axis:
         iter1=0
 
 	
-        
         for e in self.e:
                 (x,w) = e.quadrature(add=10)
                 (temp_a,temp_b)=e.val(x[0])
