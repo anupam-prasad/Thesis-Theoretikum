@@ -67,5 +67,20 @@ for k in range(0,nenergy):
 
 
 #Might Need To Rewrite Inner Product Function
-for k in range(0,nenergy):
-	print np.abs(ax_cos.FEM_InnerProduct(momentum_eigenstates[k],momentum_eigenstates[k]))
+#for k in range(0,nenergy):
+#	print np.abs(ax_cos.FEM_InnerProduct(momentum_eigenstates[k],momentum_eigenstates[k]))
+
+[mom_evals,mom_evecs]=la.eig(B_cos/2,ax_cos.overlap())
+
+[mom_evals_sin,mom_evecs_sin]=la.eig(B_test/2,test_axis.overlap())
+
+#Might Need To Rewrite Inner Product Function
+#for k in range(0,int(nelem)):
+
+#print np.dot(B_cos/2,mom_evecs.T[175]) / np.dot(ax_cos.overlap(),mom_evecs.T[175])
+
+append1=np.append(np.array([0]),mom_evecs_sin.T[169])
+append1=np.append(append1,np.array([0]))
+
+#print np.dot(B_cos/2,append1) / np.dot(ax_cos.overlap(),append1)
+print np.dot(B_cos/2,mom_evecs.T[175]) / np.dot(ax_cos.overlap(),mom_evecs.T[175])
