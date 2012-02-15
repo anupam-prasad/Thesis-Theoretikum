@@ -7,16 +7,11 @@ import scipy
 import scipy.special as ss
 import scipy.special.orthogonal as so
 import scipy.linalg as la
-import pickle as pickle
-from copy import *
-from potential2 import *
-
-import time
 
 from axis import *
 
-n=15
-order=6
+n=18
+order=7
 bctype='cos'
 
 lb=0.
@@ -25,7 +20,7 @@ ub=1.
 ncos=10
 
 ax_cos=Axis(bctype,n,lb,ub,'fem',order)
-test_axis=Axis('x',150,0.,10.,'fem',6)
+test_axis=Axis('x',ncos*n,0.,ncos*ub,'fem',order)
 
 for k in range(0,ncos-1):
 	ax_cos=ax_cos+Axis(bctype,n,lb,ub,'fem',order)
@@ -70,6 +65,7 @@ momentum_eigenstates=np.zeros([nenergy,nelem])+0j
 for k in range(0,nenergy):
 	momentum_eigenstates[k]=ax_cos.FEM_MomentumEigenstate(np.sqrt(Etot[k]))
 
-#print np.dot(B_test/2,momentum_eigenstates[1,1:nelem-1]) / np.dot(test_axis.overlap(),momentum_eigenstates[1,1:nelem-1])
 
-print ax_cos.FEM_InnerProduct(momentum_eigenstates[1],momentum_eigenstates[15])
+#Might Need To Rewrite Inner Product Function
+for k in range(0,nenergy):
+	print np.abs(ax_cos.FEM_InnerProduct(momentum_eigenstates[k],momentum_eigenstates[k]))

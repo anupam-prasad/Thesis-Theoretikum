@@ -67,7 +67,7 @@ U=np.zeros(nelem)
 for e in y.e:
 #	for b in e.b:
 	b=e.matrix('d|d')
-	v=e.matrix('pot')
+	v=e.matrix('qho')
 	iter2=int(np.sqrt(np.size(b)))
 	for k1 in range(0,iter2):
 		for k2 in range(0,iter2):
