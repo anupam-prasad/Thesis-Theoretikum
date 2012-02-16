@@ -63,8 +63,9 @@ Etot=np.linspace(0,nenergy-1,nenergy)*2*myPi+0j
 #Momentum Eigenstates - Not sure if this works
 momentum_eigenstates=np.zeros([nenergy,nelem])+0j
 for k in range(0,nenergy):
-	momentum_eigenstates[k]=ax_cos.FEM_MomentumEigenstate(np.sqrt(Etot[k]))
+	momentum_eigenstates[k]=ax_cos.FEM_MomentumEigenstate(Etot[k])
 
+mom_eigenstates_test=momentum_eigenstates
 
 #Might Need To Rewrite Inner Product Function
 #for k in range(0,nenergy):
@@ -82,5 +83,13 @@ for k in range(0,nenergy):
 append1=np.append(np.array([0]),mom_evecs_sin.T[169])
 append1=np.append(append1,np.array([0]))
 
-#print np.dot(B_cos/2,append1) / np.dot(ax_cos.overlap(),append1)
-print np.dot(B_cos/2,mom_evecs.T[175]) / np.dot(ax_cos.overlap(),mom_evecs.T[175])
+#print np.dot(B_cos/2,mom_evecs.T[175]) / np.dot(ax_cos.overlap(),mom_evecs.T[175])
+
+for k in range(0,int(nelem)):
+#	mom_eigenstates_test[k,0]=mom_eigenstates_test[k,0].real+0j
+#	mom_eigenstates_test[k,180]=mom_eigenstates_test[k,180].real+0j
+	mom_evecs.T[k,0]=mom_evecs.T[k,0].real+0j
+	mom_evecs.T[k,180]=mom_evecs.T[k,180].real+0j
+
+testval=np.dot(B_cos/2,mom_evecs.T[2]) / np.dot(ax_cos.overlap(),mom_evecs.T[2])
+print testval
