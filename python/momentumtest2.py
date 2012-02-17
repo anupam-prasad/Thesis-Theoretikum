@@ -10,32 +10,20 @@ import scipy.linalg as la
 
 from axis import *
 
-n=2
-order=2
-bctype='cos'
+n=100
+order=20
+bctype='xopen'
 
-lb=0.
-ub=1.
+lb=-1.
+ub= 1.
 
-ncos=2
+ncos=1
 
 ax_cos=Axis(bctype,n,lb,ub,'fem',order)
 
-for k in range(0,ncos-1):
-	ax_cos=ax_cos+Axis(bctype,n,lb,ub,'fem',order)
-
-npart=ncos*np.floor(n/(order-1))
-
-if bctype=='cos':
-        nelem=npart*(order-1)+1
-elif bctype=='r' or bctype=='rho':
-        nelem=npart*(order-1)
-else:
-        nelem=npart*(order-1)-1
-
 #d|d matrix
-B_cos=np.zeros([nelem,nelem])
-B_test=np.zeros([nelem-2,nelem-2])
+B_cos=np.zeros([ax_cos.len(),ax_cos.len()])
+B_test=np.zeros([ax_cos.len()-2,ax_cos.len()-2])
 
 iter1=0
 for e in ax_cos.e:
@@ -47,16 +35,32 @@ for e in ax_cos.e:
         iter1=iter1+iter2-1
 
 #Scattering Energy
-Etot=np.linspace(0,nelem-1,nelem)*2*myPi+0j
+Etot=np.linspace(0,ax_cos.len()-1,ax_cos.len())*myPi+0j
 
 #Momentum Eigenstates - Not sure if this works
-momentum_eigenstates=np.zeros([nelem,nelem])+0j
-for k in range(0,int(nelem)):
-	momentum_eigenstates[k]=ax_cos.FEM_MomentumEigenstate(Etot[k])
+momentum_eigenstates=np.zeros([ax_cos.len(),ax_cos.len()])+0j
+print "sizes",ax_cos.len(),momentum_eigenstates.size,Etot.size
+for k in range(0,int(ax_cos.len())):
+	momentum_eigenstates[k,:]=ax_cos.FEM_function(np.exp,Etot[k]*1j)
 
-[mom_evals,mom_evecs]=la.eig(B_cos/2,ax_cos.overlap())
+#[mom_evals,mom_evecs]=la.eig(B_cos/2,ax_cos.overlap())
 
-print mom_evals
-print mom_evecs.T
+#print mom_evals
+#print mom_evecs
 
-#print momentum_eigenstates[0]
+#ax_cos.plot()
+#plt.show()
+#raw_input()
+#for k in range(0,int(ax_cos.len())):
+#	ax_cos.FEM_functionplot(mom_evecs.T[k])
+#	ax_cos.FEM_functionplot(momentum_eigenstates[k].imag)
+count=0
+for k in range(0,10):
+	for l in range(0,10):
+		inner=ax_cos.FEM_InnerProduct(momentum_eigenstates[k],momentum_eigenstates[l])
+		if k!=l and (abs(inner.imag)>1e-8 or abs(inner.real)>1e-8):
+			print inner, k,l
+			count=count+1
+print count
+#for k in range(0,int(ax_cos.len())):
+#	ax_cos.FEM_plot(momentum_eigenstates[k].real)

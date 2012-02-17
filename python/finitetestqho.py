@@ -11,7 +11,7 @@ from copy import *
 
 from axis import *
 
-n=150
+n=200
 order=6
 bctype='x'
 
@@ -50,3 +50,6 @@ for e in y.e:
 	iter1=iter1+iter2-1
 
 [evals,evecs]=la.eig(B/2.+V,overlap)
+
+print evals[181]
+y.FEM_functionplot(evecs.T[181])

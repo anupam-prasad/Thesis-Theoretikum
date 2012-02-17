@@ -28,6 +28,7 @@ class Axis:
                   'rho':   (False, True,'q',   0.,myInf),
                   'phi':   (True,True,'1',     0.,2.*myPi),
                   'x':     (True, True,'1',-myInf,myInf),
+                  'xopen': (False,False,'1',-myInf,myInf),
                   'y':     (True, True,'1',-myInf,myInf),
                   'z':     (True, True,'1',-myInf,myInf),
                   'cos':   (False,False,'1',-1.,1.)}
@@ -174,7 +175,7 @@ class Axis:
 
     #Added Tuesday 31.01.2012 by Anupam - Returns vector corresponding to fem representation of
     #a momentum eigenstate for given axis and a specified momentum eigenstate - Have to change
-    def FEM_MomentumEigenstate(self,momentum):
+    def FEM_function(self,fun,param1):
 
         nelem=self.n
 
@@ -193,7 +194,7 @@ class Axis:
                 
                 for k in range(0,quad_iter):
                         (a,b) = e.val(x[k])+0j
-                        c=a * np.exp(-momentum*x[k]*1j)
+                        c=a * fun(-param1*x[k])
                         for l in range(0,iter2):
                                 v[k][l]=c[l]*w[k]
 
@@ -205,6 +206,23 @@ class Axis:
 	fem_vec=np.dot(invert_vec,self.overlap_inv())
 	return fem_vec
 
+    def FEM_plot(self,fem_vec,naxis=1001):
+	
+	xaxis=np.linspace(self.lb,self.ub,naxis)
+	y=np.zeros(naxis)
+        axis_iter=0
+	elem_iter=0
+
+	for e in self.e:
+		while axis_iter<naxis and xaxis[axis_iter] >= e.x0 and xaxis[axis_iter] <= e.x1:
+			v,d=e.val(xaxis[axis_iter])
+			for k in range(elem_iter,elem_iter+np.size(v)):
+				y[axis_iter]=y[axis_iter]+v[k-elem_iter]*fem_vec[k]
+			axis_iter=axis_iter+1
+		elem_iter=elem_iter+np.size(v)-1
+
+	plt.plot(xaxis,y)
+	plt.show()
 
 if __name__ == "__main__": 
     ax=Axis('x',4,0.,4.,'fem',3)+Axis('x',2,0.,4.,'fem',2)+Axis('x',1,0.,1.,'fem',2,axpar=['laguerre',1.])
@@ -215,5 +233,3 @@ if __name__ == "__main__":
     for e in ax.e:
         plt.plot([e.x0,e.x0],[-0.05,1.05])
     plt.show()
-
-
