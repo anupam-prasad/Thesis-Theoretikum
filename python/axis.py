@@ -184,7 +184,7 @@ class Axis:
         invert_vec=np.zeros(int(nelem))+0j
         iter1=0
 
-	
+
         for e in self.e:
                 (x,w) = e.quadrature(add=10)
                 (temp_a,temp_b)=e.val(x[0])
@@ -202,26 +202,31 @@ class Axis:
                 for k in range(0,iter2):
                         invert_vec[iter1+k]=invert_vec[iter1+k]+integral[k]
                 iter1=iter1+iter2-1
-	
+
 	fem_vec=np.dot(invert_vec,self.overlap_inv())
 	return fem_vec
 
-    def FEM_plot(self,fem_vec,naxis=1001):
-	
+    def FEM_plot(self,fem_vec1,fem_vec2=None,naxis=1001):
+
 	xaxis=np.linspace(self.lb,self.ub,naxis)
-	y=np.zeros(naxis)
+	y1=np.zeros(naxis)
+	y2=np.zeros(naxis)
         axis_iter=0
 	elem_iter=0
+	
+	if fem_vec2 is None:
+		fem_vec2=np.zeros(self.len())
 
 	for e in self.e:
 		while axis_iter<naxis and xaxis[axis_iter] >= e.x0 and xaxis[axis_iter] <= e.x1:
 			v,d=e.val(xaxis[axis_iter])
 			for k in range(elem_iter,elem_iter+np.size(v)):
-				y[axis_iter]=y[axis_iter]+v[k-elem_iter]*fem_vec[k]
+				y1[axis_iter]=y1[axis_iter]+v[k-elem_iter]*fem_vec1[k]
+				y2[axis_iter]=y2[axis_iter]+v[k-elem_iter]*fem_vec2[k]
 			axis_iter=axis_iter+1
 		elem_iter=elem_iter+np.size(v)-1
 
-	plt.plot(xaxis,y)
+	plt.plot(xaxis,y1,xaxis,y2)
 	plt.show()
 
 if __name__ == "__main__": 

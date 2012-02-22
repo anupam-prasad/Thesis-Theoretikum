@@ -52,4 +52,4 @@ for e in y.e:
 [evals,evecs]=la.eig(B/2.+V,overlap)
 
 print evals[181]
-y.FEM_functionplot(evecs.T[181])
+y.FEM_plot(evecs.T[181])
