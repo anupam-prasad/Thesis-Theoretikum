@@ -15,9 +15,9 @@ import time
 
 from axis import *
 
-n=100
-order=6
-bctype='x'
+n=300
+order=26
+bctype='xopen'
 
 lb=0.
 ub=10.

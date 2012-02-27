@@ -11,7 +11,7 @@ def potential(x,potential_type,lb=0.,ub=10.):
 
 	elif potential_type=='fwell':
 		for k in range(len(x)):
-			if x[k] < 2. and x[k] > 0.:	V[k]=-20.
+			if x[k] < 6. and x[k] > 4.:	V[k]=-400.
 			else:	V[k]=0
 
 	elif potential_type=='infwell':

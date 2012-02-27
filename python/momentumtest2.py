@@ -31,7 +31,10 @@ for k in range(0,int(ax_cos.len())):
 #ax_cos.FEM_plot(momentum_eigenstates[1].real)
 count=0
 inner=np.zeros(190)
+
 for k in range(0,20):
 	for l in range(k+1,20):
 		inner[count]=abs(ax_cos.FEM_InnerProduct(momentum_eigenstates[k],momentum_eigenstates[l]))
 		count=count+1
+
+print np.mean(inner), np.std(inner), max(inner), min(inner)

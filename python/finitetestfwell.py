@@ -15,8 +15,8 @@ n=300
 order=26
 bctype='xopen'
 
-lb=-5.
-ub=5.
+lb=0.
+ub=10.
 	
 y=Axis(bctype,n,lb,ub,'fem',order)
 
@@ -32,7 +32,7 @@ iter1=0
 
 for e in y.e:
 	b=e.matrix('d|d')
-	v=e.matrix('qho')
+	v=e.matrix('infwell')
 	iter2=int(np.sqrt(np.size(b)))
 	for k1 in range(0,iter2):
 		for k2 in range(0,iter2):
@@ -40,12 +40,14 @@ for e in y.e:
 			V[iter1+k1,iter1+k2]=V[iter1+k1,iter1+k2]+v[k1][k2]
 	iter1=iter1+iter2-1
 
-[evals,evecs]=la.eig(B/2.+V,overlap)
+[evals,evecs]=la.eig(B/2.,overlap)
 
-perm=np.argsort(evals)
+sorted_indices=abs(evals).argsort()
+evals_sorted=evals[sorted_indices]
+evecs_sorted=evecs.T[sorted_indices]
+print evals_sorted
+#print sorted1/sorted1[1]
+y.FEM_plot(evecs_sorted[3])
 
-evals_sorted=evals[perm]
-evecs_sorted=evecs[:,perm]
-
-print abs(evals_sorted)
-y.FEM_plot(evecs_sorted.T[2])
+#for k in range(0,y.len()):
+#print y.FEM_InnerProduct(evecs.T[0],evecs.T[k])

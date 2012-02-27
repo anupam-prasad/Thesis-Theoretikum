@@ -15,9 +15,9 @@ import time
 
 from axis import *
 
-n=75
-order=4
-bctype='x'
+n=300
+order=26
+bctype='xopen'
 
 lb=0.
 ub=10.
@@ -69,11 +69,11 @@ for e in y.e:
 
 #Scattering Energy
 nenergy=20
-Etot=np.linspace(4.5,5,nenergy)
+Ptot=np.linspace(0,19,nenergy)*myPi+0j
 
 momentum_eigenstates=np.zeros([nenergy,nelem])+0j
 for k in range(0,nenergy):
-	momentum_eigenstates[k]=y.FEM_MomentumEigenstate(np.sqrt(Etot[k]))
+	momentum_eigenstates[k]=y.FEM_function(np.exp,Ptot[k]*1j)
 
 
 niter=40
@@ -85,39 +85,3 @@ for k in range(0,nenergy):
 	for l in range(0,nenergy):
 		tempvec=y.FEM_InnerProduct(momentum_eigenstates[k],V1)
 		t[k][l]=y.FEM_InnerProduct(tempvec,momentum_eigenstates[l])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	#E=Etot[l]
-	#G0=la.inv(E*y.overlap()-B/2-V2+eps)
-	#T=V1-V2
-	#tempmat=np.dot(V1-V2,G0)
-
-	#Gex=la.inv(E*y.overlap()-B/2-V1+eps)
-	#tempmat2=np.dot(Gex,V1)
-	#Tex=V1+np.dot(V1,np.dot(Gex,V1))
-
-	#for k in range(0,niter):
-	#	T=V1-V2+np.dot(tempmat,T)
-	#	t[l][k]=la.norm(T)
-
-	#print A
-	#print Aex
-
-	#print a
-
-	#print la.norm(a)
-
-
