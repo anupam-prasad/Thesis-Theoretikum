@@ -15,43 +15,23 @@ import time
 
 from axis import *
 
-n=300
+n=400
 order=26
-bctype='xopen'
 
 lb=0.
 ub=10.
 
-y=Axis(bctype,n,lb,ub,'fem',order)
-
-ax_cos=Axis('cos',10,0.,1.,'fem',order)
-for k in range(1,10):
-        ax_cos=ax_cos+Axis('cos',10,0.,1.,'fem',order)
-
-npart=np.floor(n/(order-1))
-
-if bctype=='cos':
-        nelem=npart*(order-1)+1
-elif bctype=='r' or bctype=='rho':
-        nelem=npart*(order-1)
-else:
-        nelem=npart*(order-1)-1
-
-nelem_cos=nelem+2
+y=Axis('xopen',n,lb,ub,'fem',order)
 
 #Overlap Matrix
 overlap=y.overlap()
 overlap_inv=y.overlap_inv()
 
 #d|d matrix
-B=np.zeros([nelem,nelem])
-B_cos=np.zeros([nelem_cos,nelem_cos])
+B=np.zeros([y.len(),y.len()])
 #Potential Matrix
-V1=np.zeros([nelem,nelem])
-V2=np.zeros([nelem,nelem])
-
-#Control Parameter
-Lambda=1
+V1=np.zeros([y.len(),y.len()])
+V2=np.zeros([y.len(),y.len()])
 
 iter1=0
 
@@ -67,39 +47,33 @@ for e in y.e:
                         V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
         iter1=iter1+iter2-1
 
-iter1=0
-for e in ax_cos.e:
-        b=e.matrix('d|d')
-        iter2=int(np.sqrt(np.size(b)))
-        for k1 in range(0,iter2):
-                for k2 in range(0,iter2):
-                        B_cos[iter1+k1,iter1+k2]=B_cos[iter1+k1,iter1+k2]+b[k1][k2]
-        iter1=iter1+iter2-1
-
 [evals,evecs]=la.eig(B/2+V1,y.overlap())
 
 #[mom_evals, mom_evecs]=la.eig(B/2,overlap)
 
 #Normalization
-for l in range(0,int(nelem)):
+for l in range(0,int(y.len())):
 	norm=np.sqrt(y.FEM_InnerProduct(evecs.T[l],evecs.T[l]))
 	evecs.T[l]=evecs.T[l] / norm
 
+#Sorting eigenvalues/eigenvectors in ascending order
+perm=np.argsort(evals)
+evals=evals[perm]
+evecs=evecs[:,perm]
+
 #Potential Modification
-for k in range(0,int(nelem)):
-        tempmat=np.outer(evecs.T[k],evecs.T[k])
-        V2=V2+np.dot(tempmat,overlap)
+Lambda=1
+for k in range(0,int(y.len())):
+        V2=V2+Lambda*y.FEM_outer(evecs.T[k],evecs.T[k])
 
 #Scattering Energy
-nenergy=20
-Etot=np.linspace(0,19,nenergy)
+nenergy=40
+Ptot=np.linspace(0,19,nenergy)*myPi+0j
 
-#Momentum Eigenstates - Not sure if this works
-momentum_eigenstates=np.zeros([nenergy,nelem_cos])+0j
+#Momentum Eigenstates - Not sure if this works - It works.. kind of.
+momentum_eigenstates=np.zeros([nenergy,y.len()])+0j
 for k in range(0,nenergy):
-	momentum_eigenstates[k]=ax_cos.FEM_MomentumEigenstate(np.sqrt(Etot[k]))
-
-print ax_cos.FEM_InnerProduct(momentum_eigenstates[0],momentum_eigenstates[1])
+	momentum_eigenstates[k]=y.FEM_function(np.exp,Ptot[k]*1j)
 
 #print Etot
 niter=40

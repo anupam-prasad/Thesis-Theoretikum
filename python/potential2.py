@@ -11,7 +11,7 @@ def potential(x,potential_type,lb=0.,ub=10.):
 
 	elif potential_type=='fwell':
 		for k in range(len(x)):
-			if x[k] < 6. and x[k] > 4.:	V[k]=-400.
+			if x[k] < 6. and x[k] > 4.:	V[k]=-5.
 			else:	V[k]=0
 
 	elif potential_type=='infwell':
@@ -21,7 +21,7 @@ def potential(x,potential_type,lb=0.,ub=10.):
 	
 	elif potential_type=='gaussian':
 		for k in range(len(x)):
-			V[k]=-10*(np.exp(-((x[k]+1)*(x[k]+1))/.05))
+			V[k]=-10*(np.exp(-((x[k]-5)*(x[k]-5))/.05))
 	
 	return V
 

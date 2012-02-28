@@ -10,7 +10,7 @@ import scipy.linalg as la
 
 from axis import *
 
-n=300
+n=400
 order=26
 bctype='xopen'
 
@@ -23,9 +23,9 @@ ax_cos=Axis(bctype,n,lb,ub,'fem',order)
 Ptot=np.linspace(0,ax_cos.len()-1,ax_cos.len())*myPi+0j
 
 #Momentum Eigenstates
-momentum_eigenstates=np.zeros([ax_cos.len(),ax_cos.len()])+0j
+momentum_eigenstates=np.zeros([40,ax_cos.len()])+0j
 
-for k in range(0,int(ax_cos.len())):
+for k in range(0,40):
 	momentum_eigenstates[k]=ax_cos.FEM_function(np.exp,Ptot[k]*1j)
 
 #ax_cos.FEM_plot(momentum_eigenstates[1].real)

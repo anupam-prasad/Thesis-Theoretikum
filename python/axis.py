@@ -167,6 +167,14 @@ class Axis:
 	result=np.dot(tempv,v2)
 	return result
 
+    #Added Tuesday 28.02.2012 - Calculates outer product of two vectors in FEM
+    #representation    
+    def FEM_Outer(self,v1,v2):
+	vconj2=v2.conjugate()
+	tempmat=np.outer(vconj2,v1)
+	result=np.dot(tempat,self.overlap())
+	return result
+
     def FEM_Normalize(self,v):
 	normsq=np.abs(self.FEM_InnerProduct(v,v))
 	norm=np.sqrt(normsq)
