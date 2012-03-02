@@ -23,10 +23,6 @@ ub=10.
 
 y=Axis('xopen',n,lb,ub,'fem',order)
 
-#Overlap Matrix
-overlap=y.overlap()
-overlap_inv=y.overlap_inv()
-
 #d|d matrix
 B=np.zeros([y.len(),y.len()])
 #Potential Matrix
@@ -64,7 +60,7 @@ evecs=evecs[:,perm]
 #Potential Modification
 Lambda=1
 for k in range(0,int(y.len())):
-        V2=V2+Lambda*y.FEM_outer(evecs.T[k],evecs.T[k])
+        V2=V2+Lambda*y.FEM_Outer(evecs.T[k],evecs.T[k])
 
 #Scattering Energy
 nenergy=40
@@ -75,6 +71,17 @@ momentum_eigenstates=np.zeros([nenergy,y.len()])+0j
 for k in range(0,nenergy):
 	momentum_eigenstates[k]=y.FEM_function(np.exp,Ptot[k]*1j)
 
-#print Etot
 niter=40
-eps=2j
+eps=1j
+
+#Free Green's Operator
+G0=la.inv(-B/2+eps*y.overlap())
+store1=np.zeros(nenergy)
+for k in range(0,nenergy):
+#	eig1=y.FEM_InnerProduct(B/2,momentum_eigenstates[k])
+#	eig=y.FEM_InnerProduct(momentum_eigenstates[k],eig1)
+	eig1=np.dot(B/2,momentum_eigenstates[k])
+	eig=np.dot(momentum_eigenstates[k],eig1)
+	store1[k]=abs(eig)
+
+print store1 / store1[1]
