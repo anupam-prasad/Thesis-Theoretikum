@@ -57,6 +57,8 @@ perm=np.argsort(evals)
 evals=evals[perm]
 evecs=evecs[:,perm]
 
+y.FEM_plot(evecs.T[0],evecs.T[1])
+
 #Potential Modification
 Lambda=1
 for k in range(0,int(y.len())):
@@ -67,19 +69,29 @@ nenergy=40
 
 #Momentum Eigenstates - Not sure if this works - It works.. kind of.
 momentum_eigenstates=np.zeros([nenergy,y.len()])+0j
+mom_evals=np.zeros(nenergy)+0j
 for k in range(0,nenergy):
 	momentum_eigenstates[k]=y.FEM_function(np.exp,k*myPi*.5j)
+	tempvec=np.dot(B/2,momentum_eigenstates[k])
+	mom_evals[k]=np.dot(momentum_eigenstates[k].conjugate(),tempvec) / 10.0
 
-niter=40
-eps=10000j
+niter=0
+eps=1j
 
 #Free Green's Operator
 Bmod=np.dot(B/2.,y.overlap_inv())
 epsmat=np.eye(y.len())*eps
-Gtemp=la.inv(-Bmod+epsmat)
-G0=np.dot(Gtemp,y.overlap())
 store1=np.zeros(nenergy)+0j
 for k in range(0,nenergy):
-	vec1=np.dot(G0,momentum_eigenstates[k])
-	store1[k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / y.FEM_InnerProduct(momentum_eigenstates[k],momentum_eigenstates[k])
-	
+	Emat=np.eye(y.len())*mom_evals[k]
+	Gtemp=la.inv(-Bmod+epsmat+Emat)
+	G0=np.dot(Gtemp,y.overlap())
+	tempmat=np.dot(V1,G0)
+	Tmat=V1
+	for l  in range(0,niter):
+		Tmat=Tmat+np.dot(tempmat,Tmat)	
+
+	vec1=np.doc(Tmat,momentum_eigenstates[k])
+	store1[k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / (y.ub-y.lb)
+
+print store1
