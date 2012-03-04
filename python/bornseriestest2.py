@@ -16,7 +16,7 @@ import time
 from axis import *
 
 n=400
-order=26
+order=41
 
 lb=0.
 ub=10.
@@ -64,24 +64,22 @@ for k in range(0,int(y.len())):
 
 #Scattering Energy
 nenergy=40
-Ptot=np.linspace(0,19,nenergy)*myPi+0j
 
 #Momentum Eigenstates - Not sure if this works - It works.. kind of.
 momentum_eigenstates=np.zeros([nenergy,y.len()])+0j
 for k in range(0,nenergy):
-	momentum_eigenstates[k]=y.FEM_function(np.exp,Ptot[k]*1j)
+	momentum_eigenstates[k]=y.FEM_function(np.exp,k*myPi*.5j)
 
 niter=40
-eps=1j
+eps=10000j
 
 #Free Green's Operator
-G0=la.inv(-B/2+eps*y.overlap())
-store1=np.zeros(nenergy)
+Bmod=np.dot(B/2.,y.overlap_inv())
+epsmat=np.eye(y.len())*eps
+Gtemp=la.inv(-Bmod+epsmat)
+G0=np.dot(Gtemp,y.overlap())
+store1=np.zeros(nenergy)+0j
 for k in range(0,nenergy):
-#	eig1=y.FEM_InnerProduct(B/2,momentum_eigenstates[k])
-#	eig=y.FEM_InnerProduct(momentum_eigenstates[k],eig1)
-	eig1=np.dot(B/2,momentum_eigenstates[k])
-	eig=np.dot(momentum_eigenstates[k],eig1)
-	store1[k]=abs(eig)
-
-print store1 / store1[1]
+	vec1=np.dot(G0,momentum_eigenstates[k])
+	store1[k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / y.FEM_InnerProduct(momentum_eigenstates[k],momentum_eigenstates[k])
+	
