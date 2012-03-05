@@ -33,7 +33,7 @@ iter1=0
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('fwell')
+        v=e.matrix('gaussiancutoff', np.array([4.,6.]))
 	v2=e.matrix('pot2')
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
@@ -42,6 +42,10 @@ for e in y.e:
                         V1[iter1+k1,iter1+k2]=V1[iter1+k1,iter1+k2]+v[k1][k2]
                         V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
         iter1=iter1+iter2-1
+
+t=np.linspace(lb,ub,1001)
+plt.plot(t,potential(t,'gaussiancutoff',np.array([4.,6.])))
+plt.show()
 
 [evals,evecs]=la.eig(B/2+V1,y.overlap())
 
@@ -56,8 +60,6 @@ for l in range(0,int(y.len())):
 perm=np.argsort(evals)
 evals=evals[perm]
 evecs=evecs[:,perm]
-
-y.FEM_plot(evecs.T[0],evecs.T[1])
 
 #Potential Modification
 Lambda=1
@@ -91,7 +93,7 @@ for k in range(0,nenergy):
 	for l  in range(0,niter):
 		Tmat=Tmat+np.dot(tempmat,Tmat)	
 
-	vec1=np.doc(Tmat,momentum_eigenstates[k])
+	vec1=np.dot(Tmat,momentum_eigenstates[k])
 	store1[k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / (y.ub-y.lb)
 
 print store1

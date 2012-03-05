@@ -28,7 +28,7 @@ class BasisFunction(mf.MyFunction):
         elif self.jc == 'q^2': return q*q
         else: sys.exit('jacobian not defined "'+self.jc+'"')
 
-    def matrix(self,name,br=None,pot='0'):
+    def matrix(self,name,params=[],br=None):
         """matrix elements between all basis functions
         |        ...int j(q)dq v^* v 
         d|d      ...int j(q)dq dv^* dv
@@ -64,18 +64,6 @@ class BasisFunction(mf.MyFunction):
                 for j in range(np.shape(cv)[1]):
                     m[i,j]=m[i,j]+np.dot(cv[:,i]*f,v[:,j])
             return m
-
-#	def pot(x):
-#        	V=np.zeros(len(x))
-#        	for k in range(len(x)):
-#                	if x[k] < .5 and x[k] > -0.5:
-#                      		V[k]=-10
-#      				V[k]=-np.exp(-x[k]*x[k]/.01)
-#				V[k]=-1/(x[k])
-#                	else:
-#                        	V[k]=0
-
-#	        return V
  
         # different operators
         if   name == '|':       return  bracket(v,vr,w*self.jacobian(x))
@@ -91,10 +79,7 @@ class BasisFunction(mf.MyFunction):
                      bracket(v,dr,w*self.jacobian(x)/x)+
                      bracket(v,vr,w*self.jacobian(x)/x**2))
         
-        else:  return bracket(v,vr,w*self.jacobian(x)*potential(x,name))
-#    	else : return bracket(v,vr,w*self.jacobian(x)*potential2(x))
-#       else:  return bracket(v,vr,w*self.jacobian(x)*Potential(name).v(x))
-
+        else:  return bracket(v,vr,w*self.jacobian(x)*potential(x,name,params))
     
     # most functions have open boundary conditions
     def lb(self): return False
