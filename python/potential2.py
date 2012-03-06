@@ -8,6 +8,7 @@ def potential(x,potential_type,params=[]):
 	if np.size(params) > 0:	
 		lb=params[0]
 		ub=params[1]
+		pot_strength=params[2]
 
 	if potential_type=='qho':
 		for k in range(len(x)):
@@ -15,7 +16,7 @@ def potential(x,potential_type,params=[]):
 
 	elif potential_type=='fwell':
 		for k in range(len(x)):
-			if x[k] < ub and x[k] > lb:	V[k]=-1000.
+			if x[k] < ub and x[k] > lb:	V[k]=-pot_strength
 			else:	V[k]=0
 
 	elif potential_type=='infwell':
@@ -25,11 +26,11 @@ def potential(x,potential_type,params=[]):
 	
 	elif potential_type=='gaussian':
 		for k in range(len(x)):
-			V[k]=-10*(np.exp(-((x[k]-5)*(x[k]-5))/.05))
+			V[k]=-pot_strength*(np.exp(-((x[k]-5)*(x[k]-5))/.05))
 	
 	elif potential_type=='gaussiancutoff':
 		for k in range(len(x)):
-			if x[k] < ub and x[k] > lb:	V[k]=-10*(np.exp(-((x[k]-5)*(x[k]-5))/.05))
+			if x[k] < ub and x[k] > lb:	V[k]=-pot_strength*(np.exp(-((x[k]-5)*(x[k]-5))/.05))
 			else:	V[k]=0
 	
 	return V

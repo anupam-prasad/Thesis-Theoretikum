@@ -33,7 +33,7 @@ iter1=0
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('gaussiancutoff', np.array([4.,6.]))
+        v=e.matrix('fwell', np.array([4.,6.,10.]))
 	v2=e.matrix('pot2')
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
@@ -43,13 +43,7 @@ for e in y.e:
                         V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
         iter1=iter1+iter2-1
 
-t=np.linspace(lb,ub,1001)
-plt.plot(t,potential(t,'gaussiancutoff',np.array([4.,6.])))
-plt.show()
-
 [evals,evecs]=la.eig(B/2+V1,y.overlap())
-
-#[mom_evals, mom_evecs]=la.eig(B/2,overlap)
 
 #Normalization
 for l in range(0,int(y.len())):
@@ -72,28 +66,39 @@ nenergy=40
 #Momentum Eigenstates - Not sure if this works - It works.. kind of.
 momentum_eigenstates=np.zeros([nenergy,y.len()])+0j
 mom_evals=np.zeros(nenergy)+0j
+#mom_evals_exact=np.zeros(nenergy)+0j
 for k in range(0,nenergy):
 	momentum_eigenstates[k]=y.FEM_function(np.exp,k*myPi*.5j)
 	tempvec=np.dot(B/2,momentum_eigenstates[k])
 	mom_evals[k]=np.dot(momentum_eigenstates[k].conjugate(),tempvec) / 10.0
+#	mom_evals_exact[k]=k*k*myPi*myPi / 8.
 
-niter=0
-eps=1j
+niter=2
+eps=1000j
 
 #Free Green's Operator
 Bmod=np.dot(B/2.,y.overlap_inv())
-epsmat=np.eye(y.len())*eps
-store1=np.zeros(nenergy)+0j
+#epsmat=np.eye(y.len())*eps
+store1=np.zeros([2,nenergy])+0j
 for k in range(0,nenergy):
-	Emat=np.eye(y.len())*mom_evals[k]
-	Gtemp=la.inv(-Bmod+epsmat+Emat)
+	Emat=np.eye(y.len())*(mom_evals[k]+eps)
+	Gtemp=la.inv(-Bmod + Emat)
 	G0=np.dot(Gtemp,y.overlap())
 	tempmat=np.dot(V1,G0)
 	Tmat=V1
-	for l  in range(0,niter):
-		Tmat=Tmat+np.dot(tempmat,Tmat)	
 
-	vec1=np.dot(Tmat,momentum_eigenstates[k])
-	store1[k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / (y.ub-y.lb)
+#	for l  in range(0,niter):
+#		Tmat=Tmat+np.dot(tempmat,Tmat)	
 
-print store1
+#	vec1=np.dot(Tmat,momentum_eigenstates[k])
+#	store1[0,k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / (y.ub-y.lb)
+#	store1[1,k]=np.dot(momentum_eigenstates[k],vec1) / (y.ub-y.lb)
+
+	vec1=np.dot(G0,momentum_eigenstates[k])
+	store1[0,k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / (y.ub-y.lb)
+
+print store1[0,:]
+
+#print store1[1,:]
+
+#print abs(store1[0,:]) / abs(store1[1,:])
