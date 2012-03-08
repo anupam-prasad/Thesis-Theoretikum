@@ -22,9 +22,10 @@ lb=0.
 ub=10.
 
 y=Axis('xopen',n,lb,ub,'fem',order)
-
+ysin=Axis('x',n,lb,ub,'fem',order)
 #d|d matrix
 B=np.zeros([y.len(),y.len()])
+Bsin=np.zeros([ysin.len(),ysin.len()])
 #Potential Matrix
 V1=np.zeros([y.len(),y.len()])
 V2=np.zeros([y.len(),y.len()])
@@ -43,35 +44,59 @@ for e in y.e:
                         V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
         iter1=iter1+iter2-1
 
-[evals,evecs]=la.eig(B/2+V1,y.overlap())
+iter1=0
 
-#Normalization
-for l in range(0,int(y.len())):
-	norm=np.sqrt(y.FEM_InnerProduct(evecs.T[l],evecs.T[l]))
-	evecs.T[l]=evecs.T[l] / norm
+for e in ysin.e:
+        b=e.matrix('d|d')
+        iter2=int(np.sqrt(np.size(b)))
+        for k1 in range(0,iter2):
+                for k2 in range(0,iter2):
+                        Bsin[iter1+k1,iter1+k2]=Bsin[iter1+k1,iter1+k2]+b[k1][k2]
+        iter1=iter1+iter2-1
+
+[evals,evecs]=la.eig(B/2+V1,y.overlap())
 
 #Sorting eigenvalues/eigenvectors in ascending order
 perm=np.argsort(evals)
 evals=evals[perm]
 evecs=evecs[:,perm]
 
-#print evals / evals[1]
+#Momentum Eigenstates
+[cos_evals,cos_evecs]=la.eig(B/2.,y.overlap())
+[sin_evals_temp,sin_evecs_temp]=la.eig(Bsin/2.,ysin.overlap())
+
+#Sorting eigenvalues/eigenvectors in ascending order
+perm=np.argsort(cos_evals)
+cos_evals=cos_evals[perm]
+cos_evecs=cos_evecs[:,perm]
+
+cos_evals=cos_evals[0:ysin.len()+1]
+cos_evecs=cos_evecs[:,0:ysin.len()+1]
+
+perm=np.argsort(sin_evals_temp)
+sin_evals_temp=sin_evals_temp[perm]
+sin_evecs_temp=sin_evecs_temp[:,perm]
+
+sin_evals=np.zeros([ysin.len()+1])+0j
+sin_evecs=np.zeros([y.len(),ysin.len()+1])+0j
+
+for k in range(0,ysin.len()):
+	sin_evals[k+1]=sin_evals_temp[k]
+	sin_evecs[1:ysin.len()+1,k+1]=sin_evecs_temp[:,k]
+
+#Normalization
+for k in range(0,ysin.len()+1):
+	cosnorm=np.sqrt(y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]))
+	sinnorm=np.sqrt(y.FEM_InnerProduct(sin_evecs[:,k],sin_evecs[:,k]))
+
+	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
+#	sin_evecs[:,k]=sin_evecs[:,k] / sinnorm
+
+print sin_evals
 #Potential Modification
 Lambda=1
 for k in range(0,int(y.len())):
         V2=V2+Lambda*y.FEM_Outer(evecs.T[k],evecs.T[k])
-
-#Scattering Energy
-nenergy=40
-
-#Momentum Eigenstates - Not sure if this works - It works.. kind of.
-momentum_eigenstates=np.zeros([nenergy,y.len()])+0j
-mom_evals=np.zeros(nenergy)+0j
-#mom_evals_exact=np.zeros(nenergy)+0j
-for k in range(0,nenergy):
-	momentum_eigenstates[k]=y.FEM_function(np.exp,k*myPi*1j/2.)
-	tempvec=np.dot(B/2,momentum_eigenstates[k])
-	mom_evals[k]=np.dot(momentum_eigenstates[k].conjugate(),tempvec) / 10.0
 
 niter=5
 eps=1j
@@ -80,11 +105,11 @@ eps=1j
 Bmod=np.dot(B/2.,y.overlap_inv())
 Vmod=np.dot(V1,y.overlap_inv())
 #epsmat=np.eye(y.len())*eps
-store1=np.zeros([2,nenergy])+0j
+store1=np.zeros([2,40])+0j
 Tmat=V1
 
-for k in range(0,nenergy):
-	Emat=np.eye(y.len())*(mom_evals[k]+eps)
+for k in range(40):
+	Emat=np.eye(y.len())*(cos_evals[k]+eps)
 	Gtemp=la.inv(-Bmod + Emat)
 	G0=np.dot(Gtemp,y.overlap())
 	tempmat=np.dot(V1,G0)
@@ -93,9 +118,13 @@ for k in range(0,nenergy):
 #	Texact = np.dot(tempmat2,V1)
 	Gexact = la.inv(-Bmod-Vmod+Emat)
 
-	vec1=np.dot(Gexact,momentum_eigenstates[k])
-	store1[0,k]=np.dot(momentum_eigenstates[k].conjugate(),vec1)
-	store1[1,k]=np.dot(momentum_eigenstates[k],vec1)
+#	vec1=np.dot(G0,evecs.T[k])
+#	store1[0,k]=np.dot(evecs.T[k].conjugate(),vec1) / 10.
+#	store1[1,k]=np.dot(evecs.T[k],vec1) / 10.
+
+	vec1=np.dot(G0,sin_evecs[:,k])
+	store1[0,k]=np.dot(sin_evecs[:,k].conjugate(),vec1)
+	store1[1,k]=np.dot(sin_evecs.T[k],vec1)
 
 #	for l  in range(0,niter):
 #		Tmat=Tmat+np.dot(tempmat,Tmat)	
@@ -106,6 +135,6 @@ for k in range(0,nenergy):
 
 print abs(store1[0,:])
 
-print abs(store1[1,:])
+#print abs(store1[1,:])
 
 #print abs(store1[0,:]) / abs(store1[1,:])
