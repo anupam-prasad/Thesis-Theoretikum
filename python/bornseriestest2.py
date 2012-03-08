@@ -33,7 +33,7 @@ iter1=0
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('fwell', np.array([4.,6.,10.]))
+        v=e.matrix('fwell', np.array([4.,6.,0.]))
 	v2=e.matrix('pot2')
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
@@ -55,6 +55,7 @@ perm=np.argsort(evals)
 evals=evals[perm]
 evecs=evecs[:,perm]
 
+#print evals / evals[1]
 #Potential Modification
 Lambda=1
 for k in range(0,int(y.len())):
@@ -68,37 +69,43 @@ momentum_eigenstates=np.zeros([nenergy,y.len()])+0j
 mom_evals=np.zeros(nenergy)+0j
 #mom_evals_exact=np.zeros(nenergy)+0j
 for k in range(0,nenergy):
-	momentum_eigenstates[k]=y.FEM_function(np.exp,k*myPi*.5j)
+	momentum_eigenstates[k]=y.FEM_function(np.exp,k*myPi*1j/2.)
 	tempvec=np.dot(B/2,momentum_eigenstates[k])
 	mom_evals[k]=np.dot(momentum_eigenstates[k].conjugate(),tempvec) / 10.0
-#	mom_evals_exact[k]=k*k*myPi*myPi / 8.
 
-niter=2
-eps=1000j
+niter=5
+eps=1j
 
 #Free Green's Operator
 Bmod=np.dot(B/2.,y.overlap_inv())
+Vmod=np.dot(V1,y.overlap_inv())
 #epsmat=np.eye(y.len())*eps
 store1=np.zeros([2,nenergy])+0j
+Tmat=V1
+
 for k in range(0,nenergy):
 	Emat=np.eye(y.len())*(mom_evals[k]+eps)
 	Gtemp=la.inv(-Bmod + Emat)
 	G0=np.dot(Gtemp,y.overlap())
 	tempmat=np.dot(V1,G0)
-	Tmat=V1
+
+#	tempmat2 = la.inv(np.eye(y.len())-tempmat)
+#	Texact = np.dot(tempmat2,V1)
+	Gexact = la.inv(-Bmod-Vmod+Emat)
+
+	vec1=np.dot(Gexact,momentum_eigenstates[k])
+	store1[0,k]=np.dot(momentum_eigenstates[k].conjugate(),vec1)
+	store1[1,k]=np.dot(momentum_eigenstates[k],vec1)
 
 #	for l  in range(0,niter):
 #		Tmat=Tmat+np.dot(tempmat,Tmat)	
 
 #	vec1=np.dot(Tmat,momentum_eigenstates[k])
-#	store1[0,k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / (y.ub-y.lb)
-#	store1[1,k]=np.dot(momentum_eigenstates[k],vec1) / (y.ub-y.lb)
+#	store1[0,k]=np.dot(momentum_eigenstates[0].conjugate(),vec1)
+#	store1[1,k]=np.dot(momentum_eigenstates[0],vec1)
 
-	vec1=np.dot(G0,momentum_eigenstates[k])
-	store1[0,k]=np.dot(momentum_eigenstates[k].conjugate(),vec1) / (y.ub-y.lb)
+print abs(store1[0,:])
 
-print store1[0,:]
-
-#print store1[1,:]
+print abs(store1[1,:])
 
 #print abs(store1[0,:]) / abs(store1[1,:])

@@ -11,9 +11,9 @@ from copy import *
 
 from axis import *
 
-n=300
-order=26
-bctype='xopen'
+n=400
+order=41
+bctype='x'
 
 lb=0.
 ub=10.
@@ -32,7 +32,7 @@ iter1=0
 
 for e in y.e:
 	b=e.matrix('d|d')
-	v=e.matrix('fwell', np.array([4.,6.,100]))
+	v=e.matrix('infwell')
 	iter2=int(np.sqrt(np.size(b)))
 	for k1 in range(0,iter2):
 		for k2 in range(0,iter2):
@@ -45,9 +45,14 @@ for e in y.e:
 sorted_indices=abs(evals).argsort()
 evals_sorted=evals[sorted_indices]
 evecs_sorted=evecs.T[sorted_indices]
-print evals_sorted
+evalsnorm = evals_sorted / evals_sorted[0]
 #print sorted1/sorted1[1]
-y.FEM_plot(evecs_sorted[3])
+#y.FEM_plot(evecs_sorted[3])
+
+testint = np.linspace(1,y.len(),int(y.len())) * np.linspace(1,y.len(),int(y.len()))
+
+plt.plot( abs(evalsnorm - testint) )
+plt.show()
 
 #for k in range(0,y.len()):
 #print y.FEM_InnerProduct(evecs.T[0],evecs.T[k])
