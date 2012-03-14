@@ -90,16 +90,17 @@ for k in range(0,ysin.len()+1):
 	cosnorm=np.sqrt(2. * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]))
 	sinnorm=np.sqrt(2. * y.FEM_InnerProduct(sin_evecs[:,k],sin_evecs[:,k]))
 
-	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
 	if k>0:
+		cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
 		sin_evecs[:,k]=sin_evecs[:,k] / sinnorm
-	
+	else:
+		cos_evecs[:,k]=np.sqrt(2) * cos_evecs[:,k] / cosnorm
 
-mom_evecs=cos_evecs-sin_evecs*1j
+mom_evecs=(cos_evecs-sin_evecs*1j) * np.sqrt(ub-lb)
 
 for k in range(0,ysin.len()+1):
 	vec1=np.dot(B/2.,mom_evecs[:,k])
-	mom_evals[k]=abs(np.dot(mom_evecs[:,k].conjugate(),vec1))
+	mom_evals[k]=np.dot(mom_evecs[:,k].conjugate(),vec1) / (ub-lb)
 
 #Potential Modification
 Lambda=1
@@ -109,39 +110,37 @@ for k in range(0,int(y.len())):
 niter=5
 eps=1j
 
+y.FEM_plot(cos_evecs[:,1])
 #Free Green's Operator
-#Bmod=np.dot(B/2.,y.overlap_inv())
-#Vmod=np.dot(V1,y.overlap_inv())
-#epsmat=np.eye(y.len())*eps
-store1=np.zeros([2,40])+0j
+nenergy=3
+store1=np.zeros([2,nenergy])+0j
 Tmat=V1
+Bmod=np.dot(B/2.,y.overlap_inv())
+Bmodsin=np.dot(Bsin/2.,ysin.overlap_inv())
 
-for k in range(40):
-#	Emat=np.eye(y.len())*(mom_evals[k]+eps)
-	Emat=y.overlap()*(mom_evals[k]+eps)
-	Gtemp=la.inv(-B/2. + Emat)
+for k in range(nenergy):
+	Emat=np.eye(y.len()) * (mom_evals[k]+eps)
+	Ematsin=np.eye(ysin.len()) * (sin_evals_temp[k]+eps)
+	
+	Gtemp=la.inv(-Bmod + Emat)
+	Gtempsin=la.inv(-Bmodsin + Ematsin)
+
 	G0=np.dot(Gtemp,y.overlap())
-#	tempmat=np.dot(V1,G0)
+	G0sin=np.dot(Gtempsin,ysin.overlap())
 
-#	tempmat2 = la.inv(np.eye(y.len())-tempmat)
-#	Texact = np.dot(tempmat2,V1)
-#	Gexact = la.inv(-Bmod-Vmod+Emat)
+#	print G0
+#	print G0sin 
+#	raw_input()
+#
+#	vec1=np.dot(B,mom_evecs[:,k].imag)
+#	store1[0,k]=np.dot(mom_evecs[:,k].imag,vec1)
+#	store1[1,k]=y.FEM_InnerProduct(mom_evecs[:,k].conjugate(),vec1)
 
-#	vec1=np.dot(G0,evecs.T[k])
-#	store1[0,k]=np.dot(evecs.T[k].conjugate(),vec1) / 10.
-#	store1[1,k]=np.dot(evecs.T[k],vec1) / 10.
+#	vec1=np.dot(G0,mom_evecs[:,k].imag)
+#	store1[0,k]=np.dot(mom_evecs[:,k].imag,vec1)
 
-	vec1=np.dot(G0,mom_evecs[:,k].real)
-#	store1[0,k]=np.dot(mom_evecs[:,k].conjugate(),vec1)
-	store1[0,k]=y.FEM_InnerProduct(mom_evecs[:,k].real,vec1)
-	store1[1,k]=np.dot(mom_evecs[:,k],vec1)
-
-#	for l  in range(0,niter):
-#		Tmat=Tmat+np.dot(tempmat,Tmat)	
-
-#	vec1=np.dot(Tmat,momentum_eigenstates[k])
-#	store1[0,k]=np.dot(momentum_eigenstates[0].conjugate(),vec1)
-#	store1[1,k]=np.dot(momentum_eigenstates[0],vec1)
+	vec1=np.dot(G0sin,sin_evecs_temp[:,k])
+	store1[0,k]=np.dot(sin_evecs_temp[:,k],vec1) / ysin.FEM_InnerProduct(sin_evecs_temp[:,k],sin_evecs_temp[:,k])
 
 print abs(store1[0,:])
 
