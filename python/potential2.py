@@ -25,12 +25,16 @@ def potential(x,potential_type,params=[]):
 		
 	
 	elif potential_type=='gaussian':
+		center=(lb+ub)/2.
+		sigma=(ub-lb)/2.
 		for k in range(len(x)):
-			V[k]=-pot_strength*(np.exp(-((x[k]-5)*(x[k]-5))/.05))
+			V[k]=-pot_strength*(np.exp(-((x[k]-center)*(x[k]-center))/(2.*sigma*sigma)))
 	
 	elif potential_type=='gaussiancutoff':
+		center=(lb+ub)/2.
+		sigma=(ub-lb)/2.
 		for k in range(len(x)):
-			if x[k] < ub and x[k] > lb:	V[k]=-pot_strength*(np.exp(-((x[k]-5)*(x[k]-5))/.05))
+			if x[k] < ub and x[k] > lb:	V[k]=-pot_strength*(np.exp(-((x[k]-center)*(x[k]-center))/(2.*sigma*sigma)))
 			else:	V[k]=0
 	
 	return V

@@ -172,7 +172,8 @@ class Axis:
     def FEM_Outer(self,v1,v2):
 	vconj2=v2.conjugate()
 	tempmat=np.outer(vconj2,v1)
-	result=np.dot(tempmat,self.overlap())
+	result_temp=np.dot(tempmat,self.overlap())
+	result=np.dot(self.overlap(),result_temp)
 	return result
 
     def FEM_Normalize(self,v):

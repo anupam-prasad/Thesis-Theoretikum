@@ -28,13 +28,11 @@ B=np.zeros([y.len(),y.len()])
 V1=np.zeros([y.len(),y.len()])
 V2=np.zeros([y.len(),y.len()])
 
-V0=100
-
 iter1=0
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('fwell', np.array([4.,6.,V0]))
+        v=e.matrix('fwell', np.array([4.,6.,100.]))
 	v2=e.matrix('pot2')
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
@@ -59,69 +57,34 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=100
+Lambda=1
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
 	
 	evecsnorm=np.sqrt(y.FEM_InnerProduct(evecs[:,k],evecs[:,k]))
 	evecs[:,k]=evecs[:,k] / evecsnorm
+        V2=V2+ Lambda* evals[k] * y.FEM_Outer(evecs[:,k],evecs[:,k])
 
-	#Potential Modification
-        V2=V2 + Lambda * y.FEM_Outer(evecs[:,k],evecs[:,k])
+niter=5
+eps=1e-8j
 
-niter=2
-eps=1j
-
-#print evals
-#raw_input()
 #Free Green's Operator
-n0=ceil(np.sqrt(200*V0/(myPi * myPi)))
-nenergy=10
+nenergy=40
 store1=np.zeros([2,nenergy])+0j
-
-#Vtemp=np.dot(V1,y.overlap_inv())
-#Vmod=np.dot(y.overlap_inv(),Vtemp)
-
-
-Bmod=np.dot(B/2.+V2,y.overlap_inv())
-Bmod1=np.dot(B/2.+V1+V2,y.overlap_inv())
-
-Vtemp=np.dot(V1,y.overlap_inv())
-Vmod=np.dot(y.overlap_inv(),Vtemp)
-
-Tmat=Vmod
+Tmat=V1
+Bmod=np.dot(B/2.,y.overlap_inv())
 
 for k in range(nenergy):
-	Emat=np.eye(y.len()) * (cos_evals[k+n0]+eps)
-#	Emat1=np.eye(y.len()) * (cos_evals[k+n0]+eps)
-
+	Emat=np.eye(y.len()) * (cos_evals[k]+eps)
 	Gtemp=la.inv(-Bmod + Emat)
-	Gtemp1=la.inv(-Bmod1 + Emat)
-
 	G0=np.dot(Gtemp,y.overlap())
-	Gexact=np.dot(Gtemp1,y.overlap())
 
-	VG=np.dot(G0,Vmod)
-
-	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
-	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
-
-	Gmat=G0
-	for l in range(niter):
-		Gmat=G0+np.dot(VG,Gmat)
-
-	vec1=np.dot(Gmat,cos_evecs[:,k+n0])
-	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
-#	store1[1,k]=la.norm(Gmat-Gexact)
-
-#print abs(store1[0,:] * eps)
-#
-#print abs(store1[1,:] * eps)
+	vec1=np.dot(G0,cos_evecs[:,k])
+	store1[0,k]=np.dot(cos_evecs[:,k],vec1)
 
 print abs(store1[0,:] * eps)
 
-print abs(store1[1,:] * eps)
+#print abs(store1[1,:])
 
-#print cos_evals[n0:nenergy+n0]
 #print abs(store1[0,:]) / abs(store1[1,:])
