@@ -61,7 +61,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=500.
+Lambda=1000.
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
@@ -70,23 +70,22 @@ for k in range(0,y.len()):
 	evecs[:,k]=evecs[:,k] / evecsnorm
 
 	#Potential Modification
-        Gam=Gam + Lambda * y.FEM_Outer(evecs[:,k],evecs[:,k])
+        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
-niter=20
-eps=1e-9j
+niter=5
+eps=1j
 
 #Free Green's Operator
 #n0=ceil(np.sqrt(200*V0/(myPi * myPi)))
 n0=0
-nenergy=50
+nenergy=10
 store1=np.zeros([niter+1,nenergy])+0j
 
 #Vtemp=np.dot(V1,y.overlap_inv())
 #Vmod=np.dot(y.overlap_inv(),Vtemp)
 
-
-Bmod=np.dot(B/2. + Gam,y.overlap_inv())
-Bmod1=np.dot(B/2. + V1 + V2 + Gam,y.overlap_inv())
+Bmod=np.dot(B/2. + Lambda*Gam,y.overlap_inv())
+Bmod1=np.dot(B/2. + V1 + V2 + Lambda*Gam,y.overlap_inv())
 
 Vtemp=np.dot(V1+V2,y.overlap_inv())
 Vmod=np.dot(y.overlap_inv(),Vtemp)
@@ -102,6 +101,11 @@ for k in range(nenergy):
 
 	G0=np.dot(Gtemp,y.overlap())
 	Gexact=np.dot(Gtemp1,y.overlap())
+#	l=0
+#	while evals[l] < 0:
+#		G0=G0 - y.FEM_Outer(evecs[:,l],evecs[:,l]) / (cos_evals[k+n0] + eps - evals[l])
+#		Gexact=Gexact - y.FEM_Outer(evecs[:,l],evecs[:,l]) / (cos_evals[k+n0] + eps - evals[l])
+#		l=l+1
 
 	VG=np.dot(G0,Vmod)
 
@@ -111,18 +115,17 @@ for k in range(nenergy):
 	Gmat=G0
 	for l in range(niter):
 		Gmat=G0+np.dot(VG,Gmat)
-		tempmat=np.dot(Vmod,Gmat)
+#		tempmat=np.dot(Vmod,Gmat)
 #		T=Vmod+np.dot(tempmat,Vmod)
 		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
-		store1[l + 1,k]=np.dot(cos_evecs[:,k+n0],vec1)
+		store1[l+1,k]=np.dot(cos_evecs[:,k+n0],vec1)
 #		store1[l,k]=la.norm(Gmat-Gexact)
 
 #print abs(store1[0,:] * Lambda)
 #
 
 for k in range(nenergy):
-	print abs(store1[:,k])
-#	print abs(store1[:,k] * eps)
+	print abs(store1[:,k] * eps)
 #	raw_input()
 #print np.sum(store1,axis=1)
 

@@ -30,14 +30,14 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=200.
+V0=200
 
 iter1=0
 
 for e in y.e:
         b=e.matrix('d|d')
         v=e.matrix('gaussian', np.array([4.5,6.5,V0]))
-        v2=e.matrix('fwell', np.array([3.5,4.5,V0]))
+        v2=e.matrix('gaussiancutoff', np.array([3.5,4.5,V0]))
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
                 for k2 in range(0,iter2):
@@ -61,7 +61,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=500.
+Lambda=0.
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
@@ -72,8 +72,8 @@ for k in range(0,y.len()):
 	#Potential Modification
         Gam=Gam + Lambda * y.FEM_Outer(evecs[:,k],evecs[:,k])
 
-niter=20
-eps=1e-9j
+niter=10
+eps=1e-12j
 
 #Free Green's Operator
 #n0=ceil(np.sqrt(200*V0/(myPi * myPi)))
@@ -98,31 +98,31 @@ for k in range(nenergy):
 #	Emat1=np.eye(y.len()) * (cos_evals[k+n0]+eps)
 
 	Gtemp=la.inv(-Bmod + Emat)
-	Gtemp1=la.inv(-Bmod1 + Emat)
+#	Gtemp1=la.inv(-Bmod1 + Emat)
 
 	G0=np.dot(Gtemp,y.overlap())
-	Gexact=np.dot(Gtemp1,y.overlap())
+#	Gexact=np.dot(Gtemp1,y.overlap())
 
-	VG=np.dot(G0,Vmod)
+	VG=np.dot(Vmod,G0)
 
-	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
+#	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
+#	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
+
+	vec1=np.dot(Tmat,cos_evecs[:,k+n0])
 	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-	Gmat=G0
 	for l in range(niter):
-		Gmat=G0+np.dot(VG,Gmat)
-		tempmat=np.dot(Vmod,Gmat)
-#		T=Vmod+np.dot(tempmat,Vmod)
-		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
-		store1[l + 1,k]=np.dot(cos_evecs[:,k+n0],vec1)
-#		store1[l,k]=la.norm(Gmat-Gexact)
+		Tmat=Vmod+np.dot(VG,Tmat)
+		vec1=np.dot(Tmat,cos_evecs[:,k+n0])
+		store1[l+1,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-#print abs(store1[0,:] * Lambda)
+#	store1[1,k]=la.norm(Gmat-Gexact)
+
+#print abs(store1[0,:] * eps)
 #
 
 for k in range(nenergy):
-	print abs(store1[:,k])
-#	print abs(store1[:,k] * eps)
+	print abs(store1[:,k] * 1e-5)
 #	raw_input()
 #print np.sum(store1,axis=1)
 
