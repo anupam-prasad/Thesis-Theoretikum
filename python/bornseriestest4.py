@@ -72,8 +72,8 @@ for k in range(0,y.len()):
 	#Potential Modification
         Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
-niter=5
-eps=1j
+niter=10
+eps=1e-5j
 
 #Free Green's Operator
 #n0=ceil(np.sqrt(200*V0/(myPi * myPi)))
@@ -125,7 +125,7 @@ for k in range(nenergy):
 #
 
 for k in range(nenergy):
-	print abs(store1[:,k] * eps)
+	print abs(store1[:,k])
 #	raw_input()
 #print np.sum(store1,axis=1)
 
