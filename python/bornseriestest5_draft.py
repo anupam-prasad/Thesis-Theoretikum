@@ -15,7 +15,7 @@ import time
 
 from axis import *
 
-n=800
+n=200
 order=41
 
 lb=0.
@@ -30,7 +30,7 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=200.
+V0=10.
 
 iter1=0
 
@@ -67,9 +67,6 @@ perm=np.argsort(evals)
 evals=evals[perm]
 evecs=evecs[:,perm]
 
-print cos_evals[0:20] / (myPi * myPi);
-
-exit('here')
 #Normalization and Potential Modification
 Lambda=700.
 for k in range(0,y.len()):
@@ -80,7 +77,7 @@ for k in range(0,y.len()):
 	evecs[:,k]=evecs[:,k] / evecsnorm
 
 	#Potential Modification
-        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
+#       Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
 niter=15
 eps=1e-8j
@@ -136,6 +133,10 @@ for k in range(nenergy):
 #
 
 for k in range(nenergy):
-	print abs(store1[:,k]) * 
+	print abs(store1[:,k])
 
-print Lambda, niter
+#print Lambda, niter
+
+#f=open('test5plot/test5results_unmodified','w')
+#pickle.dump(store1,f)
+
