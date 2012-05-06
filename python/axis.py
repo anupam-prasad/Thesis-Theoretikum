@@ -239,11 +239,12 @@ class Axis:
 	plt.show()
 
 if __name__ == "__main__": 
-    ax=Axis('x',4,0.,4.,'fem',3)+Axis('x',2,0.,4.,'fem',2)+Axis('x',1,0.,1.,'fem',2,axpar=['laguerre',1.])
-    ax=Axis('x',9,0.,8.,'fem',3)+Axis('x',1,0.,1.,'fem',2,axpar=['laguerre',1.])
-    ax=Axis('x',13,0.,12.,'fem',3)
-    plt.subplot(311)
+   # ax=Axis('x',4,0.,4.,'fem',3)+Axis('x',2,0.,4.,'fem',2)+Axis('x',1,0.,1.,'fem',2,axpar=['laguerre',1.])
+   # ax=Axis('x',9,0.,8.,'fem',3)+Axis('x',1,0.,1.,'fem',2,axpar=['laguerre',1.])
+    ax=Axis('xopen',8,0.,4.,'fem',3)
+    print ax.len()
+#    plt.subplot(311)
     ax.plot(normalization="max=1")
-    for e in ax.e:
-        plt.plot([e.x0,e.x0],[-0.05,1.05])
+#    for e in ax.e:
+ #       plt.plot([e.x0,e.x0],[-0.05,1.05])
     plt.show()

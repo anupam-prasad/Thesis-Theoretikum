@@ -15,7 +15,7 @@ import time
 
 from axis import *
 
-n=400
+n=800
 order=41
 
 lb=0.
@@ -33,6 +33,13 @@ Gam=np.zeros([y.len(),y.len()])
 V0=200.
 
 iter1=0
+
+t=np.linspace(0,10,1001)
+tpot=potential(t,'gaussian',np.array([3.,4.,V0]))+potential(t,'gaussian',np.array([6.,7.,V0]))
+
+plt.plot(t,tpot)
+plt.show()
+
 
 for e in y.e:
         b=e.matrix('d|d')
@@ -60,6 +67,9 @@ perm=np.argsort(evals)
 evals=evals[perm]
 evecs=evecs[:,perm]
 
+print cos_evals[0:20] / (myPi * myPi);
+
+exit('here')
 #Normalization and Potential Modification
 Lambda=700.
 for k in range(0,y.len()):
@@ -77,7 +87,7 @@ eps=1e-8j
 
 #Free Green's Operator
 n0=0
-nenergy=10
+nenergy=20
 store1=np.zeros([niter+3,nenergy])+0j
 
 Bmod=np.dot(B/2. + Lambda*Gam,y.overlap_inv())
@@ -91,9 +101,9 @@ Gamtemp=np.dot(Lambda*Gam,y.overlap_inv())
 Gam_ver=np.dot(y.overlap_inv(),Gamtemp)
 Tmat=Vmod
 
+
 for k in range(nenergy):
 	Emat=np.eye(y.len()) * (cos_evals[k+n0]+eps)
-#	Emat1=np.eye(y.len()) * (cos_evals[k+n0]+eps)
 
 	Gtemp=la.inv(-Bmod + Emat)
 	Gtemp1=la.inv(-Bmod1 + Emat)
@@ -126,10 +136,6 @@ for k in range(nenergy):
 #
 
 for k in range(nenergy):
-	print abs(store1[:,k])
-#	raw_input()
-#print np.sum(store1,axis=1)
-
-#print abs(store1[0,:]-store1[1,:])
+	print abs(store1[:,k]) * 
 
 print Lambda, niter
