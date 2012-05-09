@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.4)  8 MAY 2012 22:12
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.4)  9 MAY 2012 23:08
 entering extended mode
  %&-line parsing enabled.
 **draft1.tex
@@ -125,7 +125,11 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
-) (./draft1.aux)
+) (./draft1.aux
+
+LaTeX Warning: Label `potentialdef2' multiply defined.
+
+)
 \openout1 = `draft1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -140,8 +144,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
-
-(/usr/share/texmf-texlive/tex/latex/ucs/ucsencs.def
+ (/usr/share/texmf-texlive/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
 )
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
@@ -177,35 +180,105 @@ File: femexample1.png Graphic file (type png)
 <potential1d1.png, id=33, 586.8324pt x 442.2924pt>
 File: potential1d1.png Graphic file (type png)
  <use potential1d1.png>
-<potential1d2.png, id=34, 586.8324pt x 442.2924pt>
+<series1a.png, id=34, 999.4941pt x 478.4274pt>
+File: series1a.png Graphic file (type png)
+ <use series1a.png>
+Overfull \hbox (15.00061pt too wide) in paragraph at lines 280--282
+[][] 
+ []
+
+[5 <./femexample1.png>] <series1b.png, id=40, 1028.4021pt x 518.8986pt>
+File: series1b.png Graphic file (type png)
+
+<use series1b.png>
+Overfull \hbox (14.99321pt too wide) in paragraph at lines 287--289
+[][] 
+ []
+
+<series1c.png, id=41, 1063.0917pt x 535.5207pt>
+File: series1c.png Graphic file (type png)
+ <use series1c.png>
+Overfull \hbox (15.00269pt too wide) in paragraph at lines 294--296
+[][] 
+ []
+
+<potential1d2.png, id=42, 586.8324pt x 442.2924pt>
 File: potential1d2.png Graphic file (type png)
  <use potential1d2.png>
-[5 <./femexample1.png>] (./draft1.bbl [6 <./potential1d1.png> <./potential1d2.p
-ng>]) [7
+<series2a.png, id=43, 1114.4034pt x 517.4532pt>
+File: series2a.png Graphic file (type png)
+ <use series2a.png>
+Overfull \hbox (15.00024pt too wide) in paragraph at lines 321--323
+[][] 
+ []
 
-] (./draft1.aux) ) 
+[6 <./potential1d1.png> <./series1a.png>]
+<series2b.png, id=49, 1058.7555pt x 474.8139pt>
+File: series2b.png Graphic file (type png)
+ <use series2b.png>
+Overfull \hbox (14.98827pt too wide) in paragraph at lines 328--330
+[][] 
+ []
+
+<series2c.png, id=50, 1367.3484pt x 643.9257pt>
+File: series2c.png Graphic file (type png)
+ <use series2c.png>
+Overfull \hbox (14.98796pt too wide) in paragraph at lines 335--337
+[][] 
+ []
+
+<series3a.png, id=51, 1062.369pt x 474.0912pt>
+File: series3a.png Graphic file (type png)
+ <use series3a.png>
+Overfull \hbox (15.00111pt too wide) in paragraph at lines 349--351
+[][] 
+ []
+
+<series3b.png, id=52, 1110.7899pt x 474.0912pt>
+File: series3b.png Graphic file (type png)
+ <use series3b.png>
+Overfull \hbox (14.98549pt too wide) in paragraph at lines 356--358
+[][] 
+ []
+
+<series3c.png, id=53, 1109.3445pt x 502.2765pt>
+File: series3c.png Graphic file (type png)
+ <use series3c.png>
+Overfull \hbox (15.00795pt too wide) in paragraph at lines 363--365
+[][] 
+ []
+
+(./draft1.bbl [7 <./series1b.png>] [8 <./series1c.png> <./potential1d2.png> <./
+series2a.png>] [9 <./series2b.png> <./series2c.png>] [10 <./series3a.png> <./se
+ries3b.png>] [11 <./series3c.png>]) [12
+
+] (./draft1.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2353 strings out of 495061
- 29296 string characters out of 1182622
- 88894 words of memory out of 3000000
- 5527 multiletter control sequences out of 15000+50000
+ 2398 strings out of 495061
+ 30007 string characters out of 1182622
+ 88926 words of memory out of 3000000
+ 5563 multiletter control sequences out of 15000+50000
  10752 words of font info for 40 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  27i,7n,20p,326b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
-10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on draft1.pdf (9 pages, 246998 bytes).
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/typ
+e1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmtt10.pfb>
+Output written on draft1.pdf (14 pages, 610592 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
+ 121 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

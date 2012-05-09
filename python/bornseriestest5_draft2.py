@@ -30,7 +30,7 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=0.1
+V0=.1
 
 iter1=0
 
@@ -137,6 +137,6 @@ for k in range(nenergy):
 
 #print Lambda, niter
 
-f=open('test5plot/test5results3','w')
+f=open('test5plot/test5results2','w')
 pickle.dump(store1,f)
 

@@ -222,10 +222,12 @@ spectrum has been shifted by $\lambda$.
 \section{Toy Problem - Scattering in 1D}
 We now use the above methods in an example with scattering off a potential in 1D. Due to the simplicity of the problem,
 it is possible to explicitly calculate the exact Green's function by inverting the appropriate matrix according the formal
-definition given in \eqref{GFdefinition}. We will examine the problem in two cases: 
+definition given in \eqref{GFdefinition}. We will examine the problem in three cases: 
 \begin{itemize}
  \item In the first case, we have convergence with both the modified and unmodified Hamiltonian but at a faster rate with the modification.
- \item In the second case, the modified hamiltonian gives a convergent Born series whereas the unmodified one diverges. 
+ \item In the second case, the unmodified case converges for certain energies and diverges for others.With the modification, we always have
+       faster convergence.
+ \item In the third case, the modified hamiltonian gives a convergent Born series whereas the unmodified one diverges. 
 \end{itemize}
 
 Our box is defined as an FEM axis from $x=0$ to $x=10$ with $n=400$ discretization points, 
@@ -267,9 +269,32 @@ V = \begin{cases}
 \end{figure}
 
 The Born Series is calculated for $15$ iterations. The Hamiltonian is modified using the operator defined in \eqref{potmod} with
-$\lambda=1$.  We also set $\epsilon=0.1$.
+$\lambda=1$.  We also set $\epsilon=0.1$. We now plot the elements of the Born Series against the number of iterations. In order
+to compare the modified and unmodified cases, we plot them side by side with the modified case on the left and the unmodified one
+on the right.
 
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series1a.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
 
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series1b.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series1c.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
+
+We see that the Born Series converges to the exact value in both cases but that the modified case converges in fewer iterations.
 
 \subsection{Second Case}
 In the second case, we define the potential as, 
@@ -283,8 +308,53 @@ V = -200\mathtt{exp}(-(x-3.5)^2/0.5)-200\mathtt{exp}(-(x-6.5)^2/0.5)
 \caption[\textwidth]{Test Potential 2}
 \end{figure}
 
-
 The born series is calculated for $15$ iterations. We choose $\lambda=700$ and $\epsilon=10^{-8}$.
+
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series2a.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series2b.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series2c.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
+
+We see that the Born Series in the modified case converges to the exact value but diverges in the original case.
+
+\subsection{Third Case}
+
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series3a.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series3b.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[lht]
+\includegraphics[width=360pt, height=200pt]{series3c.png}
+%\caption[\textwidth]{First Case}
+\end{figure}
+\end{center}
 
 \bibliographystyle{plain}
 \bibliography{draft1.bib}
