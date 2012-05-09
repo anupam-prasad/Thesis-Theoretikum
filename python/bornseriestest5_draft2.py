@@ -30,12 +30,12 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=10.
+V0=0.1
 
 iter1=0
 
 t=np.linspace(0,10,1001)
-tpot=potential(t,'gaussian',np.array([3.,4.,V0]))+potential(t,'gaussian',np.array([6.,7.,V0]))
+tpot=potential(t,'fwell',np.array([4.,6.,V0]))
 
 plt.plot(t,tpot)
 plt.show()
@@ -43,14 +43,14 @@ plt.show()
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('gaussian', np.array([6.,7.,V0]))
-        v2=e.matrix('gaussian', np.array([3.,4,V0]))
+        v=e.matrix('fwell', np.array([4.,6.,V0]))
+#        v2=e.matrix('gaussian', np.array([3.,4,V0]))
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
                 for k2 in range(0,iter2):
                         B[iter1+k1,iter1+k2]=B[iter1+k1,iter1+k2]+b[k1][k2]
                         V1[iter1+k1,iter1+k2]=V1[iter1+k1,iter1+k2]+v[k1][k2]
-                        V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
+#                        V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
         iter1=iter1+iter2-1
 
 [evals,evecs]=la.eig(B/2. + V1 + V2,y.overlap())
@@ -68,7 +68,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=700.
+Lambda=1.
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
@@ -80,7 +80,7 @@ for k in range(0,y.len()):
         Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
 niter=15
-eps=1e-8j
+eps=1e-1j
 
 #Free Green's Operator
 n0=0
@@ -137,6 +137,6 @@ for k in range(nenergy):
 
 #print Lambda, niter
 
-#f=open('test5plot/test5results_unmodified','w')
-#pickle.dump(store1,f)
+f=open('test5plot/test5results3','w')
+pickle.dump(store1,f)
 

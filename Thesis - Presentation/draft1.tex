@@ -1,6 +1,7 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,10pt]{report}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
+\usepackage{graphicx}
 %\usepackage{abssymb}
 %opening
 \title{Thesis Draft 1}
@@ -10,12 +11,15 @@
 
 \maketitle
 
-% \begin{abstract}
-% 
-% \end{abstract}
+\begin{abstract}
+ 
+\end{abstract}
 
-\section{Scattering in 1D}
-\subsection{Preliminaries}
+\section{Scattering Theory}
+
+\subsection{Formal Scattering Theory}
+The spectrum of any 
+
 We define the Hamiltonian operator as,
 \begin{equation}
  H = H_0+V\\
@@ -58,34 +62,6 @@ The Born series can thus be written as,
  G=\displaystyle\sum_{n=0}^{\infty}G_0\left(VG_0\right)^n
 \end{equation}
 
-
-\subsection{Modification of the Hamiltonian}
-In this section we use the techniques outlined in \cite{KukPom76}. It this paper, the Born
-series is rearranged by using orthogonally projecting pseudopotentials (OPP). It is then
-proved that the rearranged Born series converges for all negative and small positive energies
-even if the system contains bound states.
-
-Let the bound states (indexed by $a$) of the Hamiltonian $H$ be denoted by $|\psi_a\rangle$.
-The potential is modified by the operator $\Gamma$ given by,
-\begin{equation}
-  \Gamma=\lambda\displaystyle\sum_a |\psi_a\rangle\langle\psi_a|
-\end{equation}
-\noindent The rate of convergence of the Born series is controlled by the parameter $\lambda$.
-
-The modified Hamiltonian and the modified free Hamiltonian are denoted by,
-
-\begin{eqnarray}
- \widetilde{H}&=&H+\Gamma\\
- \widetilde{H}_0&=&H_0+\Gamma
-\end{eqnarray}
-
-The modified Greens functions $\widetilde{G}$ and $\widetilde{G}_0$ are defined similarly as
-in \eqref{GFdefinition}. The modified Born Series for $\widetilde{G}$ is given by,
-
-\begin{equation}\label{BornSeriesModCompact}
- \widetilde{G}=\displaystyle\sum_{n=0}^{\infty}\widetilde{G}_0\left(V\widetilde{G}_0\right)^n
-\end{equation}
-
 \section{Finite Element Method}
 The Finite Element Method (FEM) is a numerical technique used to solve differential equations.
 The method exploits the locality of the differential operator. The solution space is divided into
@@ -112,6 +88,27 @@ We also define the matrix,
 \subsection{Boundary Conditions}
 In order to solve the differential equations we must also specify appropriate boundary
 conditions. Let $\Omega$ be the solution space. We denote its boundary by $\partial\Omega$.
+
+\subsubsection{Dirichlet Boundary Condition}
+The Dirichlet boundary condition requires that the function has a known value on the boundary.
+\begin{equation}\label{dirichlet1}
+ \psi(\mathbf{x})=f(\mathbf{x}), \mbox{ }\forall\mathbf{x}\in \partial\Omega
+\end{equation}
+Where, $f$ is a known function on $\Omega$.
+
+\subsubsection{Neumann Boundary Condition}
+The Neumann boundary condition requires that the gradient of the function
+normal to the boundary is fixed to a known function. That is,
+\begin{equation}\label{neumann1}
+ \frac{\partial\psi(\mathbf{x})}{\partial\mathbf{n}}\equiv\nabla\psi(\mathbf{x}).\mathbf{n} = f(\mathbf{x}), \mbox{ }\forall\mathbf{x}\in \partial\Omega
+\end{equation}
+
+\subsubsection{Mixed Boundary Condition}
+It is also possible to have a boundary such that the function has a Dirichlet boundary
+condition on one part (denoted by $\partial\Omega_D$) and a Neumann boundary condition
+on the other ($\partial\Omega_N$).
+
+\subsection{Python Implementation}
 \section{FEM Formulation of Quantum Mechanics}
 The Schrödinger equation for a wave function $\psi$ is given by,
 
@@ -154,7 +151,8 @@ The inner product of two wavefunctions $\phi$ and $\chi$ is given by,
 \noindent Where, $\mathbf{c}^{\dagger}=(\mathbf{c}^*)^T$.
 
 \subsection{Momentum Eigenstates}
-We now want to find an FEM representation for free eigenstate of momentum $\mathbf{k}$. 
+We now want to find an FEM representation for free eigenstate of momentum $\mathbf{k}$ (energy,
+$E_k=|\mathbf{k}|^2/2$). 
 It is most convenient to do so by defining a ``cosine eigenvector'',
 \begin{equation}\label{cosevec}
  |\mathbf{k}\rangle = exp(-i\mathbf{k}.\mathbf{x}) + exp(i\mathbf{k}.\mathbf{x})
@@ -177,19 +175,118 @@ Here, $\int_{\Omega} d^3x$ is the volume of the solution space.
 \subsection{Born Series - FEM Formulation}
 We calculate the FEM representation of the Greens Function using \eqref{schroedingerfem}. We require that,
 \begin{equation}\label{greenfemreq}
- G(z)\psi=(z-E_0)^{-1}S\psi
+ G_{fem}(z)\psi=(z-E_0)^{-1}S\psi
 \end{equation}
 \noindent Where, $\psi$ is an eigenstate of $H$ of energy $E_0$. Thus, we define the Green's function as,
 \begin{equation}\label{greenfemdef}
- G(z)=\left(z\mathbf{I}-HS^{-1}\right)^{-1}S
+ G_{fem}(z)=\left(z\mathbf{I}-HS^{-1}\right)^{-1}S
 \end{equation}
 \noindent Where, $\mathbf{I}$ is the identity matrix. The free Greens function is defined similarly by setting
-$H=B/2$. We will ultimately be testing the convergence of, $\langle\mathbf{k}|G(z)|\mathbf{k}\rangle$.
+$H=B/2$. We will ultimately be testing the convergence of, $\langle\mathbf{k}|G_{fem}(z)|\mathbf{k}\rangle$.
+For later convenience, the potential matrix is also suitably modified as,
+\begin{equation}\label{potmat}
+ V_{fem}=S^{-1}VS^{-1}
+\end{equation}
 
 
+\subsection{Modification of the Hamiltonian}
+In this section we use the techniques outlined in \cite{KukPom76}. It this paper, the Born
+series is rearranged by using orthogonally projecting pseudopotentials (OPP). It is then
+proved that the rearranged Born series converges for all negative and small positive energies
+even if the system contains bound states.
+
+Let the bound states (indexed by $a$) of the Hamiltonian $H$ be denoted by $|\psi_a\rangle$.
+The potential is modified by the operator $\Gamma$ given by,
+\begin{equation}\label{potmod}
+  \Gamma=\lambda\displaystyle\sum_a |\psi_a\rangle\langle\psi_a|
+\end{equation}
+\noindent The rate of convergence of the Born series is controlled by the parameter $\lambda$.
+
+The modified Hamiltonian and the modified free Hamiltonian are denoted by,
+
+\begin{eqnarray}
+ \widetilde{H}&=&H+\Gamma\\
+ \widetilde{H}_0&=&H_0+\Gamma
+\end{eqnarray}
+
+The modified Greens functions $\widetilde{G}$ and $\widetilde{G}_0$ are defined similarly as
+in \eqref{GFdefinition}. The modified Born Series for $\widetilde{G}$ is given by,
+
+\begin{equation}\label{BornSeriesModCompact}
+ \widetilde{G}=\displaystyle\sum_{n=0}^{\infty}\widetilde{G}_0\left(V\widetilde{G}_0\right)^n
+\end{equation}
+
+\noindent Physically, this means that the modified Hamiltonian has the same continuous spectrum but the discrete
+spectrum has been shifted by $\lambda$.
+
+\section{Toy Problem - Scattering in 1D}
+We now use the above methods in an example with scattering off a potential in 1D. Due to the simplicity of the problem,
+it is possible to explicitly calculate the exact Green's function by inverting the appropriate matrix according the formal
+definition given in \eqref{GFdefinition}. We will examine the problem in two cases: 
+\begin{itemize}
+ \item In the first case, we have convergence with both the modified and unmodified Hamiltonian but at a faster rate with the modification.
+ \item In the second case, the modified hamiltonian gives a convergent Born series whereas the unmodified one diverges. 
+\end{itemize}
+
+Our box is defined as an FEM axis from $x=0$ to $x=10$ with $n=400$ discretization points, 
+of order $40$ and with open boundaries. This means that the axis is divided into 400 
+parts and each part has functions (elements) upto order $40$. Order $1$ being a straight
+line. As an example, we show an axis, $0\leq x\leq 4$ with $n=4$ discretization points, open
+boundaries and order $1$.
+
+\begin{figure}[hm]
+\centering
+\includegraphics[width=225pt, height=150pt]{femexample1.png}
+\caption[\textwidth]{FEM axis. n=4, order=1}
+\end{figure}
+The different elements are distinguished by colour.
+
+The ``cosine eigenvectors'' are computed using \eqref{cosevec} and \eqref{freeschroedinger}.
+The energies of the free wavefunctions are $E_n = n^2\pi^2/200$ for $n=0,\ldots,19$. The factor
+of $200$ is a result of the discretization. The Green's function, $G(z)$ is calculated for $z=E_n+i\epsilon$,
+where, $\epsilon$ is a small positive number defined based on the problem. The purpose of epsilon is to avoid 
+the singularity on the positive real axis.
+
+\subsection{First Case}
+In the first case, we define the potential as a finite well of strength $0.1$ with support in $4 \leq x \leq 6$,
+\begin{equation}\label{potentialdef1}
+V = \begin{cases}
+-0.1 &\mbox{} 4\leq x\leq 6\\
+0 &\mbox{ otherwise}
+\end{cases} 
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=225pt, height=150pt]{potential1d1.png}
+\caption[\textwidth]{Test Potential 1}
+% 
+% \centering
+% \includegraphics[width=225pt, height=150pt]{potential1d2.png}
+% \caption[\textwidth]{Test Potential 2}
+\end{figure}
+
+The Born Series is calculated for $15$ iterations. The Hamiltonian is modified using the operator defined in \eqref{potmod} with
+$\lambda=1$.  We also set $\epsilon=0.1$.
+
+We see that the Born Series converges to the exact value in both cases but that the modified case converges in fewer iterations.
+
+\subsection{Second Case}
+In the second case, we define the potential as, 
+\begin{equation}\label{potentialdef2}
+V = -200\mathtt{exp}(-(x-3.5)^2/0.5)-200\mathtt{exp}(-(x-6.5)^2/0.5)
+\end{equation}
+
+\begin{figure}[hb]
+\centering
+\includegraphics[width=225pt, height=150pt]{potential1d2.png}
+\caption[\textwidth]{Test Potential 2}
+\end{figure}
 
 
+The born series is calculated for $15$ iterations. We choose $\lambda=700$ and $\epsilon=10^{-8}$.
 
+We see that the Born Series in the modified case converges to the exact value but diverges in the original case.
 
 \bibliographystyle{plain}
 \bibliography{draft1.bib}
