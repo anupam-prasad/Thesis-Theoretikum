@@ -30,7 +30,7 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=10
+V0=20
 
 iter1=0
 
@@ -68,7 +68,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=100.
+#Lambda=100.
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
@@ -77,8 +77,8 @@ for k in range(0,y.len()):
 	evecs[:,k]=evecs[:,k] / evecsnorm
 
 	#Potential Modification
-	if evals[k]<0:
-	        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
+#	if evals[k]<0:
+#	        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
 niter=15
 eps=1e-1j
@@ -86,32 +86,30 @@ eps=1e-1j
 #Free Green's Operator
 n0=0
 nenergy=20
-store1=np.zeros([niter+3,nenergy])+0j
+store1=np.zeros([niter+2,nenergy])+0j
 
-Bmod=np.dot(B/2. + Lambda*Gam,y.overlap_inv())
-Bmod1=np.dot(B/2. + V1 + V2 + Lambda*Gam,y.overlap_inv())
+Bmod=np.dot(B/2.,y.overlap_inv())
 B_orig=np.dot(B/2. + V1 + V2,y.overlap_inv())
 
 Vtemp=np.dot(V1+V2,y.overlap_inv())
 Vmod=np.dot(y.overlap_inv(),Vtemp)
 
-Gamtemp=np.dot(Lambda*Gam,y.overlap_inv())
-Gam_ver=np.dot(y.overlap_inv(),Gamtemp)
 Tmat=Vmod
 
 
 for k in range(nenergy):
+	for l in range(0,y.len()):
+		if evals[l]<0:	Gam=Gam+y.FEM_Outer(evecs[:,l],evecs[:,l])/(cos_evals[k+n0]-evals[l])
+		else:	break
+
 	Emat=np.eye(y.len()) * (cos_evals[k+n0]+eps)
 
 	Gtemp=la.inv(-Bmod + Emat)
-	Gtemp1=la.inv(-Bmod1 + Emat)
 	Gtemp2=la.inv(-B_orig + Emat)
 
 	G0=np.dot(Gtemp,y.overlap())
-	Gexact=np.dot(Gtemp1,y.overlap())
 	G_orig=np.dot(Gtemp2,y.overlap())
-
-	VG=np.dot(G0,Vmod)
+	Gexact=G_orig-Gam
 
 	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
 	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
@@ -119,17 +117,14 @@ for k in range(nenergy):
 	vec1=np.dot(G_orig,cos_evecs[:,k+n0])
 	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-	Gmat=G0
+	Gmat=G0-Gam
+	VG=np.dot(Gmat,Vmod)
+	
 	for l in range(niter):
 		Gmat=G0+np.dot(VG,Gmat)
 		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
-		store1[l+3,k]=np.dot(cos_evecs[:,k+n0],vec1)
+		store1[l+2,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-	Gver_temp=la.inv(np.eye(y.len())+np.dot(Gmat,Gam_ver))
-	Gver=np.dot(Gver_temp,Gexact)
-	
-	vec1=np.dot(Gver,cos_evecs[:,k+n0])
-	store1[2,k]=np.dot(cos_evecs[:,k+n0],vec1)
 #print abs(store1[0,:] * Lambda)
 #
 

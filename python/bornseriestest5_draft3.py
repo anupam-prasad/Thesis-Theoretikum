@@ -30,7 +30,7 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=10
+V0=.1
 
 iter1=0
 
@@ -68,7 +68,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=100.
+Lambda=1.
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
@@ -77,8 +77,7 @@ for k in range(0,y.len()):
 	evecs[:,k]=evecs[:,k] / evecsnorm
 
 	#Potential Modification
-	if evals[k]<0:
-	        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
+        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
 niter=15
 eps=1e-1j
@@ -138,6 +137,6 @@ for k in range(nenergy):
 
 #print Lambda, niter
 
-#f=open('test5plot/test5results2','w')
-#pickle.dump(store1,f)
+f=open('test5plot/test5results2','w')
+pickle.dump(store1,f)
 
