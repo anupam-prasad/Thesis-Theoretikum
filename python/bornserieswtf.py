@@ -27,6 +27,7 @@ B=np.zeros([y.len(),y.len()])
 #Potential Matrix
 V1=np.zeros([y.len(),y.len()])
 V2=np.zeros([y.len(),y.len()])
+Gam_init=np.zeros([y.len(),y.len()])
 
 V0=20
 
@@ -68,8 +69,8 @@ for k in range(0,y.len()):
 	evecs[:,k]=evecs[:,k] / evecsnorm
 
 	#Potential Modification
-#	if evals[k]<0:
-#	        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
+	if evals[k]<0:
+	        Gam_init=Gam_init + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
 niter=15
 eps=1e-1j
@@ -77,7 +78,7 @@ eps=1e-1j
 #Free Green's Operator
 n0=20
 nenergy=20
-store1=np.zeros([niter+2,nenergy])+0j
+store1=np.zeros([niter+3,nenergy])+0j
 
 Bmod=np.dot(B/2.,y.overlap_inv())
 B_orig=np.dot(B/2. + V1 + V2,y.overlap_inv())
@@ -102,9 +103,17 @@ for k in range(nenergy):
 	G0=np.dot(Gtemp,y.overlap())
 	G_orig=np.dot(Gtemp2,y.overlap())
 
-#	Gam=np.dot(y.overlap(),Gam)
 	Gexact=G_orig-Gam
 
+#	A1=np.dot(np.dot(Gam_init,Gtemp2),Gam_init)
+#	A2=np.dot(Gam_init,Gtemp)
+#	A3=np.dot(Gtemp2,Gam_init)
+#	A4=np.dot(A3,A1)
+#	A5=np.dot(A4,A2)
+
+	A5=np.dot(Gam_init,Gtemp2)
+	print la.norm(Gam-A5)
+	raw_input()
 	#vec1=np.dot(Gexact,cos_evecs[:,k+n0])
 	#store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
 	store1[0,k]=la.norm(Gexact)
@@ -113,14 +122,22 @@ for k in range(nenergy):
 #	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
 	store1[1,k]=la.norm(G_orig)
 
-	Gmat=G0-Gam
+#	A1=np.dot(np.dot(Gam_init,G0),Gam_init)
+#	A2=np.dot(Gam_init,G0)
+#	A3=np.dot(G0,Gam_init)
+#	A4=np.dot(A3,A1)
+#	A5=np.dot(A4,A2)
+	
+	Gmat=G0
 	VG=np.dot(Gmat,Vmod)
 	
 	for l in range(niter):
-		Gmat=G0-Gam+np.dot(VG,Gmat)
+		Gmat=G0-A5+np.dot(VG,Gmat)
 #		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
 #		store1[l+2,k]=np.dot(cos_evecs[:,k+n0],vec1)
-		store1[l+2,k]=la.norm(Gmat)
+		store1[l+3,k]=la.norm(Gmat)
+	
+	store1[2,k]=la.norm(Gmat+Gam)
 
 #print abs(store1[0,:] * Lambda)
 #
