@@ -30,21 +30,21 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=1
+V0=100
 
 iter1=0
 
-t=np.linspace(0,10,1001)
-tpot=potential(t,'fwell',np.array([4.,6.,V0]))
-
-plt.plot(t,tpot)
-plt.show()
+#t=np.linspace(0,10,1001)
+#tpot=potential(t,'gaussian',np.array([3.,4.,V0]))+potential(t,'gaussian',np.array([6.,7.,V0]))
+#
+#plt.plot(t,tpot)
+#plt.show()
 
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('fwell', np.array([4.,6.,V0]))
-#        v2=e.matrix('gaussian', np.array([3.,4,V0]))
+        v=e.matrix('fwell', np.array([6.,7.,V0]))
+        v2=e.matrix('fwell', np.array([3.,4,V0]))
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
                 for k2 in range(0,iter2):
@@ -68,7 +68,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=1000.
+Lambda=0.
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
@@ -78,7 +78,8 @@ for k in range(0,y.len()):
 
 	#Potential Modification
 	if evals[k] < 0:
-	        Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
+        	Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
+		print evals[k]
 
 niter=20
 eps=1e-5j
@@ -97,7 +98,6 @@ Vmod=np.dot(y.overlap_inv(),Vtemp)
 
 Gamtemp=np.dot(Lambda*Gam,y.overlap_inv())
 Gam_ver=np.dot(y.overlap_inv(),Gamtemp)
-Tmat=Vmod
 
 for k in range(nenergy):
 	Emat=np.eye(y.len()) * (cos_evals[k+n0]+eps)
@@ -110,42 +110,33 @@ for k in range(nenergy):
 	Gexact=np.dot(Gtemp1,y.overlap())
 	G_orig=np.dot(Gtemp2,y.overlap())
 
-	VG=np.dot(G0,Vmod)
-
 	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
 	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
 	vec1=np.dot(G_orig,cos_evecs[:,k+n0])
 	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
+	if k==2:
+		vec1=np.dot(G0,cos_evecs[:,2])
+		print np.dot(cos_evecs[:,2],vec1) / y.FEM_InnerProduct(cos_evecs[:,2],cos_evecs[:,2])
+		print cos_evals[2]
+		raw_input()
+
 	Gmat=G0
+	VG=np.dot(G0,Vmod)
 	for l in range(niter):
 		Gmat=G0+np.dot(VG,Gmat)
 		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
 		store1[l+3,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-	reverse_transform=np.zeros([y.len(),y.len()])
-
-	for l in range(y.len()):
-		if evals[l]<0:
-			reverse_transform=reverse_transform+y.FEM_Outer(evecs[:,l],evecs[:,l])/(cos_evals[k+n0]+eps-evals[l])
-		else: break
-#	Gver_temp=la.inv(np.eye(y.len())+np.dot(Gmat,Gam_ver))
-#	Gver=np.dot(Gver_temp,Gmat)
-
-	reverse_transform=np.dot(reverse_transform,y.overlap_inv())	
-	Gver_temp=np.eye(y.len())-Lambda*reverse_transform
-	Gver=np.dot(Gver_temp,Gexact)
+	Gver_temp=la.inv(np.eye(y.len())+Lambda*np.dot(Gmat,Gam))
+	Gver=np.dot(Gver_temp,Gmat)
 
 	vec1=np.dot(Gver,cos_evecs[:,k+n0])
 	store1[2,k]=np.dot(cos_evecs[:,k+n0],vec1)
-#print abs(store1[0,:] * Lambda)
-#
 
 for k in range(nenergy):
 	print abs(store1[:,k])
-
-#print Lambda, niter
 
 #f=open('test5plot/test5results_new_unmod','w')
 #pickle.dump(store1,f)
