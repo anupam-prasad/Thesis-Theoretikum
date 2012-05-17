@@ -30,7 +30,7 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=20
+V0=10
 
 iter1=0
 
@@ -55,6 +55,7 @@ for e in y.e:
 
 [evals,evecs]=la.eig(B/2. + V1 + V2,y.overlap())
 
+
 #Momentum Eigenstates
 [cos_evals,cos_evecs]=la.eig(B/2.,y.overlap())
 
@@ -68,32 +69,33 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=1000
+Lambda=100
+#Potential Modification
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
 	cos_evecs[:,k]=cos_evecs[:,k] / cosnorm
 	
 	evecsnorm=np.sqrt(y.FEM_InnerProduct(evecs[:,k],evecs[:,k]))
 	evecs[:,k]=evecs[:,k] / evecsnorm
-
-	#Potential Modification
-	if evals[k] < 0:
-        	Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
+	if evals[k]<0:
+		Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
 		print evals[k]
+
 
 niter=30
 eps=1e-8j
 
-#Free Green's Operator
 n0=0
 nenergy=20
 store1=np.zeros([niter+3,nenergy])+0j
 
+#Free Green's Operator
 Bmod=np.dot(B/2. - Lambda*Gam,y.overlap_inv())
+
 Bmod1=np.dot(B/2. + V1 + V2 - Lambda*Gam,y.overlap_inv())
 B_orig=np.dot(B/2. + V1 + V2,y.overlap_inv())
 
-Vtemp=np.dot(V1+V2,y.overlap_inv())
+Vtemp=np.dot(V1+V2+Lambda*Gam,y.overlap_inv())
 Vmod=np.dot(y.overlap_inv(),Vtemp)
 
 Gamtemp=np.dot(Lambda*Gam,y.overlap_inv())
