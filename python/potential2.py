@@ -39,29 +39,3 @@ def potential(x,potential_type,params=[]):
 	
 	return V
 
-def potential2(x):
-	V=np.zeros(len(x))
-	for k in range(len(x)):
-#		V[k]=x[k]*x[k]/2		
-		if x[k] < 3. and x[k] > 0.:
-#				V[k]=-10
-#                               V[k]=-15*np.exp(-x[k]*x[k]/.05)
-                                V[k]=-1/(abs(x[k])+.1)
-#                               V[k]=-(np.exp(-abs(x[k]))) - 1/(abs(x[k])+.1)
-#  				V[k]=0
-		else:
-			V[k]=0
-
-	return V
-
-
-def potential3(x):
-	V=np.zeros(len(x))
-	for k in range(len(x)):
-		if x[k] < -.5 and x[k] > -1.5:
-				V[k]=-10
-		elif x[k] < 1.5 and x[k] > .5:
-				V[k]=-5
-		else:	V[k]=0
-
-	return V

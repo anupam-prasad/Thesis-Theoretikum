@@ -30,7 +30,7 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=10
+V0=100
 
 iter1=0
 
@@ -69,7 +69,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=100
+Lambda=10000
 #Potential Modification
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
@@ -79,7 +79,7 @@ for k in range(0,y.len()):
 	evecs[:,k]=evecs[:,k] / evecsnorm
 	if evals[k]<0:
 		Gam=Gam + y.FEM_Outer(evecs[:,k],evecs[:,k])
-		print evals[k]
+#		print evals[k]
 
 
 niter=30
@@ -90,12 +90,12 @@ nenergy=20
 store1=np.zeros([niter+3,nenergy])+0j
 
 #Free Green's Operator
-Bmod=np.dot(B/2. - Lambda*Gam,y.overlap_inv())
+Bmod=np.dot(B/2. + Lambda*Gam,y.overlap_inv())
 
-Bmod1=np.dot(B/2. + V1 + V2 - Lambda*Gam,y.overlap_inv())
+Bmod1=np.dot(B/2. + V1 + V2 + Lambda*Gam,y.overlap_inv())
 B_orig=np.dot(B/2. + V1 + V2,y.overlap_inv())
 
-Vtemp=np.dot(V1+V2+Lambda*Gam,y.overlap_inv())
+Vtemp=np.dot(V1+V2,y.overlap_inv())
 Vmod=np.dot(y.overlap_inv(),Vtemp)
 
 Gamtemp=np.dot(Lambda*Gam,y.overlap_inv())
@@ -133,7 +133,7 @@ for k in range(nenergy):
 	for l in range(y.len()):
 		if evals[l] < 0:
 			A=np.dot(y.FEM_Outer(evecs[:,l],evecs[:,l]),y.overlap_inv())
-			reverse_trans=reverse_trans+Lambda*A / (cos_evals[k+n0]-evals[l]+eps)
+			reverse_trans=reverse_trans-Lambda*A / (cos_evals[k+n0]-evals[l]+eps)
 		else: break
 
 	Gver=np.dot(reverse_trans,Gmat)

@@ -76,7 +76,7 @@ niter=15
 eps=1e-5j
 
 #Free Green's Operator
-n0=40
+n0=0
 nenergy=20
 store1=np.zeros([niter+3,nenergy])+0j
 
@@ -86,7 +86,8 @@ B_orig=np.dot(B/2. + V1 + V2,y.overlap_inv())
 Vtemp=np.dot(V1+V2,y.overlap_inv())
 Vmod=np.dot(y.overlap_inv(),Vtemp)
 
-Gam_init=np.dot(y.overlap_inv(),np.dot(Gam_init,y.overlap_inv()))
+Gam_init_a=np.dot(y.overlap_inv(),Gam_init)
+Gam_init_b=np.dot(Gam_init,y.overlap_inv())
 Tmat=Vmod
 
 
@@ -107,6 +108,15 @@ for k in range(nenergy):
 
 	Gexact=G_orig-Gam
 
+	A1=la.inv(np.dot(np.dot(Gam_init_b,G_orig),Gam_init_a))
+	A2=np.dot(Gam_init_b,G_orig)
+	A3=np.dot(G_orig,Gam_init_a)
+	A4=np.dot(A3,A1)
+	A5=np.dot(A4,A2)
+
+	vec1=np.dot(A5-Gam,cos_evecs[:,k+n0])
+	print abs(np.dot(cos_evecs[:,k+n0],vec1))
+	raw_input()
 #	vec1=np.dot(Gexact,evecs[:,2])
 #	print np.dot(evecs[:,2],vec1) * (cos_evals[k+n0]+eps-evals[l])
 	#vec1=np.dot(Gexact,cos_evecs[:,k+n0])
@@ -117,18 +127,18 @@ for k in range(nenergy):
 #	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
 	store1[1,k]=la.norm(G_orig)
 
-	A1=la.inv(np.dot(np.dot(Gam_init,G0),Gam_init))
-	A2=np.dot(Gam_init,G0)
-	A3=np.dot(G0,Gam_init)
-	A4=np.dot(A3,A1)
-	A5=np.dot(A4,A2)
+	#A1=la.inv(np.dot(np.dot(Gam_init,G0),Gam_init))
+	#A2=np.dot(Gam_init,G0)
+	#A3=np.dot(G0,Gam_init)
+	#A4=np.dot(A3,A1)
+	#A5=np.dot(A4,A2)
 	
-	Gmat=G0-A5
+	Gmat=G0
 	VG=np.dot(Gmat,Vmod)
 	store1[3,k]=la.norm(Gmat)
 	
 	for l in range(1,niter):
-		Gmat=G0+np.dot(VG,Gmat)-A5
+		Gmat=G0+np.dot(VG,Gmat)
 #		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
 #		store1[l+2,k]=np.dot(cos_evecs[:,k+n0],vec1)
 		store1[l+3,k]=la.norm(Gmat)
