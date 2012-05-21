@@ -35,14 +35,14 @@ iter1=0
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('fwell', np.array([4.,6.,V0]))
-#        v2=e.matrix('gaussian', np.array([3.,4,V0]))
+        v=e.matrix('gaussian', np.array([5.,7.,V0]))
+        v2=e.matrix('gaussian', np.array([3.,4,V0]))
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
                 for k2 in range(0,iter2):
                         B[iter1+k1,iter1+k2]=B[iter1+k1,iter1+k2]+b[k1][k2]
                         V1[iter1+k1,iter1+k2]=V1[iter1+k1,iter1+k2]+v[k1][k2]
-#                        V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
+                        V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
         iter1=iter1+iter2-1
 
 [evals,evecs]=la.eig(B/2. + V1 + V2,y.overlap())
@@ -67,13 +67,16 @@ for k in range(0,y.len()):
 	
 	evecsnorm=np.sqrt(y.FEM_InnerProduct(evecs[:,k],evecs[:,k]))
 	evecs[:,k]=evecs[:,k] / evecsnorm
-
+	
 	#Potential Modification
-	if evals[k]<0:
-	        Gam_init=Gam_init + y.FEM_Outer(evecs[:,k],evecs[:,k])
+#	if evals[k]<0:
+#	        Gam_init=Gam_init + y.FEM_Outer(evecs[:,k],evecs[:,k])
 
-niter=15
+niter=20
 eps=1e-5j
+
+#number of bound states
+nbound=sum(evals<0)
 
 #Free Green's Operator
 n0=0
@@ -86,17 +89,12 @@ B_orig=np.dot(B/2. + V1 + V2,y.overlap_inv())
 Vtemp=np.dot(V1+V2,y.overlap_inv())
 Vmod=np.dot(y.overlap_inv(),Vtemp)
 
-Gam_init_a=np.dot(y.overlap_inv(),Gam_init)
-Gam_init_b=np.dot(Gam_init,y.overlap_inv())
 Tmat=Vmod
-
 
 for k in range(nenergy):
 	Gam=np.zeros([y.len(),y.len()])
-	for l in range(0,y.len()):
-		if evals[l]<0:	
-			Gam=Gam+y.FEM_Outer(evecs[:,l],evecs[:,l]) / (cos_evals[k+n0]+eps-evals[l])
-		else:	break
+	for l in range(nbound):
+		Gam=Gam+y.FEM_Outer(evecs[:,l],evecs[:,l]) / (cos_evals[k+n0]+eps-evals[l])
 
 	Emat=np.eye(y.len()) * (cos_evals[k+n0]+eps)
 
@@ -108,46 +106,38 @@ for k in range(nenergy):
 
 	Gexact=G_orig-Gam
 
-	A1=la.inv(np.dot(np.dot(Gam_init_b,G_orig),Gam_init_a))
-	A2=np.dot(Gam_init_b,G_orig)
-	A3=np.dot(G_orig,Gam_init_a)
-	A4=np.dot(A3,A1)
-	A5=np.dot(A4,A2)
+	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
+	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
+#	store1[0,k]=la.norm(Gexact)
 
-	vec1=np.dot(A5-Gam,cos_evecs[:,k+n0])
-	print abs(np.dot(cos_evecs[:,k+n0],vec1))
-	raw_input()
-#	vec1=np.dot(Gexact,evecs[:,2])
-#	print np.dot(evecs[:,2],vec1) * (cos_evals[k+n0]+eps-evals[l])
-	#vec1=np.dot(Gexact,cos_evecs[:,k+n0])
-	#store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
-	store1[0,k]=la.norm(Gexact)
+	vec1=np.dot(G_orig,cos_evecs[:,k+n0])
+	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
+#	store1[1,k]=la.norm(G_orig)
 
-#	vec1=np.dot(G_orig,cos_evecs[:,k+n0])
-#	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
-	store1[1,k]=la.norm(G_orig)
+	mat1=np.zeros([y.len(),y.len()])
+	for l in range(nbound):
+		mat1=mat1+y.FEM_Outer(evecs[:,l],evecs[:,l]) / np.dot(evecs[:,l],np.dot(G0,evecs[:,l]))
 
-	#A1=la.inv(np.dot(np.dot(Gam_init,G0),Gam_init))
-	#A2=np.dot(Gam_init,G0)
-	#A3=np.dot(G0,Gam_init)
-	#A4=np.dot(A3,A1)
-	#A5=np.dot(A4,A2)
+	mat1=np.dot(y.overlap_inv(),np.dot(mat1,y.overlap_inv()))
+	G0_mod=G0-np.dot(G0,np.dot(mat1,G0))
+
+	Gmat=G0_mod
+
+	VG=np.dot(G0_mod,Vmod)
+	vec1=np.dot(Gmat,cos_evecs[:,k+n0])
+	store1[3,k]=np.dot(cos_evecs[:,k+n0],vec1)
 	
-	Gmat=G0
-	VG=np.dot(Gmat,Vmod)
-	store1[3,k]=la.norm(Gmat)
+	for l in range(2,niter+1):
+		Gmat=G0_mod+np.dot(VG,Gmat)
+		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
+	      	store1[l+2,k]=np.dot(cos_evecs[:,k+n0],vec1)
+#		store1[l+2,k]=la.norm(Gmat)
 	
-	for l in range(1,niter):
-		Gmat=G0+np.dot(VG,Gmat)
-#		vec1=np.dot(Gmat,cos_evecs[:,k+n0])
-#		store1[l+2,k]=np.dot(cos_evecs[:,k+n0],vec1)
-		store1[l+3,k]=la.norm(Gmat)
-	
-	store1[2,k]=la.norm(Gmat+Gam)
+	vec1=np.dot(Gmat+Gam,cos_evecs[:,k+n0])
+	store1[2,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
 #print abs(store1[0,:] * Lambda)
 #
 
 for k in range(nenergy):
 	print abs(store1[:,k])
-

@@ -222,12 +222,10 @@ spectrum has been shifted by $\lambda$.
 \section{Toy Problem - Scattering in 1D}
 We now use the above methods in an example with scattering off a potential in 1D. Due to the simplicity of the problem,
 it is possible to explicitly calculate the exact Green's function by inverting the appropriate matrix according the formal
-definition given in \eqref{GFdefinition}. We will examine the problem in three cases: 
+definition given in \eqref{GFdefinition}. We will examine the problem in two cases: 
 \begin{itemize}
  \item In the first case, we have convergence with both the modified and unmodified Hamiltonian but at a faster rate with the modification.
- \item In the second case, the unmodified case converges for certain energies and diverges for others.With the modification, we always have
-       faster convergence.
- \item In the third case, the modified hamiltonian gives a convergent Born series whereas the unmodified one diverges. 
+ \item In the second case, the modified hamiltonian gives a convergent Born series whereas the unmodified one diverges. 
 \end{itemize}
 
 Our box is defined as an FEM axis from $x=0$ to $x=10$ with $n=400$ discretization points, 
@@ -250,15 +248,16 @@ where, $\epsilon$ is a small positive number defined based on the problem. The p
 the singularity on the positive real axis.
 
 \subsection{First Case}
-In the first case, we define the potential as a finite well of strength $0.1$ with support in $4 \leq x \leq 6$,
+In the first case, we define the potential as a finite well of strength $0.01$ with support in $4.5 \leq x \leq 5.5$,
 \begin{equation}\label{potentialdef1}
 V = \begin{cases}
--0.1 &\mbox{} 4\leq x\leq 6\\
+-0.01 &\mbox{} 4.5\leq x\leq 5.5\\
 0 &\mbox{ otherwise}
 \end{cases} 
 \end{equation}
+
 \begin{center}
-\begin{figure}[htb]
+\begin{figure}[ht]
 \includegraphics[width=360pt, height=175pt]{series1a.png}
 \includegraphics[width=360pt, height=175pt]{series1b.png}
 \includegraphics[width=360pt, height=175pt]{series1c.png}
@@ -266,52 +265,18 @@ V = \begin{cases}
 \end{figure}
 \end{center}
 The Born Series is calculated for $15$ iterations. The Hamiltonian is modified using the operator defined in \eqref{potmod} with
-$\lambda=1$.  We also set $\epsilon=0.1$. 
+$\lambda=1$.  We also set $\epsilon=10^{-4}$. 
 
 We now plot the elements of the Born Series against the number of iterations. In order
 to compare the modified and unmodified cases, we plot them side by side with the modified case on the left and the unmodified one
-on the right. We follow this convention in the other two cases as well.
+on the right. We follow this convention in the other next case as well.
+We see that the series converges in both cases.
 
+\newpage
 \subsection{Second Case}
-In the second case, we define the potential as, 
-\begin{equation}\label{potentialdef2}
-V = \begin{cases}
--0.5 &\mbox{} 4\leq x\leq 6\\
-0 &\mbox{ otherwise}
-\end{cases} 
-\end{equation}
-i.e., a finite well of strength $0.5$ with support in $4 \leq x \leq 6$,
-
-The born series is calculated for $15$ iterations. We choose $\lambda=700$ and $\epsilon=10^{-8}$.
-
-\begin{center}
-\begin{figure}[lht]
-\includegraphics[width=360pt, height=200pt]{series2a.png}
-%\caption[\textwidth]{First Case}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[lht]
-\includegraphics[width=360pt, height=200pt]{series2b.png}
-%\caption[\textwidth]{First Case}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[lht]
-\includegraphics[width=360pt, height=200pt]{series2c.png}
-%\caption[\textwidth]{First Case}
-\end{figure}
-\end{center}
-
-We see that for the original Hamiltonian, the Born series converges in some cases but doesn't in others. However,
-with the modification, we always have convergence at a faster rate.
-\subsection{Third Case}
 \begin{equation}\label{potentialdef3}
-V = -200\mathtt{exp}(-(x-3.5)^2/0.5)-200\mathtt{exp}(-(x-6.5)^2/0.5)
+V = -100\mathtt{exp}(-(x-3.5)^2/0.5)-100\mathtt{exp}(-(x-6.5)^2/0.5)
 \end{equation}
-
 \begin{figure}[hb]
 \centering
 \includegraphics[width=225pt, height=150pt]{potential1d2.png}
@@ -321,25 +286,28 @@ V = -200\mathtt{exp}(-(x-3.5)^2/0.5)-200\mathtt{exp}(-(x-6.5)^2/0.5)
 \begin{center}
 \begin{figure}[lht]
 \includegraphics[width=360pt, height=200pt]{series3a.png}
-%\caption[\textwidth]{First Case}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[lht]
 \includegraphics[width=360pt, height=200pt]{series3b.png}
-%\caption[\textwidth]{First Case}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[lht]
 \includegraphics[width=360pt, height=200pt]{series3c.png}
-%\caption[\textwidth]{First Case}
+\caption[\textwidth]{Gaussian Like Potential}
 \end{figure}
 \end{center}
+% 
+% \begin{center}
+% \begin{figure}[lht]
+% \includegraphics[width=360pt, height=200pt]{series3b.png}
+% %\caption[\textwidth]{First Case}
+% \end{figure}
+% \end{center}
+% 
+% \begin{center}
+% \begin{figure}[lht]
+% \includegraphics[width=360pt, height=200pt]{series3c.png}
+% %\caption[\textwidth]{First Case}
+% \end{figure}
+% \end{center}
 
-We see that the Born Series in the modified case converges to the exact value but diverges in the original case.
+We see that for some energies the Born Series in the modified case converges to the exact value but diverges in the original case. We also note that
+for certain energies, the Born Series diverges in both cases but the divergence in the unmodified case is slower.
 \bibliographystyle{plain}
 \bibliography{draft1.bib}
 \end{document}

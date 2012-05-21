@@ -34,14 +34,6 @@ V0=100
 
 iter1=0
 
-#t=np.linspace(0,10,1001)
-#tpot=potential(t,'fwell',np.array([4.5,5.5,.001]))
-#
-#plt.plot(t,tpot)
-#plt.show()
-#
-#exit('here')
-
 for e in y.e:
         b=e.matrix('d|d')
         v=e.matrix('gaussian', np.array([6.,7.,V0]))
@@ -70,7 +62,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=0
+Lambda=1e8
 #Potential Modification
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
@@ -113,10 +105,13 @@ for k in range(nenergy):
 	Gexact=np.dot(Gtemp1,y.overlap())
 	G_orig=np.dot(Gtemp2,y.overlap())
 
-	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
+	Texact=Vmod+np.dot(Vmod,np.dot(Gexact,Vmod))
+	T_orig=Vmod+np.dot(Vmod,np.dot(G_orig,Vmod))
+
+	vec1=np.dot(Texact,cos_evecs[:,k+n0])
 	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-	vec1=np.dot(G_orig,cos_evecs[:,k+n0])
+	vec1=np.dot(T_orig,cos_evecs[:,k+n0])
 	store1[1,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
 	reverse_trans=np.eye(y.len(),y.len())
@@ -126,31 +121,30 @@ for k in range(nenergy):
 			reverse_trans=reverse_trans-Lambda*A / (cos_evals[k+n0]-evals[l]+eps)
 		else: break
 	
-	Gmat=G0
-	vec1=np.dot(Gmat,cos_evecs[:,k+n0])
+	Tmat=Vmod
+	vec1=np.dot(Tmat,cos_evecs[:,k+n0])
 	store1[3,k]=np.dot(cos_evecs[:,k+n0],vec1)
-	VG=np.dot(G0,Vmod)
+	VG=np.dot(Vmod,G0)
 
 	for l in range(1,niter):
-		Gstore=Gmat
-		Gmat=G0+np.dot(VG,Gmat)
-		Gver=np.dot(reverse_trans,Gmat)
-		vec1=np.dot(Gver,cos_evecs[:,k+n0])
+		Tmat=Vmod+np.dot(VG,Tmat)
+#		Tver=np.dot(reverse_trans,Gmat)
+		vec1=np.dot(Tmat,cos_evecs[:,k+n0])
 		store1[l+3,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-	Gver=np.dot(reverse_trans,Gmat)
-	vec1=np.dot(Gver,cos_evecs[:,k+n0])
-	store1[2,k]=np.dot(cos_evecs[:,k+n0],vec1)
+#	Gver=np.dot(reverse_trans,Gmat)
+#	vec1=np.dot(Gver,cos_evecs[:,k+n0])
+#	store1[2,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-#for k in range(nenergy):
-#	print abs(store1[:,k]), cos_evals[k+n0]
-#	raw_input()
+for k in range(nenergy):
+	print abs(store1[:,k]), cos_evals[k+n0]
+	raw_input()
 
-if Lambda==0:
-	fname='test5plot/test5results_gaussian_unmod'
-else:
-	fname='test5plot/test5results_gaussian_mod'
-
-f=open(fname,'w')
-pickle.dump(store1,f)
+#if Lambda==0:
+#	fname='test5plot/test5results_gaussian_unmod'
+#else:
+#	fname='test5plot/test5results_gaussian_mod'
+#
+#f=open(fname,'w')
+#pickle.dump(store1,f)
 
