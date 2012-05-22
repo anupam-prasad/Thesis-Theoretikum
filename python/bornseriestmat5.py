@@ -30,14 +30,14 @@ V2=np.zeros([y.len(),y.len()])
 
 Gam=np.zeros([y.len(),y.len()])
 
-V0=100
+V0=1
 
 iter1=0
 
 for e in y.e:
         b=e.matrix('d|d')
-        v=e.matrix('gaussian', np.array([6.,7.,V0]))
-        v2=e.matrix('gaussian', np.array([3.,4.,V0]))
+        v=e.matrix('fwell', np.array([4.5,5.5,V0]))
+        v2=e.matrix('fwell', np.array([3.,4.,0.]))
         iter2=int(np.sqrt(np.size(b)))
         for k1 in range(0,iter2):
                 for k2 in range(0,iter2):
@@ -62,7 +62,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=1e8
+Lambda=0
 #Potential Modification
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
@@ -75,7 +75,7 @@ for k in range(0,y.len()):
 		print evals[k]
 
 
-niter=30
+niter=20
 eps=1e-8j
 
 n0=0
@@ -121,7 +121,7 @@ for k in range(nenergy):
 			reverse_trans=reverse_trans-Lambda*A / (cos_evals[k+n0]-evals[l]+eps)
 		else: break
 	
-	Tmat=Vmod
+	Tmat=V1+V2
 	vec1=np.dot(Tmat,cos_evecs[:,k+n0])
 	store1[3,k]=np.dot(cos_evecs[:,k+n0],vec1)
 	VG=np.dot(Vmod,G0)

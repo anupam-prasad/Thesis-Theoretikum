@@ -70,7 +70,7 @@ evals=evals[perm]
 evecs=evecs[:,perm]
 
 #Normalization and Potential Modification
-Lambda=0
+Lambda=1000
 #Potential Modification
 for k in range(0,y.len()):
 	cosnorm=np.sqrt(2 * y.FEM_InnerProduct(cos_evecs[:,k],cos_evecs[:,k]) / (ub-lb))
@@ -86,7 +86,7 @@ for k in range(0,y.len()):
 niter=30
 eps=1e-8j
 
-n0=0
+n0=60
 nenergy=30
 store1=np.zeros([niter+3,nenergy])+0j
 
@@ -136,21 +136,21 @@ for k in range(nenergy):
 		Gmat=G0+np.dot(VG,Gmat)
 		Gver=np.dot(reverse_trans,Gmat)
 		vec1=np.dot(Gver,cos_evecs[:,k+n0])
-		store1[l+3,k]=np.dot(cos_evecs[:,k+n0],vec1)
+		store1[l+3,k]=np.dot(cos_evecs[:,k+n0],vec1)		
 
 	Gver=np.dot(reverse_trans,Gmat)
 	vec1=np.dot(Gver,cos_evecs[:,k+n0])
 	store1[2,k]=np.dot(cos_evecs[:,k+n0],vec1)
 
-#for k in range(nenergy):
-#	print abs(store1[:,k]), cos_evals[k+n0]
-#	raw_input()
+for k in range(nenergy):
+	print abs(store1[:,k]), cos_evals[k+n0]
+	raw_input()
 
-if Lambda==0:
-	fname='test5plot/test5results_gaussian_unmod'
-else:
-	fname='test5plot/test5results_gaussian_mod'
-
-f=open(fname,'w')
-pickle.dump(store1,f)
+#if Lambda==0:
+#	fname='test5plot/test5results_gaussian_unmod'
+#else:
+#	fname='test5plot/test5results_gaussian_mod'
+#
+#f=open(fname,'w')
+#pickle.dump(store1,f)
 
