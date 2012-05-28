@@ -29,7 +29,7 @@ V1=np.zeros([y.len(),y.len()])
 V2=np.zeros([y.len(),y.len()])
 Gam_init=np.zeros([y.len(),y.len()])
 
-V0=1
+V0=100
 
 iter1=0
 
@@ -106,6 +106,8 @@ for k in range(nenergy):
 
 	Gexact=G_orig-Gam
 
+	print abs(np.dot(evecs[:,k].conjugate(),np.dot(Gexact,evecs[:,k])))
+	raw_input()
 	vec1=np.dot(Gexact,cos_evecs[:,k+n0])
 	store1[0,k]=np.dot(cos_evecs[:,k+n0],vec1)
 #	store1[0,k]=la.norm(Gexact)
