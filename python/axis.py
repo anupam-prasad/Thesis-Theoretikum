@@ -238,6 +238,29 @@ class Axis:
 	plt.plot(xaxis,y1,xaxis,y2)
 	plt.show()
 
+    def FEM_absplot(self,fem_vec1,fem_vec2=None,naxis=1001):
+
+	xaxis=np.linspace(self.lb,self.ub,naxis)
+	y1=np.zeros(naxis)+0j
+	y2=np.zeros(naxis)+0j
+        axis_iter=0
+	elem_iter=0
+	
+	if fem_vec2 is None:
+		fem_vec2=np.zeros(self.len())+0j
+
+	for e in self.e:
+		while axis_iter<naxis and xaxis[axis_iter] >= e.x0 and xaxis[axis_iter] <= e.x1:
+			v,d=e.val(xaxis[axis_iter])+0j
+			for k in range(elem_iter,elem_iter+np.size(v)):
+				y1[axis_iter]=y1[axis_iter]+v[k-elem_iter]*fem_vec1[k]
+				y2[axis_iter]=y2[axis_iter]+v[k-elem_iter]*fem_vec2[k]
+			axis_iter=axis_iter+1
+		elem_iter=elem_iter+np.size(v)-1
+
+	plt.plot(xaxis,abs(y1),xaxis,abs(y2))
+	plt.show()
+
 if __name__ == "__main__": 
    # ax=Axis('x',4,0.,4.,'fem',3)+Axis('x',2,0.,4.,'fem',2)+Axis('x',1,0.,1.,'fem',2,axpar=['laguerre',1.])
    # ax=Axis('x',9,0.,8.,'fem',3)+Axis('x',1,0.,1.,'fem',2,axpar=['laguerre',1.])
