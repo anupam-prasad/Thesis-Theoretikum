@@ -37,5 +37,8 @@ def potential(x,potential_type,params=[]):
 			if x[k] < ub and x[k] > lb:	V[k]=-pot_strength*(np.exp(-((x[k]-center)*(x[k]-center))/(2.*sigma*sigma)))
 			else:	V[k]=0
 	
+	if potential_type=='yukawa':
+		for k in range(len(x)):
+			V[k]=-pot_strength * np.exp(-x[k]/(ub-lb)) / x[k]
 	return V
 
