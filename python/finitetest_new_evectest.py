@@ -18,11 +18,11 @@ from axis import *
 n=400
 order=41
 
-lb=0.
-ub=10.
+lb=-5.
+ub=5.
 
 y=Axis('xopen',n,lb,ub,'fem',order)
-y2=Axis('x',n,lb,ub,'fem',order)
+
 #d|d matrix
 B=np.zeros([y.len(),y.len()])
 
@@ -40,17 +40,11 @@ for n in range(len(y.e)):
 #	V2[i0:i1,i0:i1]=V2[i0:i1,i0:i1]+y.e[n].matrix('gaussian', np.array([6.,7.,V0]))
 
 
-[evals,evecs]=la.eig(B/2. + V1 + V2,y.overlap())
-[cos_evals,cos_evecs]=la.eig(B/2.,y.overlap())
-
 #Sorting eigenvalues/eigenvectors in ascending order
 perm=np.argsort(evals)
 evals=evals[perm]
 evecs=evecs[:,perm]
 
-perm=np.argsort(cos_evals)
-cos_evals=cos_evals[perm]
-cos_evecs=cos_evecs[:,perm]
 #Normalization and Potential Modification
 for k in range(0,y.len()):
 	evecsnorm=np.sqrt(y.FEM_InnerProduct(evecs[:,k],evecs[:,k]))
