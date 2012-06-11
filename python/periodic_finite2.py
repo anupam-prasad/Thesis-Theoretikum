@@ -15,28 +15,75 @@ import time
 
 from axis import *
 
-n=400
-order=11
+n=600
+order=5
 
-lb=0.
-ub=1.
+lb=-50.
+ub=50.
 
-y=Axis('x',n,lb,ub,'fem',order)+Axis('x',n,ub,2*ub,'fem',order)
+ycos=Axis('xopen',n,lb,ub,'fem',order)
+ysin=Axis('x',n,lb,ub,'fem',order)
 
-B=np.zeros([y.len(),y.len()])
+Bcos=np.zeros([ycos.len(),ycos.len()])
+Bsin=np.zeros([ysin.len(),ysin.len()])
 
-for n in range(len(y.e)):
-	i0=y.e[n].i0
-	i1=i0+y.e[n].n
-	B[i0:i1,i0:i1]=B[i0:i1,i0:i1]+y.e[n].matrix('d|d')
+Vcos=np.zeros([ycos.len(),ycos.len()])
+Vsin=np.zeros([ysin.len(),ysin.len()])
 
-[mom_evals,mom_evecs]=la.eig(B/2.,y.overlap())
+V0=1
+
+for n in range(len(ycos.e)):
+	i0=ycos.e[n].i0
+	i1=i0+ycos.e[n].n
+	Bcos[i0:i1,i0:i1]=Bcos[i0:i1,i0:i1]+ycos.e[n].matrix('d|d')
+	Vcos[i0:i1,i0:i1]=Vcos[i0:i1,i0:i1]+ycos.e[n].matrix('fwell', np.array([-1.,1.,V0]))
+
+[cos_evals,cos_evecs]=la.eig(Bcos/2.,ycos.overlap())
+
+for n in range(len(ysin.e)):
+	i0=ysin.e[n].i0
+	i1=i0+ysin.e[n].n
+	Bsin[i0:i1,i0:i1]=Bsin[i0:i1,i0:i1]+ysin.e[n].matrix('d|d')
+	Vsin[i0:i1,i0:i1]=Vsin[i0:i1,i0:i1]+ysin.e[n].matrix('fwell', np.array([-1.,1.,V0]))	
+
+[sin_evals,sin_evecs]=la.eig(Bsin/2.,ysin.overlap())
 
 #Sorting eigenvalues/eigenvectors in ascending order
-perm=np.argsort(mom_evals)
-mom_evals=mom_evals[perm]
-mom_evecs=mom_evecs[:,perm]
+perm=np.argsort(cos_evals)
+cos_evals=cos_evals[perm]
+cos_evecs=cos_evecs[:,perm]
 
-print mom_evals[:10]
+perm=np.argsort(sin_evals)
+sin_evals=np.append([0],sin_evals[perm])
+sin_evecs=sin_evecs[:,perm]
 
-y.FEM_plot(mom_evecs[:,2],mom_evecs[:,3])
+temp_evecs=np.zeros([ysin.len(),ysin.len()+1])
+temp_evecs[:,1:]=sin_evecs
+sin_evecs=temp_evecs
+
+eps = 1j
+niter=2
+nenergy=5
+
+Tmatrix_elements=np.zeros([niter,nenergy])
+
+for k in range(5):
+	Emat = np.eye(ycos.len()) * (cos_evals[k] + eps)
+	Bmod = np.dot(Bcos/2.,ycos.overlap_inv())
+	Tmat=Vcos
+	Tmatrix_elements[0,k] = np.dot(cos_evecs[:,k],np.dot(Tmat,cos_evecs[:,k]))
+	G0=np.dot(la.inv(Emat - Bmod),ycos.overlap())
+	for l in range(niter-1,niter):
+		Tmat = Vcos + np.dot(Vcos,np.dot(G0,Tmat))
+		Tmatrix_elements[l,k] = np.dot(cos_evecs[:,k],np.dot(Tmat,cos_evecs[:,k]))
+
+for k in range(5):
+	Emat = np.eye(ysin.len()) * (sin_evals[k] + eps)
+	Bmod = np.dot(Bsin/2.,ysin.overlap_inv())
+	Tmat=Vsin
+	Tmatrix_elements[0,k] = Tmatrix_elements[0,k] + sin_evecs[:,k],np.dot(Tmat,sin_evecs[:,k])
+	G0=np.dot(la.inv(Emat - Bmod),ysin.overlap())
+	for l in range(niter-1,niter):
+		Tmat = Vsin + np.dot(Vsin,np.dot(G0,Tmat))
+		Tmatrix_elements[l,k] = Tmatrix_elements[l,k] + np.dot(sin_evecs[:,k],np.dot(Tmat,sin_evecs[:,k]))
+

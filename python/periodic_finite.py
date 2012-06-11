@@ -47,7 +47,7 @@ for n in range(len(y_sin.e)):
 	i0=y_sin.e[n].i0+y_cos.len()
 	i1=i0+y_sin.e[n].n
 	B[i0:i1,i0:i1]=B[i0:i1,i0:i1]+y_sin.e[n].matrix('d|d')
-	V1[i0:i1,i0:i1]=V1[i0:i1,i0:i1]+y_sin.e[n].matrix('fwell', np.array([-5.,-5.,V0]))
+	V1[i0:i1,i0:i1]=V1[i0:i1,i0:i1]+y_sin.e[n].matrix('fwell', np.array([-5.,5.,V0]))
 #	V2[i0:i1,i0:i1]=V2[i0:i1,i0:i1]+y_sin.e[n].matrix('gaussian', np.array([6.,7.,V0]))
 
 overlap[:y_cos.len(),:y_cos.len()]=y_cos.overlap()
