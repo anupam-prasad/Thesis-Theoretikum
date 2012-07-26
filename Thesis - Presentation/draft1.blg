@@ -2,52 +2,44 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: draft1.aux
 The style file: plain.bst
 Database file #1: draft1.bib.bib
-I was expecting a `,' or a `}'---line 21 of file draft1.bib.bib
- :   
- :   title = "Rearrangement and improvement of convergence of the born series in scattering theory on the basis of orthogonal projections"
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Warning--empty title in KukPom76
-Warning--empty journal in KukPom76
-You've used 1 entry,
+You've used 4 entries,
             2118 wiz_defined-function locations,
-            501 strings with 4051 characters,
-and the built_in function-call counts, 254 in all, are:
-= -- 20
-> -- 13
+            526 strings with 4621 characters,
+and the built_in function-call counts, 1111 in all, are:
+= -- 106
+> -- 40
 < -- 0
-+ -- 5
-- -- 4
-* -- 17
-:= -- 51
-add.period$ -- 2
-call.type$ -- 1
-change.case$ -- 4
++ -- 17
+- -- 12
+* -- 73
+:= -- 197
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 17
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 10
-empty$ -- 18
-format.name$ -- 4
-if$ -- 46
+cite$ -- 4
+duplicate$ -- 44
+empty$ -- 96
+format.name$ -- 12
+if$ -- 229
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 7
-num.names$ -- 2
-pop$ -- 9
+int.to.str$ -- 4
+missing$ -- 5
+newline$ -- 23
+num.names$ -- 8
+pop$ -- 17
 preamble$ -- 1
-purify$ -- 4
+purify$ -- 14
 quote$ -- 0
-skip$ -- 7
+skip$ -- 29
 stack$ -- 0
-substring$ -- 5
-swap$ -- 0
+substring$ -- 69
+swap$ -- 4
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 2
-while$ -- 2
-width$ -- 2
-write$ -- 9
-(There was 1 error message)
+type$ -- 14
+warning$ -- 0
+while$ -- 10
+width$ -- 5
+write$ -- 45

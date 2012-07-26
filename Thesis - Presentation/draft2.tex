@@ -7,9 +7,8 @@
 \usepackage[menubordercolor={0 0 0}]{hyperref}
 \hypersetup{menubordercolor={0 0 0}}
 %opening
-\title{Rapid Convergence of The Born Series}
+\title{Theoretikum}
 \author{Anupam Prasad Vedurmudi}
-\date{July 2012}
 
 \begin{document}
 
@@ -21,7 +20,7 @@
 
 \tableofcontents
 \newpage
-\chapter{Introduction}
+\section{Introduction}
 In this write-up we are concerned with the theoretical analysis of scattering experiments.
 The basic principle of scattering for classical particles is simple - we start with any number of particles 
 (two in the simplest case) which are far apart in some sense. This means that we can assume that the particles 
@@ -38,12 +37,11 @@ theory can be further divided into nonrelativistic and relativistic cases. In th
 The Born series is a perturbation expansion that enables us to calculate the Scattering operator to a desired order. 
 The Scattering operator calculates the final state given a specific initial state. This can then be used to compute the
 cross-section. The objects of interest that can be studied using this method are the Green's function and the T operator.
-\chapter{Scattering Theory}
+\section{Preliminaries}
 
 This section is based on the textbook, \cite{TaylorScattering}
-and the first part of the lecture notes, \cite{YafaevScattering}. We will present the basic principles of quantum scattering
-and the use of the Born series. As an example, we use the problem of the scattering of a single particle off
-a general potential. It can be shown that this problem is equivalent to that of two-particle
+and the first part of the lecture notes, \cite{YafaevScattering}. The problem is of the scattering of a single particle off
+a potential. It can be shown that this problem is equivalent to that of two-particle
 scattering.
 We define the Hamiltonian operator as,
 \begin{equation}
@@ -57,7 +55,7 @@ We define the Hamiltonian operator as,
 For convenience, we work in units where, $\hbar^2/m=1$. Here, $m$ is the
 mass of the particle.
 
-\section{Spectrum of The Hamiltonian}
+\subsection{Spectrum of The Hamiltonian}
  $H_0$ and $H$ are self-adjoint operators on a Hilbert space
 $\mathcal{H}$. In general, the spectrum of a self-adjoint operator has
 two components,
@@ -76,11 +74,9 @@ the discrete (pure point) part of the spectrum. For most systems of interest, th
 part is absent. Scattering theory is essentially perturbation theory applied on the 
 absolutely continous part of the spectrum.
 
-The spectrum of $H_0$ coincides with its absolutely continuous part - the discrete and singular parts are empty. In principle, the 
-spectrum of $H_0$ is the entire complex plane, but we are only interested in the positive real axis including zero ($\mathbb{R}^+\cup\{0\}$).
-These correspond to free particles. We denote these eigenstates of
-$H_0$ in $3D$ as $|\mathbf{k}\rangle$, where $\mathbf{k}\in\mathbb{R}^3$. The eigenvalue corresponding to these eigenstates is $E=|\mathbf{k}|^2/2$,
-. These eigenstates are improper, i.e., they are not normalisable,
+The spectrum of $H_0$ only contains an absolutely continuous part - the positive real axis including $0$. We denote the eigenstates of
+$H_0$ as $|\mathbf{k}\rangle$, where $\mathbf{k}\in\mathbb{R}^3$. The eigenvalue corresponding to these eigenstates is $E=k^2/2$,
+$k=|\mathbf{k}|$. These eigenstates are improper, i.e., they are not normalisable,
 \begin{equation}\label{FreeNormalisation}
  \langle\mathbf{k}^{\prime}|\mathbf{k}\rangle=\delta\left(\mathbf{k}^{\prime}-\mathbf{k}\right)
 \end{equation}
@@ -88,16 +84,12 @@ Where $\delta$ is the Dirac delta function. The reason for the notation is that,
 \begin{equation}\label{FreeWavefunction}
   \langle\mathbf{x}|\mathbf{k}\rangle = e^{i\mathbf{k}.\mathbf{x}}
 \end{equation}
-viz., the plane-wave with wave vector $\mathbf{k}$.
-\subsubsection{Bound States}
-The eigenstates corresponding to the discrete part of the spectrum are called \emph{bound} states and those of the continuous
-part are called the \emph{scattering} states. The potentials we will be dealing with support at least one negative energy
-bound state. The divergence of the Born series at low energies is due to the presence of bound states close to $0$.
-We will later see that the scattering states asymptotically (in terms of time-evolution) 
-look like free-eigenstates while the bound states don't.
+The eigenstates corresponding to the discrete part of the spectrum are called the \emph{bound} states and those of the continuous
+part are called the \emph{scattering} states. We will later see that the scattering states asymptotically look like free-eigenstates while
+the bound states don't.
 \vspace{\baselineskip}
 
-\section{Time Evolution and The Asymptotic Condition}
+\subsection{Time Evolution and The Asymptotic Condition}
  In the Schrödinger picture, the time evolution of a state $|\psi_t\rangle$ is given by,
 \begin{equation}\label{SchroedingerEvolution1}
  i\frac{d}{dt}|\psi_t\rangle = H|\psi_t\rangle
@@ -123,14 +115,12 @@ The essence of scattering theory is that \eqref{TimeEvolution} describes the evo
  U(t)|\psi\rangle &\displaystyle\xrightarrow[t\rightarrow+\infty]{}  U^0(t)|\psi_{out}\rangle
 \end{align}
 Where, $U^0(t)=e^{-iH_0t}$ is the free evolution operator and $|\psi_{in}\rangle$ and $|\psi_{out}\rangle$ are the in and out
-states. To be precise, the in and out states describe the behaviour of the system a long time before and after the interaction respectively.
-The in and out states behave like free wave-packets - i.e., their time evolution is governed by the free Hamiltonian.
+states. The in and out states behave like free wave-packets - i.e., their time evolution is governed by the free Hamiltonian.
 
 The asymptotic condition states that for every $|\psi_{in}\rangle$ in $\mathcal{H}$ there is a $|\psi\rangle$ such that 
 \eqref{Asymptotic1}.
 
-\subsection{Time-Independent Scattering Theory}
-\section{Green's Operator}
+\subsection{Green's Operator}
 The Green's operator is formally defined as,
 \begin{align}\label{GFdefinition}
  G\left(E\pm i0\right) &=\left(E\pm i0-H\right)^{-1}\\
@@ -163,7 +153,7 @@ Or more compactly,
  G=\displaystyle\sum_{n=0}^{\infty}G_0\left(VG_0\right)^n
 \end{equation}
 
-\section{T-Operator}
+\subsection{T-Operator}
 As described in \cite{TaylorScattering}, it is convenient to define the $T$-operator,
 \begin{equation}\label{Toperator1}
  T=V+VGV
@@ -188,7 +178,7 @@ The momentum space matrix elements of the T-matrix are given by,
   t\left(\mathbf{k}^\prime\leftarrow\mathbf{k}\right)=\langle \mathbf{k}^\prime |T| \mathbf{k} \rangle
 \end{equation}
 
-\section{Scattering Operator}
+\subsection{Scattering Operator}
 We first define the Møller operators, $\Omega_\pm$ as,
 \begin{equation}\label{moellerdef}
  \Omega_\pm = \displaystyle\lim_{t\rightarrow\mp\infty}U(t)^\dagger U^0(t)
@@ -206,32 +196,25 @@ Unlike the property \eqref{unitaryprop} for unitary operators, we have $\Omega_\
 in general, $\Omega_\pm\Omega^\dagger_\pm\neq\mathbb{I}$. We also note that all Unitary operators are isometric.We 
 can now define the scattering operator,
 \begin{equation}\label{scatteringopdef}
- \mathcal{S}=\Omega_-^\dagger\Omega_+
+ S=\Omega_-^\dagger\Omega_+
 \end{equation}
 The scattering operator has the property that,
 \begin{equation}\label{scatterinprop}
- |\psi_{out}\rangle = \mathcal{S}|\psi_{in}\rangle
+ |\psi_{out}\rangle = S|\psi_{in}\rangle
 \end{equation}
-i.e., given an in state, the scattering operator gives the corresponding out state. An important property of the $\mathcal{S}$ operator is
-that, unlike the Møller operators, it is unitary. As a consequence of this, every $|\psi_{in}\rangle$ is mapped to a unique $|\psi_{out}\rangle$ in $\mathcal{H}$.
-
-In practice, only the asymptotic free motion 
-is observable. Therefore, the operator $\mathcal{S}$ contains all the information of experimental interest. For a scattering process,
+i.e., given an in state, the scattering operator gives the corresponding out state. In practice, only the asymptotic free motion 
+is observable. Therefore, the operator $S$ contains all the information of experimental interest. For a scattering process,
 $|\psi_{in}\rangle\rightarrow|\psi_{out}\rangle$, the probability is given by,
 \begin{equation}\label{scatteringprob}
- \mathbf{w}(|\psi_{out}\rangle\leftarrow|\psi_{in}\rangle)=\lvert\langle\psi_{out}\rvert \mathcal{S}\lvert\psi_{in}\rangle\rvert^2
+ \mathbf{w}(|\psi_{out}\rangle\leftarrow|\psi_{in}\rangle)=\lvert\langle\psi_{out}\rvert S\lvert\psi_{in}\rangle\rvert^2
 \end{equation}
 
 The momentum space matrix elements of the scattering operator are related to \eqref{Tmatrixelements} as,
 \begin{equation}\label{Smatrixelements}
- \langle \mathbf{k}^\prime |\mathcal{S}| \mathbf{k} \rangle = \delta_3(\mathbf{k}^\prime - \mathbf{k})-2\pi i\delta\left(E_{p^\prime}-E_p\right)t\left(\mathbf{k}^\prime\leftarrow\mathbf{k}\right)
+ \langle \mathbf{k}^\prime |S| \mathbf{k} \rangle = \delta_3(\mathbf{k}^\prime - \mathbf{k})-2\pi i\delta\left(E_{p^\prime}-E_p\right)t\left(\mathbf{k}^\prime\leftarrow\mathbf{k}\right)
 \end{equation}
-The physical interpretation of the above expression is that, given an incoming plane wave, after the interaction the outgoing wave
-is given by the incoming wave plus a component which a consequence of the interaction. The $T$ operator in a sense contains all
-the information about the interaction.
-Thus we see that, given a good approximation to the Green's operator or the $T$-operator, we can directly calculate the $S$ operator
-and thereby the cross-sections.
-\chapter{Finite Element Method}
+
+\section{Finite Element Method}
 The Finite Element Method (FEM) is a numerical technique used to solve differential equations.
 The method exploits the locality of the differential operator. The solution space is divided into
 subspaces. These subspaces take the form of a mesh, i.e., a collection of simplices - triangles
@@ -246,156 +229,150 @@ Let $\psi$ be a solution to a differential equation. We denote the basis functio
 A feature of FEM is that the basis functions have a finite overlap i.e., they are not orthogonal.
 The overlap matrix in general has a block-diagonal form. The overlap matrix is denoted by,
 \begin{equation}\label{overlap}
- S_{nm}=\int J(\mathbf{x})d^nx\phi_n(\mathbf{x})\phi_m(\mathbf{x})
+ S_{nm}=\int d^3x\phi_n(\mathbf{x})\phi_m(\mathbf{x})
 \end{equation}
+
 We also define the matrix,
 \begin{equation}\label{diff_overlap}
- B_{nm}=\int J(\mathbf{x})d^nx\nabla\phi_n(\mathbf{x}).\nabla\phi_m(\mathbf{x})
+ B_{nm}=\int d^3x\nabla\phi_n(\mathbf{x}).\nabla\phi_m(\mathbf{x})
 \end{equation}
-Here, $J(\mathbf{x})$ is the Jacobian for the chosen coordinate system.
-\section{Boundary Conditions}
+
+\subsection{Boundary Conditions}
 In order to solve the differential equations we must also specify appropriate boundary
 conditions. Let $\Omega$ be the solution space. We denote its boundary by $\partial\Omega$.
 
-\subsection{Dirichlet Boundary Condition}
+\subsubsection{Dirichlet Boundary Condition}
 The Dirichlet boundary condition requires that the function has a known value on the boundary.
 \begin{equation}\label{dirichlet1}
  \psi(\mathbf{x})=f(\mathbf{x}), \mbox{ }\forall\mathbf{x}\in \partial\Omega
 \end{equation}
 Where, $f$ is a known function on $\Omega$.
 
-\subsection{Neumann Boundary Condition}
+\subsubsection{Neumann Boundary Condition}
 The Neumann boundary condition requires that the gradient of the function
 normal to the boundary is fixed to a known function. That is,
 \begin{equation}\label{neumann1}
  \frac{\partial\psi(\mathbf{x})}{\partial\mathbf{n}}\equiv\nabla\psi(\mathbf{x}).\mathbf{n} = f(\mathbf{x}), \mbox{ }\forall\mathbf{x}\in \partial\Omega
 \end{equation}
 
-\subsection{Mixed Boundary Condition}
+\subsubsection{Mixed Boundary Condition}
 It is also possible to have a boundary such that the function has a Dirichlet boundary
 condition on one part (denoted by $\partial\Omega_D$) and a Neumann boundary condition
 on the other ($\partial\Omega_N$).
 
-\subsubsection{Continuity}
-The function is further constrained to be continuous at the boundaries of the finite element.
-
-\subsubsection{Note}
-We will be working in 1-dimension with a Jacobian, $J(x)=1$. We should also mention here that, a $2D$ problem in polar coordinates with azimuthal symmetry reduces
-to a $1D$ problem with a Jacobian, $J(x)=x$ and similarly, a $3D$ problem in spherical coordinates with symmetry in both angular direction reduces to
-a $1D$ problem with a Jacobian, $J(x)=x^2$. The python implementation is discussed in Appendix \ref{pythonimp}.
-
-\chapter{FEM in Quantum Mechanics}
+\subsection{Python Implementation}
+\section{FEM in Quantum Mechanics}
 The Schrödinger equation for a wave function $\psi$ is given by,
+
 \begin{equation}\label{schroedinger1}
  -\frac{\Delta}{2}\psi+V(\mathbf{x})\psi=E\psi
 \end{equation}
-Using the FEM approximation defined in \eqref{femfirst},
+
+ Using the FEM approximation defined in \eqref{femfirst},
 \begin{equation}\label{schroedinger}
  -\frac{\Delta}{2}\displaystyle\sum_n^N c_n\phi_n(\mathbf{x})+\displaystyle\sum_n^N c_n V(\mathbf{x})\phi_n(\mathbf{x})=E\displaystyle\sum_n^N c_n\phi_n(\mathbf{x})
 \end{equation}
-
-Now, we get the weak formulation of the problem by multiplying both sides by $\phi_m(\mathbf{x})$ and integrating over. We now integrate by parts and use the finite
-support of the basis functions to set the boundary terms to zero. We have to note here that the integration is over all space not just the "box" of our problem. Even
-if the wavefunction has a non-zero value on the boundary of the box, the finite element basis functions go to zero as $|\mathbf{x}|\rightarrow\infty$
-
-Now we use the definition in \eqref{diff_overlap}, to get the following matrix element,
+ We get the weak formulation of the problem by multiplying both sides by $\phi_m(\mathbf{x})$ and integrating over. After integrating by parts, the kinetic term gives us
+the following matrix element,
 \begin{equation}\label{kineticterm}
- B_{mn} = -\int d^3x\phi_m(\mathbf{x})\Delta\phi_n(\mathbf{x}) = \int d^3x\nabla\phi_m(\mathbf{x}).\nabla\phi_n(\mathbf{x})
-\end{equation}
-This is the FEM representation of the kinetic term.
-The potential term is calculated from the known functions $\phi_n$ and is defined as,
-\begin{equation}\label{potentialterm}
-  V_{mn} = \int d^3xV(\mathbf{x})\phi_m(\mathbf{x})\phi_n(\mathbf{x})
-\end{equation}
-Finally, using the definition of the overlap matrix in \eqref{overlap}, the R.H.S is given by,
-\begin{equation}\label{qmoverlap}
- ES_{mn}=E\int d^3x\phi_m(\mathbf{x})\phi_n(\mathbf{x})
+ \int d^3x\phi_m(\mathbf{x})\Delta\phi_n(\mathbf{x}) = -\int d^3x\nabla\phi_m(\mathbf{x}).\nabla\phi_n(\mathbf{x}) = -B_{mn}
 \end{equation}
 
-Finally, we define the coefficient vector, $\mathbf{\underline{c}}=[c_1,c_2,\ldots,c_N]^T$. The Schrödinger equation thus reduces to 
-the following generalized eigenvalue problem,
+ The potential term is calculated from the known functions $\phi_n$ and is defined as,
+\begin{equation}\label{potentialterm}
+ \int d^3xV(\mathbf{x})\phi_m(\mathbf{x})\phi_n(\mathbf{x}) = V_{mn}
+\end{equation}
+
+ Finally, the R.H.S is given by,
+\begin{equation}
+ E\int d^3x\phi_m(\mathbf{x})\phi_n(\mathbf{x})=ES_{mn}
+\end{equation}
+
+ We define the coefficient vector $\mathbf{\underline{c}}=[c_1,c_2,\ldots,c_N]^T$. The Schrödinger equation reduces to 
+the following eigenvalue problem,
 \begin{equation}\label{schroedingerfem}
   H\mathbf{\underline{c}}=ES\mathbf{\underline{c}}
 \end{equation}
-Where, $H=\left(\frac{B}{2}+V\right)$
+ Where, $H=\left(\frac{B}{2}+V\right)$
 
-\subsubsection{Inner Products}
 The inner product of two wavefunctions $\phi$ and $\chi$ is given by,
 \begin{align}\label{innerproduct}
- \int d^3x \chi^*(\mathbf{x})\psi(\mathbf{x}) &= \displaystyle\sum_{m,n}^{N}c^*_md_n\int d^3x \phi_m(\mathbf{x})\phi_n(\mathbf{x}) \nonumber\\
- &= \mathbf{c}^{\dagger}S\mathbf{d}
+ \int d^3x \chi^*(\mathbf{x})\psi(\mathbf{x}) &=& \displaystyle\sum_{m,n}^{N}c_md_n\int d^3x \phi_m(\mathbf{x})\phi_n(\mathbf{x})\\
+ &=& \mathbf{c}^{\dagger}S\mathbf{d}
 \end{align}
- Where, $\mathbf{c}^{\dagger}=(\mathbf{c}^*)^T$ and we used the definition of the overlap matrix in \eqref{qmoverlap}.
+ Where, $\mathbf{c}^{\dagger}=(\mathbf{c}^*)^T$.
 
-\section{Momentum Eigenstates}
+\subsection{Momentum Eigenstates}
 We now want to find an FEM representation for free eigenstate of momentum $\mathbf{k}$ (energy,
-$E_k=|\mathbf{k}|^2/2$). These are the improper eigenstates of the operator $H_0=B/2$. 
+$E_k=|\mathbf{k}|^2/2$). 
 It is most convenient to do so by defining a ``cosine eigenvector'',
 \begin{equation}\label{cosevec}
- |\mathbf{k}_c\rangle = exp(-i\mathbf{k}.\mathbf{x}) + exp(i\mathbf{k}.\mathbf{x})
+ |\mathbf{k}\rangle = exp(-i\mathbf{k}.\mathbf{x}) + exp(i\mathbf{k}.\mathbf{x})
 \end{equation}
 These can be obtained by ``solving'' the free Schrödinger equation on a grid with open
-boundaries, i.e., by solving \eqref{schroedingerfem} with $H=H_0$, i.e.,
+boundaries, i.e., by solving the eigenvalue problem,
 
 \begin{equation}\label{freeschroedinger}
- H_0\psi=E_k S\psi
+ H_0\psi=\lambda S\psi
 \end{equation}
 for $\psi$.
 
-$|\mathbf{k}_c\rangle$ has the following properties,
+$|\mathbf{k}\rangle$ has the following properties,
 \begin{align}
- \langle\mathbf{k}_c|S|\mathbf{k}_c\rangle &= \int_{\Omega} d^3x = V_\Omega\\
- \langle\mathbf{k}_c^{\prime}|S|\mathbf{k}_c\rangle &\simeq 0
+ \langle\mathbf{k}|S|\mathbf{k}\rangle &=&\int_{\Omega} d^3x\\
+ \langle\mathbf{k}^{\prime}|S|\mathbf{k}\rangle &\simeq& 0
 \end{align}
-Here, $V_\Omega$ is the volume of the solution space.
+Here, $\int_{\Omega} d^3x$ is the volume of the solution space.
 
-\section{Born Series - FEM Formulation}
-We now use the definition of the Greens function in \eqref{GFdefinition} and the FEM formulation of the
-Schrödinger equation, \eqref{schroedingerfem} to calculate the FEM representation of the Greens Function. 
-We require that,
+\subsection{Born Series - FEM Formulation}
+We calculate the FEM representation of the Greens Function using \eqref{schroedingerfem}. We require that,
 \begin{equation}\label{greenfemreq}
  G_{fem}(z)\psi=(z-E_0)^{-1}S\psi
 \end{equation}
- Where, $\psi$ is an eigenstate of $H$ of energy $E_0$ and $z\neq E_0$ is a complex number. Thus, we define the Green's operator as,
+ Where, $\psi$ is an eigenstate of $H$ of energy $E_0$. Thus, we define the Green's operator as,
 \begin{equation}\label{greenfemdef}
  G_{fem}(z)=\left(z\mathbf{I}-HS^{-1}\right)^{-1}S
 \end{equation}
  Where, $\mathbf{I}$ is the identity matrix. The free Greens function is defined similarly by setting
-$H=B/2$. We will ultimately be testing the convergence of the matrix element, $\langle\mathbf{k}|G_{fem}(z)|\mathbf{k}\rangle$.
+$H=B/2$. We will ultimately be testing the convergence of, $\langle\mathbf{k}|G_{fem}(z)|\mathbf{k}\rangle$.
 For later convenience, the potential matrix is also suitably modified as,
 \begin{equation}\label{potmat}
  V_{fem}=S^{-1}VS^{-1}
 \end{equation}
 
-\chapter{Orthogonal Projection Method}
+
+\subsection{Modification of the Hamiltonian}
 In this section we use the techniques introduced in \cite{KukPom76} and elaborated in
-\cite{KukPom78}. In this paper, it is suggested that the Born series can be rearranged 
-by using orthogonally projecting pseudopotentials (OPP). It is then proved that the 
-rearranged Born series converges for all negative and small positive energies even if 
-the system contains bound states.
+\cite{KukPom78}. It this paper, the Born
+series is rearranged by using orthogonally projecting pseudopotentials (OPP). It is then
+proved that the rearranged Born series converges for all negative and small positive energies
+even if the system contains bound states.
 
 Let the bound states (indexed by $a$) of the Hamiltonian $H$ be denoted by $|\psi_a\rangle$.
 The potential is modified by the operator $\Gamma$ given by,
 \begin{equation}\label{potmod}
   \Gamma=\lambda\displaystyle\sum_a |\psi_a\rangle\langle\psi_a|
 \end{equation}
-The rate of convergence of the Born series is controlled by the parameter $\lambda$.
+ The rate of convergence of the Born series is controlled by the parameter $\lambda$.
 
 The modified Hamiltonian and the modified free Hamiltonian are denoted by,
+
 \begin{align}
- \widetilde{H}&=H+\Gamma\\
- \widetilde{H}_0&=H_0+\Gamma
+ \widetilde{H}&=&H+\Gamma\\
+ \widetilde{H}_0&=&H_0+\Gamma
 \end{align}
+
 The modified Greens functions $\widetilde{G}$ and $\widetilde{G}_0$ are defined similarly as
 in \eqref{GFdefinition}. The modified Born Series for $\widetilde{G}$ is given by,
 
 \begin{equation}\label{BornSeriesModCompact}
  \widetilde{G}=\displaystyle\sum_{n=0}^{\infty}\widetilde{G}_0\left(V\widetilde{G}_0\right)^n
 \end{equation}
-Physically, this means that the modified Hamiltonian has the same continuous spectrum but the discrete
+
+ Physically, this means that the modified Hamiltonian has the same continuous spectrum but the discrete
 spectrum has been shifted by $\lambda$.
 
-\section{Example Problem - Scattering in 1D}
+\section{Toy Problem - Scattering in 1D}
 We now use the above methods in an example with scattering off a potential in 1D. Due to the simplicity of the problem,
 it is possible to explicitly calculate the exact Green's operator by inverting the appropriate matrix according the formal
 definition given in \eqref{GFdefinition}. We will examine the problem in two cases: 
@@ -404,7 +381,7 @@ definition given in \eqref{GFdefinition}. We will examine the problem in two cas
  \item In the second case, the modified hamiltonian gives a convergent Born series whereas the unmodified one diverges. 
 \end{itemize}
 
-Our box is defined as an FEM axis from $x=0$ to $x=10$ with $n=200$ discretization points, 
+Our box is defined as an FEM axis from $x=0$ to $x=10$ with $n=400$ discretization points, 
 of order $40$ and with open boundaries. This means that the axis is divided into 400 
 parts and each part has functions (elements) upto order $40$. Order $1$ being a straight
 line. As an example, we show an axis, $0\leq x\leq 4$ with $n=4$ discretization points, open
@@ -485,13 +462,7 @@ V = -100\mathtt{exp}(-(x-3.5)^2/0.5)-100\mathtt{exp}(-(x-6.5)^2/0.5)
 We see that for some energies the Born Series in the modified case converges to the exact value but diverges in the original case. We also note that
 for certain energies, the Born Series diverges in both cases but the divergence in the unmodified case is slower.
 
-\chapter{Conclusion}
-
-\appendix
-\addcontentsline{toc}{chapter}{Appendices}
-%\chapter{Calculation of The Scattering Cross-section}\label{crosssection}
-\chapter{Python Implementation}\label{pythonimp}
-The main object of interest is the \verb=Axis= class, which is defined in the file \verb=axis.py=.
+\section{Conclusion}
 
 \bibliographystyle{plain}
 \bibliography{draft1.bib}

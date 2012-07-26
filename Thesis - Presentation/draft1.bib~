@@ -17,10 +17,47 @@
 
 @article{KukPom76,
   author="Kukulin, V. I. and Pomerantsev V. N.",
-  year = "1976"
-  title = "Rearrangement and improvement of convergence of the born series in scattering theory on the basis of orthogonal projections"
-  journal = "Theoretical and Mathematical Physics"
-  volume = "27"
-  number = "3"
-  pages = "549-557"
+  year = "1976",
+  title = "Rearrangement and improvement of convergence of the born series in scattering theory on the basis of orthogonal projections",
+  journal = "Theoretical and Mathematical Physics",
+  volume = "27",
+  number = "3",
+  pages = "549-557",
 }
+
+@article{KukPom78,
+title = "The orthogonal projection method in scattering theory",
+journal = "Annals of Physics",
+volume = "111",
+number = "2",
+pages = "330 - 363",
+year = "1978",
+note = "",
+issn = "0003-4916",
+doi = "10.1016/0003-4916(78)90069-6",
+url = "http://www.sciencedirect.com/science/article/pii/0003491678900696",
+author = "V.I Kukulin and V.N Pomerantsev"
+}
+
+
+
+@article{YafaevScattering,
+   author = "Yafaev, D.",
+    title = "{Lectures on scattering theory}",
+  journal = {ArXiv Mathematics e-prints},
+   eprint = {arXiv:math/0403213},
+ keywords = {Spectral Theory, 47A40},
+     year = 2004,
+    month = mar,
+   adsurl = {http://adsabs.harvard.edu/abs/2004math......3213Y},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@book{TaylorScattering,
+author = {Taylor, J. R.},
+title = {Scattering Theory: {The} Quantum Theory {of} Nonrelativistic Collisions},
+publisher = {Dover Publications, Inc.},
+year = {2006},
+address = {Mineola, New York, USA}
+}
+

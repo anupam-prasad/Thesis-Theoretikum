@@ -1,0 +1,819 @@
+This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
+Scanning input file draft1.tex...
+!! Input index error (file = draft1.tex, line = 1):
+   -- Unknown index keyword \documentclass[a4paper,10pt].
+!! Input index error (file = draft1.tex, line = 2):
+   -- Unknown index keyword \usepackage[utf8x].
+!! Input index error (file = draft1.tex, line = 3):
+   -- Unknown index keyword \usepackage.
+!! Input index error (file = draft1.tex, line = 4):
+   -- Unknown index keyword \usepackage.
+!! Input index error (file = draft1.tex, line = 5):
+   -- Unknown index keyword \usepackage.
+!! Input index error (file = draft1.tex, line = 6):
+   -- Unknown index keyword \usepackage.
+!! Input index error (file = draft1.tex, line = 7):
+   -- Unknown index keyword \usepackage[refpage].
+!! Input index error (file = draft1.tex, line = 8):
+   -- Unknown index keyword \renewcommand.
+!! Input index error (file = draft1.tex, line = 9):
+   -- Unknown index keyword \renewcommand*.
+!! Input index error (file = draft1.tex, line = 10):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 11):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 13):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 14):
+   -- Unknown index keyword \title.
+!! Input index error (file = draft1.tex, line = 15):
+   -- Unknown index keyword \author.
+!! Input index error (file = draft1.tex, line = 17):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 19):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 21):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 23):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 25):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 26):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 27):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 28):
+   -- Unknown index keyword \section.
+!! Input index error (file = draft1.tex, line = 29):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 30):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 31):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 32):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 33):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 34):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 36):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 37):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 38):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 39):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 40):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 42):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 43):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 44):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 45):
+   -- Unknown index keyword \section.
+!! Input index error (file = draft1.tex, line = 47):
+   -- Unknown index keyword Thissectionisbasedonthetextbook,\cite.
+!! Input index error (file = draft1.tex, line = 48):
+   -- Unknown index keyword andthefirstpartofthelecturenotes,\cite.
+!! Input index error (file = draft1.tex, line = 49):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 50):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 51):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 52):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 53):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 54):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 55):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 56):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 57):
+   -- Unknown index keyword H_0=-\frac.
+!! Input index error (file = draft1.tex, line = 58):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 59):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 60):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 61):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 63):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 64):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 65):
+   -- Unknown index keyword $\mathcal.
+!! Input index error (file = draft1.tex, line = 66):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 67):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 68):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 69):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 70):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 71):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 72):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 73):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 74):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 75):
+   -- Unknown index keyword \mathcal.
+!! Input index error (file = draft1.tex, line = 76):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 77):
+   -- Unknown index keyword Where,$\mathcal.
+!! Input index error (file = draft1.tex, line = 78):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 79):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 80):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 82):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 83):
+   -- Unknown index keyword $H_0$as$|\mathbf.
+!! Input index error (file = draft1.tex, line = 84):
+   -- Unknown index keyword $k=|\mathbf.
+!! Input index error (file = draft1.tex, line = 85):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 86):
+   -- Unknown index keyword \langle\mathbf.
+!! Input index error (file = draft1.tex, line = 87):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 88):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 89):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 90):
+   -- Unknown index keyword \langle\mathbf.
+!! Input index error (file = draft1.tex, line = 91):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 92):
+   -- Unknown index keyword Theeigenstatescorrespondingtothediscretepartofthespectrumarecalledthe\emph.
+!! Input index error (file = draft1.tex, line = 93):
+   -- Unknown index keyword partarecalledthe\emph.
+!! Input index error (file = draft1.tex, line = 94):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 95):
+   -- Unknown index keyword \nomenclature.
+!! Input index error (file = draft1.tex, line = 96):
+   -- Unknown index keyword \vspace.
+!! Input index error (file = draft1.tex, line = 98):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 99):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 100):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 101):
+   -- Unknown index keyword i\frac.
+!! Input index error (file = draft1.tex, line = 102):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 103):
+   -- Unknown index keyword Givenaninitialstate$|\psi\rangle$,theformalsolutionof\eqref.
+!! Input index error (file = draft1.tex, line = 104):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 105):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 106):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 107):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 108):
+   -- Unknown index keyword Where,$U(t)=e^.
+!! Input index error (file = draft1.tex, line = 109):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 110):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 111):
+   -- Unknown index keyword \mathcal.
+!! Input index error (file = draft1.tex, line = 112):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 113):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 114):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 115):
+   -- Unknown index keyword U^\dagger(t)U(t)=U(t)U^\dagger(t)=\mathbb.
+!! Input index error (file = draft1.tex, line = 116):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 118):
+   -- Unknown index keyword Theessenceofscatteringtheoryisthat\eqref.
+!! Input index error (file = draft1.tex, line = 119):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 120):
+   -- Unknown index keyword U(t)|\psi\rangle&\displaystyle\xrightarrow[t\rightarrow-\infty].
+!! Input index error (file = draft1.tex, line = 121):
+   -- Unknown index keyword U(t)|\psi\rangle&\displaystyle\xrightarrow[t\rightarrow+\infty].
+!! Input index error (file = draft1.tex, line = 122):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 123):
+   -- Unknown index keyword Where,$U^0(t)=e^.
+!! Input index error (file = draft1.tex, line = 124):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 126):
+   -- Unknown index keyword Theasymptoticconditionstatesthatforevery$|\psi_.
+!! Input index error (file = draft1.tex, line = 127):
+   -- Unknown index keyword \eqref.
+!! Input index error (file = draft1.tex, line = 129):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 130):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 131):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 132):
+   -- Unknown index keyword G\left(E\pmi0\right)&=\left(E\pmi0-H\right)^.
+!! Input index error (file = draft1.tex, line = 133):
+   -- Unknown index keyword G_0\left(E\pmi0\right)&=\left(E\pmi0-H_0\right)^.
+!! Input index error (file = draft1.tex, line = 134):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 135):
+   -- Unknown index keyword Where,$G\left(E\pmi0\right)=\displaystyle\lim_.
+!! Input index error (file = draft1.tex, line = 136):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 137):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 138):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 139):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 140):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 141):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 142):
+   -- Unknown index keyword A^.
+!! Input index error (file = draft1.tex, line = 143):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 145):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 146):
+   -- Unknown index keyword the$(n-1)^.
+!! Input index error (file = draft1.tex, line = 147):
+   -- Unknown index keyword orderterm.The$0^.
+!! Input index error (file = draft1.tex, line = 148):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 150):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 151):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 152):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 153):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 154):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 155):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 156):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 157):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 158):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 159):
+   -- Unknown index keyword G=\displaystyle\sum_.
+!! Input index error (file = draft1.tex, line = 160):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 162):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 163):
+   -- Unknown index keyword Asdescribedin\cite.
+!! Input index error (file = draft1.tex, line = 164):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 165):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 166):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 167):
+   -- Unknown index keyword Multiplyingbothsidesby$G_0$wegetandusing\eqref.
+!! Input index error (file = draft1.tex, line = 168):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 169):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 170):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 171):
+   -- Unknown index keyword Substitutingthisrelationbackin\eqref.
+!! Input index error (file = draft1.tex, line = 172):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 173):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 174):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 175):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 176):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 177):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 178):
+   -- Unknown index keyword T=\displaystyle\sum_.
+!! Input index error (file = draft1.tex, line = 179):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 180):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 182):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 183):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 184):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 185):
+   -- Unknown index keyword \Omega_\pm=\displaystyle\lim_.
+!! Input index error (file = draft1.tex, line = 186):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 187):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 188):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 189):
+   -- Unknown index keyword |\psi\rangle&=\Omega_+|\psi_.
+!! Input index error (file = draft1.tex, line = 190):
+   -- Unknown index keyword |\psi\rangle&=\Omega_-|\psi_.
+!! Input index error (file = draft1.tex, line = 191):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 193):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 194):
+   -- Unknown index keyword fortheHamiltonian.Theseoperatorsareisometric,i.e.,theyaredefinedonallof$\mathcal.
+!! Input index error (file = draft1.tex, line = 195):
+   -- Unknown index keyword andpreservethenorm.Theydifferfromunitaryoperatorsinthat,$\mathcal.
+!! Input index error (file = draft1.tex, line = 196):
+   -- Unknown index keyword Unliketheproperty\eqref.
+!! Input index error (file = draft1.tex, line = 197):
+   -- Unknown index keyword ingeneral,$\Omega_\pm\Omega^\dagger_\pm\neq\mathbb.
+!! Input index error (file = draft1.tex, line = 198):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 199):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 200):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 201):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 202):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 203):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 204):
+   -- Unknown index keyword |\psi_.
+!! Input index error (file = draft1.tex, line = 205):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 207):
+   -- Unknown index keyword \nomenclature.
+!! Input index error (file = draft1.tex, line = 210):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 211):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 212):
+   -- Unknown index keyword $|\psi_.
+!! Input index error (file = draft1.tex, line = 213):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 214):
+   -- Unknown index keyword \mathbf.
+!! Input index error (file = draft1.tex, line = 215):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 217):
+   -- Unknown index keyword \section.
+!! Input index error (file = draft1.tex, line = 218):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 219):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 220):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 221):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 222):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 224):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 225):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 226):
+   -- Unknown index keyword \psi(\mathbf.
+!! Input index error (file = draft1.tex, line = 227):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 229):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 230):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 231):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 232):
+   -- Unknown index keyword S_.
+!! Input index error (file = draft1.tex, line = 233):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 235):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 236):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 237):
+   -- Unknown index keyword B_.
+!! Input index error (file = draft1.tex, line = 238):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 240):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 241):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 242):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 244):
+   -- Unknown index keyword \subsubsection.
+!! Input index error (file = draft1.tex, line = 245):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 246):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 247):
+   -- Unknown index keyword \psi(\mathbf.
+!! Input index error (file = draft1.tex, line = 248):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 249):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 251):
+   -- Unknown index keyword \subsubsection.
+!! Input index error (file = draft1.tex, line = 252):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 253):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 254):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 255):
+   -- Unknown index keyword \frac.
+!! Input index error (file = draft1.tex, line = 256):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 258):
+   -- Unknown index keyword \subsubsection.
+!! Input index error (file = draft1.tex, line = 259):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 260):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 261):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 263):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 264):
+   -- Unknown index keyword \section.
+!! Input index error (file = draft1.tex, line = 265):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 267):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 268):
+   -- Unknown index keyword -\frac.
+!! Input index error (file = draft1.tex, line = 269):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 271):
+   -- Unknown index keyword UsingtheFEMapproximationdefinedin\eqref.
+!! Input index error (file = draft1.tex, line = 272):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 273):
+   -- Unknown index keyword -\frac.
+!! Input index error (file = draft1.tex, line = 274):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 275):
+   -- Unknown index keyword Wegettheweakformulationoftheproblembymultiplyingbothsidesby$\phi_m(\mathbf.
+!! Input index error (file = draft1.tex, line = 276):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 277):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 278):
+   -- Unknown index keyword \intd^3x\phi_m(\mathbf.
+!! Input index error (file = draft1.tex, line = 279):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 281):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 282):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 283):
+   -- Unknown index keyword \intd^3xV(\mathbf.
+!! Input index error (file = draft1.tex, line = 284):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 286):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 287):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 288):
+   -- Unknown index keyword E\intd^3x\phi_m(\mathbf.
+!! Input index error (file = draft1.tex, line = 289):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 291):
+   -- Unknown index keyword Wedefinethecoefficientvector$\mathbf.
+!! Input index error (file = draft1.tex, line = 292):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 293):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 294):
+   -- Unknown index keyword H\mathbf.
+!! Input index error (file = draft1.tex, line = 295):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 296):
+   -- Unknown index keyword Where,$H=\left(\frac.
+!! Input index error (file = draft1.tex, line = 298):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 299):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 300):
+   -- Unknown index keyword \intd^3x\chi^*(\mathbf.
+!! Input index error (file = draft1.tex, line = 301):
+   -- Unknown index keyword &=&\mathbf.
+!! Input index error (file = draft1.tex, line = 302):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 303):
+   -- Unknown index keyword Where,$\mathbf.
+!! Input index error (file = draft1.tex, line = 305):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 306):
+   -- Unknown index keyword WenowwanttofindanFEMrepresentationforfreeeigenstateofmomentum$\mathbf.
+!! Input index error (file = draft1.tex, line = 307):
+   -- Unknown index keyword $E_k=|\mathbf.
+!! Input index error (file = draft1.tex, line = 308):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 309):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 310):
+   -- Unknown index keyword |\mathbf.
+!! Input index error (file = draft1.tex, line = 311):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 312):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 313):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 315):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 316):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 317):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 318):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 320):
+   -- Unknown index keyword $|\mathbf.
+!! Input index error (file = draft1.tex, line = 321):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 322):
+   -- Unknown index keyword \langle\mathbf.
+!! Input index error (file = draft1.tex, line = 323):
+   -- Unknown index keyword \langle\mathbf.
+!! Input index error (file = draft1.tex, line = 324):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 325):
+   -- Unknown index keyword Here,$\int_.
+!! Input index error (file = draft1.tex, line = 327):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 328):
+   -- Unknown index keyword WecalculatetheFEMrepresentationoftheGreensFunctionusing\eqref.
+!! Input index error (file = draft1.tex, line = 329):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 330):
+   -- Unknown index keyword G_.
+!! Input index error (file = draft1.tex, line = 331):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 332):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 333):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 334):
+   -- Unknown index keyword G_.
+!! Input index error (file = draft1.tex, line = 335):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 336):
+   -- Unknown index keyword Where,$\mathbf.
+!! Input index error (file = draft1.tex, line = 337):
+   -- Unknown index keyword $H=B/2$.Wewillultimatelybetestingtheconvergenceof,$\langle\mathbf.
+!! Input index error (file = draft1.tex, line = 338):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 339):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 340):
+   -- Unknown index keyword V_.
+!! Input index error (file = draft1.tex, line = 341):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 344):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 345):
+   -- Unknown index keyword Inthissectionweusethetechniquesintroducedin\cite.
+!! Input index error (file = draft1.tex, line = 346):
+   -- Unknown index keyword \cite.
+!! Input index error (file = draft1.tex, line = 347):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 348):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 349):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 351):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 352):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 353):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 354):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 355):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 356):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 358):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 360):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 361):
+   -- Unknown index keyword \widetilde.
+!! Input index error (file = draft1.tex, line = 362):
+   -- Unknown index keyword \widetilde.
+!! Input index error (file = draft1.tex, line = 363):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 365):
+   -- Unknown index keyword ThemodifiedGreensfunctions$\widetilde.
+!! Input index error (file = draft1.tex, line = 366):
+   -- Unknown index keyword in\eqref.
+!! Input index error (file = draft1.tex, line = 368):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 369):
+   -- Unknown index keyword \widetilde.
+!! Input index error (file = draft1.tex, line = 370):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 372):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 373):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 375):
+   -- Unknown index keyword \section.
+!! Input index error (file = draft1.tex, line = 376):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 377):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 378):
+   -- Unknown index keyword definitiongivenin\eqref.
+!! Input index error (file = draft1.tex, line = 379):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 380):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 381):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 382):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 384):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 385):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 386):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 387):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 388):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 390):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 391):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 392):
+   -- Unknown index keyword \includegraphics[width=225pt,height=150pt].
+!! Input index error (file = draft1.tex, line = 393):
+   -- Unknown index keyword \caption[\textwidth].
+!! Input index error (file = draft1.tex, line = 394):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 395):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 397):
+   -- Unknown index keyword The``cosineeigenvectors''arecomputedusing\eqref.
+!! Input index error (file = draft1.tex, line = 398):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 399):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 400):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 401):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 403):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 404):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 405):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 406):
+   -- Unknown index keyword V=\begin.
+!! Input index error (file = draft1.tex, line = 407):
+   -- Unknown index keyword -0.01&\mbox.
+!! Input index error (file = draft1.tex, line = 408):
+   -- Unknown index keyword 0&\mbox.
+!! Input index error (file = draft1.tex, line = 409):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 410):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 412):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 413):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 414):
+   -- Unknown index keyword \includegraphics[width=360pt,height=175pt].
+!! Input index error (file = draft1.tex, line = 415):
+   -- Unknown index keyword \includegraphics[width=360pt,height=175pt].
+!! Input index error (file = draft1.tex, line = 416):
+   -- Unknown index keyword \includegraphics[width=360pt,height=175pt].
+!! Input index error (file = draft1.tex, line = 417):
+   -- Unknown index keyword \caption[\textwidth].
+!! Input index error (file = draft1.tex, line = 418):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 419):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 420):
+   -- Unknown index keyword TheBornSeriesiscalculatedfor$15$iterations.TheHamiltonianismodifiedusingtheoperatordefinedin\eqref.
+!! Input index error (file = draft1.tex, line = 421):
+   -- Unknown index keyword $\lambda=1$.Wealsoset$\epsilon=10^.
+!! Input index error (file = draft1.tex, line = 423):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 424):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 425):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 426):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 428):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 429):
+   -- Unknown index keyword \subsection.
+!! Input index error (file = draft1.tex, line = 430):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 431):
+   -- Unknown index keyword V=-100\mathtt.
+!! Input index error (file = draft1.tex, line = 432):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 433):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 434):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 435):
+   -- Unknown index keyword \includegraphics[width=225pt,height=150pt].
+!! Input index error (file = draft1.tex, line = 436):
+   -- Unknown index keyword \caption[\textwidth].
+!! Input index error (file = draft1.tex, line = 437):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 439):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 440):
+   -- Unknown index keyword \begin.
+!! Input index error (file = draft1.tex, line = 441):
+   -- Unknown index keyword \includegraphics[width=360pt,height=200pt].
+!! Input index error (file = draft1.tex, line = 442):
+   -- Unknown index keyword \includegraphics[width=360pt,height=200pt].
+!! Input index error (file = draft1.tex, line = 443):
+   -- Unknown index keyword \includegraphics[width=360pt,height=200pt].
+!! Input index error (file = draft1.tex, line = 444):
+   -- Unknown index keyword \caption[\textwidth].
+!! Input index error (file = draft1.tex, line = 445):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 446):
+   -- Unknown index keyword \end.
+!! Input index error (file = draft1.tex, line = 447):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 448):
+   -- Unknown index keyword %\begin.
+!! Input index error (file = draft1.tex, line = 449):
+   -- Unknown index keyword %\begin.
+!! Input index error (file = draft1.tex, line = 450):
+   -- Unknown index keyword %\includegraphics[width=360pt,height=200pt].
+!! Input index error (file = draft1.tex, line = 451):
+   -- Unknown index keyword %%\caption[\textwidth].
+!! Input index error (file = draft1.tex, line = 452):
+   -- Unknown index keyword %\end.
+!! Input index error (file = draft1.tex, line = 453):
+   -- Unknown index keyword %\end.
+!! Input index error (file = draft1.tex, line = 454):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 455):
+   -- Unknown index keyword %\begin.
+!! Input index error (file = draft1.tex, line = 456):
+   -- Unknown index keyword %\begin.
+!! Input index error (file = draft1.tex, line = 457):
+   -- Unknown index keyword %\includegraphics[width=360pt,height=200pt].
+!! Input index error (file = draft1.tex, line = 458):
+   -- Unknown index keyword %%\caption[\textwidth].
+!! Input index error (file = draft1.tex, line = 459):
+   -- Unknown index keyword %\end.
+!! Input index error (file = draft1.tex, line = 460):
+   -- Unknown index keyword %\end.
+!! Input index error (file = draft1.tex, line = 462):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 463):
+   -- Missing arguments -- need two (premature LFD).
+!! Input index error (file = draft1.tex, line = 465):
+   -- Unknown index keyword \section.
+!! Input index error (file = draft1.tex, line = 467):
+   -- Unknown index keyword \bibliographystyle.
+!! Input index error (file = draft1.tex, line = 468):
+   -- Unknown index keyword \bibliography.
+!! Input index error (file = draft1.tex, line = 469):
+   -- Unknown index keyword \end.
+done (0 entries accepted, 407 rejected).
+Nothing written in draft1.ind.
+Transcript written in draft1.ilg.

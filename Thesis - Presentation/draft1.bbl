@@ -2,6 +2,24 @@
 
 \bibitem{KukPom76}
 V.~I. Kukulin and Pomerantsev~V. N.
-\newblock 1976.
+\newblock Rearrangement and improvement of convergence of the born series in
+  scattering theory on the basis of orthogonal projections.
+\newblock {\em Theoretical and Mathematical Physics}, 27(3):549--557, 1976.
+
+\bibitem{KukPom78}
+V.I Kukulin and V.N Pomerantsev.
+\newblock The orthogonal projection method in scattering theory.
+\newblock {\em Annals of Physics}, 111(2):330 -- 363, 1978.
+
+\bibitem{TaylorScattering}
+J.~R. Taylor.
+\newblock {\em Scattering Theory: {The} Quantum Theory {of} Nonrelativistic
+  Collisions}.
+\newblock Dover Publications, Inc., Mineola, New York, USA, 2006.
+
+\bibitem{YafaevScattering}
+D.~Yafaev.
+\newblock {Lectures on scattering theory}.
+\newblock {\em ArXiv Mathematics e-prints}, March 2004.
 
 \end{thebibliography}

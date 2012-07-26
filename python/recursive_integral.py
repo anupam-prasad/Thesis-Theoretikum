@@ -4,6 +4,7 @@ import numpy as np
 import scipy.special.orthogonal as so
 from copy import *
 from integral_nd import *
+from my_constants import *
 
 max_level=10      # allow recursions only to this level
 
@@ -37,7 +38,7 @@ def recursive_integral(vol,integrand,params=[],acc_rel=1.e-12,acc_abs=1.e-12,
     val_sub=[]
     for i in range(2**np.shape(vol)[0]): 
         val_sub.append(integral_nd(vol_sub(vol,i),integrand,params,nquad,[]))
-    value=np.zeros(np.shape(val_sub[0]))
+    value=np.zeros(np.shape(val_sub[0])) + 0j
     for i in range(len(val_sub)): value+= val_sub[i]
 
     # convergence criterion: relative or absolute error
@@ -59,9 +60,14 @@ def test():
     def func1(x,par=[]): return np.array([x*x*x])
     def func01(x,par=[]): return np.array([1.,x[0]*x[1],x[0]/(x[1]*x[1]+1)])
 
+    def greens(x,par=[]): 
+    	kprime=x[0]
+	x1=x[1]
+	return np.array([np.exp(1j * kprime) * np.exp(-1j * kprime * x1 ) * np.exp(1j * myPi * x1)] / ((myPi*myPi)/2 - (kprime * kprime)/2 + 1j))
+#	return np.array([x1 * x1])
+
     print 'd=1',recursive_integral(np.array([[0.,1.]]),func0,nquad=8)
     print 'd=2',recursive_integral(np.array([[0.,1.],[0.,1.]]),func01,nquad=8)
+    print 'd=1',recursive_integral(np.array([[-10.,10.],[-1.,1.]]),greens,nquad=8)
 
 test()
-
-

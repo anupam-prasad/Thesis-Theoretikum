@@ -59,4 +59,4 @@ def test():
     print 'd=1',integral_nd(np.array([[0.,1.]]),func0,nquad=12)
     print 'd=2',integral_nd(np.array([[0.,1.],[0.,1.]]),func01,nquad=12)
 
-#test()
+test()

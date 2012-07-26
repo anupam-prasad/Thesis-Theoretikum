@@ -1,0 +1,23 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}
+\BOOKMARK [0][-]{chapter.2}{Scattering Theory}{}
+\BOOKMARK [1][-]{section.2.1}{Spectrum of The Hamiltonian}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Time Evolution and The Asymptotic Condition}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{Time-Independent Scattering Theory}{section.2.2}
+\BOOKMARK [1][-]{section.2.3}{Green's Operator}{chapter.2}
+\BOOKMARK [1][-]{section.2.4}{T-Operator}{chapter.2}
+\BOOKMARK [1][-]{section.2.5}{Scattering Operator}{chapter.2}
+\BOOKMARK [0][-]{chapter.3}{Finite Element Method}{}
+\BOOKMARK [1][-]{section.3.1}{Boundary Conditions}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.1.1}{Dirichlet Boundary Condition}{section.3.1}
+\BOOKMARK [2][-]{subsection.3.1.2}{Neumann Boundary Condition}{section.3.1}
+\BOOKMARK [2][-]{subsection.3.1.3}{Mixed Boundary Condition}{section.3.1}
+\BOOKMARK [0][-]{chapter.4}{FEM in Quantum Mechanics}{}
+\BOOKMARK [1][-]{section.4.1}{Momentum Eigenstates}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Born Series - FEM Formulation}{chapter.4}
+\BOOKMARK [0][-]{chapter.5}{Orthogonal Projection Method}{}
+\BOOKMARK [1][-]{section.5.1}{Example Problem - Scattering in 1D}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.1.1}{First Case}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.2}{Second Case}{section.5.1}
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}
+\BOOKMARK [0][-]{chapter.6}{Appendices}{}
+\BOOKMARK [0][-]{appendix.A}{Python Implementation}{}

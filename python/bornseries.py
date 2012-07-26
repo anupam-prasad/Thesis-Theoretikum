@@ -10,100 +10,101 @@ import scipy.linalg as la
 import pickle as pickle
 from copy import *
 from potential2 import *
+
 import time
 
 from axis import *
 
-n=100
+n=600
 order=5
-bctype='x'
 
-lb=-5.
-ub=5.
+lb=-50.
+ub=50.
 
-y=Axis(bctype,n,lb,ub,'fem',order)#+Axis('x',n,lb,ub,'fem',order)#+Axis('r',2,2.,3.,'fem')
+ycos=Axis('xopen',n,lb,ub,'fem',order)
+ysin=Axis('x',n,lb,ub,'fem',order)
 
-#y.plot()
-#plt.show()
-npart=np.floor(n/(order-1))
+Bcos=np.zeros([ycos.len(),ycos.len()])
+Bsin=np.zeros([ysin.len(),ysin.len()])
 
-if bctype=='cos':
-        nelem=npart*(order-1)+1
-elif bctype=='r' or bctype=='rho':
-        nelem=npart*(order-1)
-else:
-        nelem=npart*(order-1)-1
+Vcos=np.zeros([ycos.len(),ycos.len()])
+Vsin=np.zeros([ysin.len(),ysin.len()])
 
-#Overlap Matrix
-overlap=y.overlap()
-overlap_inv=y.overlap_inv()
+V0=1
 
-#d|d matrix
-B=np.zeros([nelem,nelem])
-#Potential Matrix
-V1=np.zeros([nelem,nelem])
-V2=np.zeros([nelem,nelem])
+for n in range(len(ycos.e)):
+	i0=ycos.e[n].i0
+	i1=i0+ycos.e[n].n
+	Bcos[i0:i1,i0:i1]=Bcos[i0:i1,i0:i1]+ycos.e[n].matrix('d|d')
+	Vcos[i0:i1,i0:i1]=Vcos[i0:i1,i0:i1]+ycos.e[n].matrix('fwell', np.array([-1.,1.,V0]))
 
-#Control Parameter
-Lambda=1
+[cos_evals,cos_evecs]=la.eig(Bcos/2.,ycos.overlap())
 
-iter1=0
+for n in range(len(ysin.e)):
+	i0=ysin.e[n].i0
+	i1=i0+ysin.e[n].n
+	Bsin[i0:i1,i0:i1]=Bsin[i0:i1,i0:i1]+ysin.e[n].matrix('d|d')
+	Vsin[i0:i1,i0:i1]=Vsin[i0:i1,i0:i1]+ysin.e[n].matrix('fwell', np.array([-1.,1.,V0]))	
 
-#Coefficient Matrix
-U=np.zeros(nelem)
+[sin_evals,sin_evecs]=la.eig(Bsin/2.,ysin.overlap())
 
-for e in y.e:
-#       for b in e.b:
-        b=e.matrix('d|d')
-        v=e.matrix('pot')
-	v2=e.matrix('pot2')
-        iter2=int(np.sqrt(np.size(b)))
-        for k1 in range(0,iter2):
-                for k2 in range(0,iter2):
-                        B[iter1+k1,iter1+k2]=B[iter1+k1,iter1+k2]+b[k1][k2]
-                        V1[iter1+k1,iter1+k2]=V1[iter1+k1,iter1+k2]+v[k1][k2]
-                        V2[iter1+k1,iter1+k2]=V2[iter1+k1,iter1+k2]+v2[k1][k2]
-        iter1=iter1+iter2-1
+#Sorting eigenvalues/eigenvectors in ascending order
+perm=np.argsort(cos_evals)
+cos_evals=cos_evals[perm]
+cos_evecs=cos_evecs[:,perm]
 
-#Scattering Energy
-nenergy=20
-Etot=np.linspace(-10,-9,nenergy)+1j
+perm=np.argsort(sin_evals)
+sin_evals=np.append([0],sin_evals[perm])
+sin_evecs=sin_evecs[:,perm]
 
-niter=40
-a=np.zeros([nenergy,niter])
+temp_evecs=np.zeros([ysin.len(),ysin.len()+1])
+temp_evecs[:,1:]=sin_evecs
+sin_evecs=temp_evecs
 
-[evals,evecs]=la.eig(B/2+V1,y.overlap())
+eps = .1j
+niter=10
+nenergy=5
 
-for l in range(0,nenergy):
-	E=Etot[l]
-	G0=la.inv(E*y.overlap()-B/2-V2)
-	A=G0
-	tempmat=np.dot(G0,V1-V2)
+Tmatrix_elements=np.zeros([niter+1,nenergy])+0j
 
-#	Aex=la.inv(E*y.overlap()-B/2-V)
-#	aex=la.norm(Aex)
-	
-	for k in range(0,niter):
-		Aprev=A
-		A=G0+np.dot(tempmat,A)
-		a[l][k]=la.norm(A-Aprev)
+Vmod_right=np.dot(ycos.overlap_inv(),Vcos)
+Vmod_left=np.dot(Vcos,ycos.overlap_inv())
 
-	#print A
-	#print Aex
+Bmod = np.dot(Bcos/2.,ycos.overlap_inv())
+Borig_mod = np.dot(Bcos/2.+Vcos,ycos.overlap_inv())
+for k in range(5):
+	Emat = np.eye(ycos.len()) * (cos_evals[k] + eps)
+	G0=np.dot(la.inv(Emat - Bmod),ycos.overlap())
+	Gorig=np.dot(la.inv(Emat - Borig_mod),ycos.overlap())
 
-	#print a
+	Torig=Vcos+np.dot(Vmod_left,np.dot(Gorig,Vmod_right))
+	Tmatrix_elements[0,k] = np.dot(cos_evecs[:,k],np.dot(Torig,cos_evecs[:,k]))
 
-	#print la.norm(a)
+	Tmatrix_elements[1,k] = np.dot(cos_evecs[:,k],np.dot(Vcos,cos_evecs[:,k]))
+	Tmat_right=Vmod_right
+	for l in range(2,niter+1):
+		Tmat = Vcos + np.dot(Vmod_left,np.dot(G0,Tmat_right))
+		Tmatrix_elements[l,k] = np.dot(cos_evecs[:,k],np.dot(Tmat,cos_evecs[:,k]))
+		Tmat_right=np.dot(ycos.overlap_inv(),Tmat)
 
+Vmod_left=np.dot(ysin.overlap_inv(),Vsin)
+Vmod_right=np.dot(Vsin,ysin.overlap_inv())
 
-f=open('bornseries/values3','w')
-pickle.dump(a,f)
-#print evals
+Bmod = np.dot(Bsin/2.,ysin.overlap_inv())
+Borig_mod = np.dot(Bsin/2.+Vsin,ysin.overlap_inv())
+for k in range(5):
+	Emat = np.eye(ysin.len()) * (sin_evals[k] + eps)
+	G0=np.dot(la.inv(Emat - Bmod),ysin.overlap())
+	Gorig=np.dot(la.inv(Emat - Borig_mod),ysin.overlap())
 
-t=range(0,niter)
-print len(a[0])
-for l in range(0,nenergy):
-	plt.plot(t,a[l])
-	plt.show()
-	time.sleep(.5)
-	plt.clf()
+	Torig=Vsin+np.dot(Vmod_left,np.dot(Gorig,Vmod_right))
+	Tmatrix_elements[0,k] += np.dot(sin_evecs[:,k],np.dot(Torig,sin_evecs[:,k]))
+
+	Tmatrix_elements[1,k] += np.dot(sin_evecs[:,k],np.dot(Vsin,sin_evecs[:,k]))
+	Tmat_right=Vmod_right
+	for l in range(2,niter+1):
+		Tmat = Vsin + np.dot(Vsin,np.dot(G0,Tmat_right))
+		Tmatrix_elements[l,k] += np.dot(sin_evecs[:,k],np.dot(Tmat,sin_evecs[:,k]))
+		Tmat_right=np.dot(ysin.overlap_inv(),Tmat)
+
+print abs(Tmatrix_elements)

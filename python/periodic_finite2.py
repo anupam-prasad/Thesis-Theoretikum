@@ -48,6 +48,9 @@ for n in range(len(ysin.e)):
 
 [sin_evals,sin_evecs]=la.eig(Bsin/2.,ysin.overlap())
 
+[prob_cos_evals, prob_cos_evecs]=la.eig(Bcos/2.+Vcos,ycos.overlap())
+[prob_sin_evals, prob_sin_evecs]=la.eig(Bsin/2.+Vsin,ysin.overlap())
+
 #Sorting eigenvalues/eigenvectors in ascending order
 perm=np.argsort(cos_evals)
 cos_evals=cos_evals[perm]
@@ -57,33 +60,81 @@ perm=np.argsort(sin_evals)
 sin_evals=np.append([0],sin_evals[perm])
 sin_evecs=sin_evecs[:,perm]
 
+perm=np.argsort(prob_cos_evals)
+prob_cos_evals=prob_cos_evals[perm]
+prob_cos_evecs=prob_cos_evecs[:,perm]
+
+perm=np.argsort(prob_sin_evals)
+prob_sin_evals=prob_sin_evals[perm]
+prob_sin_evecs=prob_sin_evecs[:,perm]
+
+nbound_cos=sum(prob_cos_evals<0)
+nbound_sin=sum(prob_sin_evals<0)
+
 temp_evecs=np.zeros([ysin.len(),ysin.len()+1])
 temp_evecs[:,1:]=sin_evecs
 sin_evecs=temp_evecs
 
-eps = 1j
+Lambda=0
+Gam_cos=np.zeros([ycos.len(),ycos.len()])
+Gam_sin=np.zeros([ysin.len(),ysin.len()])
+
+for k in range(nbound_cos):
+	Gam_cos=Gam_cos+ycos.FEM_Outer(prob_cos_evecs[:,k],prob_cos_evecs[:,k])
+
+for k in range(nbound_sin):
+	Gam_sin=Gam_sin+ysin.FEM_Outer(prob_sin_evecs[:,k],prob_sin_evecs[:,k])
+
+eps = 0j
 niter=2
-nenergy=5
+nenergy=3
 
-Tmatrix_elements=np.zeros([niter,nenergy])
+Tmatrix_elements=np.zeros([niter+1,nenergy])+0j
 
-for k in range(5):
+V_right=np.dot(ycos.overlap_inv(),Vcos)
+V_left=np.dot(Vcos,ycos.overlap_inv())
+
+Vmod_right=np.dot(ycos.overlap_inv(),Vcos-Lambda*Gam_cos)
+Vmod_left=np.dot(Vcos-Lambda*Gam_cos,ycos.overlap_inv())
+
+Bmod = np.dot(Bcos/2.+Lambda*Gam_cos,ycos.overlap_inv())
+Borig_mod = np.dot(Bcos/2.+Vcos,ycos.overlap_inv())
+for k in range(nenergy):
 	Emat = np.eye(ycos.len()) * (cos_evals[k] + eps)
-	Bmod = np.dot(Bcos/2.,ycos.overlap_inv())
-	Tmat=Vcos
-	Tmatrix_elements[0,k] = np.dot(cos_evecs[:,k],np.dot(Tmat,cos_evecs[:,k]))
 	G0=np.dot(la.inv(Emat - Bmod),ycos.overlap())
-	for l in range(niter-1,niter):
-		Tmat = Vcos + np.dot(Vcos,np.dot(G0,Tmat))
+	Gorig=np.dot(la.inv(Emat - Borig_mod),ycos.overlap())
+
+	Torig=Vcos+np.dot(V_left,np.dot(Gorig,V_right))
+	Tmatrix_elements[0,k] = np.dot(cos_evecs[:,k],np.dot(Torig,cos_evecs[:,k]))
+
+	Tmatrix_elements[1,k] = np.dot(cos_evecs[:,k],np.dot(Vcos,cos_evecs[:,k]))
+	Tmat_right=Vmod_right
+	for l in range(2,niter+1):
+		Tmat = Vcos + np.dot(Vmod_left,np.dot(G0,Tmat_right))
 		Tmatrix_elements[l,k] = np.dot(cos_evecs[:,k],np.dot(Tmat,cos_evecs[:,k]))
+		Tmat_right=np.dot(ycos.overlap_inv(),Tmat)
 
-for k in range(5):
+V_right=np.dot(ysin.overlap_inv(),Vsin)
+V_left=np.dot(Vsin,ysin.overlap_inv())
+
+Vmod_left=np.dot(ysin.overlap_inv(),Vsin-Lambda*Gam_sin)
+Vmod_right=np.dot(Vsin-Lambda*Gam_sin,ysin.overlap_inv())
+
+Bmod = np.dot(Bsin/2.+Lambda*Gam_sin,ysin.overlap_inv())
+Borig_mod = np.dot(Bsin/2.+Vsin,ysin.overlap_inv())
+for k in range(nenergy):
 	Emat = np.eye(ysin.len()) * (sin_evals[k] + eps)
-	Bmod = np.dot(Bsin/2.,ysin.overlap_inv())
-	Tmat=Vsin
-	Tmatrix_elements[0,k] = Tmatrix_elements[0,k] + sin_evecs[:,k],np.dot(Tmat,sin_evecs[:,k])
 	G0=np.dot(la.inv(Emat - Bmod),ysin.overlap())
-	for l in range(niter-1,niter):
-		Tmat = Vsin + np.dot(Vsin,np.dot(G0,Tmat))
-		Tmatrix_elements[l,k] = Tmatrix_elements[l,k] + np.dot(sin_evecs[:,k],np.dot(Tmat,sin_evecs[:,k]))
+	Gorig=np.dot(la.inv(Emat - Borig_mod),ysin.overlap())
 
+	Torig=Vsin+np.dot(V_left,np.dot(Gorig,V_right))
+	Tmatrix_elements[0,k] += np.dot(sin_evecs[:,k],np.dot(Torig,sin_evecs[:,k]))
+
+	Tmatrix_elements[1,k] += np.dot(sin_evecs[:,k],np.dot(Vsin,sin_evecs[:,k]))
+	Tmat_right=Vmod_right
+	for l in range(2,niter+1):
+		Tmat = Vsin + np.dot(Vmod_left,np.dot(G0,Tmat_right))
+		Tmatrix_elements[l,k] += np.dot(sin_evecs[:,k],np.dot(Tmat,sin_evecs[:,k]))
+		Tmat_right=np.dot(ysin.overlap_inv(),Tmat)
+
+print abs(Tmatrix_elements)
