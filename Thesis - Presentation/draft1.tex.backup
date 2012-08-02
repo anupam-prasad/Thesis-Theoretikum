@@ -136,7 +136,8 @@ The Green's operator is formally defined as,
  G\left(E\pm i0\right) &=\left(E\pm i0-H\right)^{-1}\\
  G_0\left(E\pm i0\right) &=\left(E\pm i0-H_0\right)^{-1}
 \end{align}
-Where, $G\left(E\pm i0\right)=\displaystyle\lim_{\epsilon\rightarrow 0}G(E\pm i\epsilon)$. The
+Where, $G\left(E\pm i0\right)=\displaystyle\lim_{\epsilon\rightarrow 0}G(E\pm i\epsilon)$. The sign
+of $i\epsilon$ indicates the direction of time (positive for forward scattering). The
 Lippmann-Schwinger equation for the Green's operator is given by,
 \begin{equation}\label{LS1}
  G=G_0+G_0VG
@@ -379,7 +380,10 @@ The potential is modified by the operator $\Gamma$ given by,
 \begin{equation}\label{potmod}
   \Gamma=\lambda\displaystyle\sum_a |\psi_a\rangle\langle\psi_a|
 \end{equation}
-The rate of convergence of the Born series is controlled by the parameter $\lambda$.
+The rate of convergence of the Born series is controlled by the parameter $\lambda$. It is
+seen that for weak potentials, $\lambda$ has very little influence on the convergence while
+for stronger potentials which support several bound states, $\lambda$ seems to have
+an optimal range for convergence.
 
 The modified Hamiltonian and the modified free Hamiltonian are denoted by,
 \begin{align}
@@ -394,6 +398,22 @@ in \eqref{GFdefinition}. The modified Born Series for $\widetilde{G}$ is given b
 \end{equation}
 Physically, this means that the modified Hamiltonian has the same continuous spectrum but the discrete
 spectrum has been shifted by $\lambda$.
+\subsubsection{Calculating Original Green's Operator}
+The original Green's operator is related to the modified Green's operator through the relation,
+\begin{equation}\label{lippmannschwinger2}
+ G=\widetilde{G}+\widetilde{G}\Gamma G
+\end{equation}
+We can then use the fact that,
+\begin{equation}
+ G(z)\Gamma=\Gamma G(z) = \lambda\displaystyle\sum_a \frac{|\psi_a\rangle\langle\psi_a|}{z-E_a}
+\end{equation}
+where, $E_a$ is the energy of the bound state $|\psi_a\rangle$. Denoting the $n^{th}$ order
+approximation of $\widetilde{G}$ in \eqref{BornSeriesModCompact} as $\widetilde{G}^{(n)}$ we get,
+\begin{equation}\label{Gapprox}
+ G^{(n)}\approx =
+\end{equation}
+
+\subsubsection{$\lambda\rightarrow\infty$ Limit}
 
 \section{Example Problem - Scattering in 1D}
 We now use the above methods in an example with scattering off a potential in 1D. Due to the simplicity of the problem,
@@ -404,26 +424,37 @@ definition given in \eqref{GFdefinition}. We will examine the problem in two cas
  \item In the second case, the modified hamiltonian gives a convergent Born series whereas the unmodified one diverges. 
 \end{itemize}
 
-Our box is defined as an FEM axis from $x=0$ to $x=10$ with $n=200$ discretization points, 
-of order $40$ and with open boundaries. This means that the axis is divided into 400 
-parts and each part has functions (elements) upto order $40$. Order $1$ being a straight
-line. As an example, we show an axis, $0\leq x\leq 4$ with $n=4$ discretization points, open
+Our box is defined as an FEM axis from $x=0$ to $x=10$ with $N=200$ discretization points, 
+of order $40$ and with open boundaries. This means that the axis is divided into 200 
+segments and each segment has functions (elements) upto order $40$. Order $1$ being a straight
+line. As an example, we show an axis, $0\leq x\leq 4$ with $N=4$ discretization points, open
 boundaries and order $1$.
 
 \begin{figure}[hm]
 \centering
 \includegraphics[width=225pt, height=150pt]{femexample1.png}
-\caption[\textwidth]{FEM axis. n=4, order=1}
+\caption[\textwidth]{FEM axis. N=4, order=1}
 \end{figure}
-The different elements are distinguished by colour.
 
 The ``cosine eigenvectors'' are computed using \eqref{cosevec} and \eqref{freeschroedinger}.
-The energies of the free wavefunctions are $E_n = n^2\pi^2/200$ for $n=0,\ldots,19$. The factor
-of $200$ is a result of the discretization. The Green's operator, $G(z)$ is calculated for $z=E_n+i\epsilon$,
-where, $\epsilon$ is a small positive number defined based on the problem. The purpose of epsilon is to avoid 
-the singularity on the positive real axis.
+The energies of the free wavefunctions are $E_n = n^2\pi^2/2L^2$ for $n=0,\ldots,N$ and $L=10$.
+The Green's operator, $G(z)$ is calculated for $z=E_n+i\epsilon$,
+where $\epsilon$ is a small positive number. The purpose of $\epsilon$ is to avoid 
+the singularity of the Green's operator on the positive real axis. We first encountered it in \eqref{GFdefinition} where
+we originally took $\epsilon\rightarrow 0$. In the numerical example, however, epsilon is fixed to be a small
+number which is larger than the energy spacing between the bound states close to the origin.
 
 \subsection{First Case}
+%\begin{center}
+\begin{figure}
+\includegraphics[width=320pt, height=145pt]{series1a.png}
+\includegraphics[width=320pt, height=145pt]{series1d.png}
+\includegraphics[width=320pt, height=145pt]{series1b.png}
+\includegraphics[width=320pt, height=145pt]{series1c.png}
+\caption[\textwidth]{First Case - Weak Finite Well}
+\end{figure}
+%\end{center}
+
 In the first case, we define the potential as a finite well of strength $0.01$ with support in $4.5 \leq x \leq 5.5$,
 \begin{equation}\label{potentialdef1}
 V = \begin{cases}
@@ -431,67 +462,44 @@ V = \begin{cases}
 0 &\mbox{ otherwise}
 \end{cases} 
 \end{equation}
-
-\begin{center}
-\begin{figure}[ht]
-\includegraphics[width=360pt, height=175pt]{series1a.png}
-\includegraphics[width=360pt, height=175pt]{series1b.png}
-\includegraphics[width=360pt, height=175pt]{series1c.png}
-\caption[\textwidth]{First Case - Weak Finite Well}
-\end{figure}
-\end{center}
 The Born Series is calculated for $15$ iterations. The Hamiltonian is modified using the operator defined in \eqref{potmod} with
-$\lambda=1$.  We also set $\epsilon=10^{-4}$. 
+$\lambda=1$.  We also set $\epsilon=10^{-3}$. 
 
 We now plot the elements of the Born Series against the number of iterations. In order
 to compare the modified and unmodified cases, we plot them side by side with the modified case on the left and the unmodified one
-on the right. We follow this convention in the other next case as well.
-We see that the series converges in both cases.
+on the right. The x-axis denotes the number of iterations of the Born series, and the y-axis the matrix element of the
+Green's operator, $\langle\mathbf{k}|G|\mathbf{k}\rangle$ in log-scale. We follow this convention in the next case as well.
 
-\newpage
 \subsection{Second Case}
-\begin{equation}\label{potentialdef3}
-V = -100\mathtt{exp}(-(x-3.5)^2/0.5)-100\mathtt{exp}(-(x-6.5)^2/0.5)
-\end{equation}
+The second test potential is a mixture of a finite-well and a gaussian. Its plot is 
+given below.
+%\begin{equation}\label{potentialdef3}
+%V = -100\mathtt{exp}(-(x-3.5)^2/0.5)-100\mathtt{exp}(-(x-6.5)^2/0.5)
+%\end{equation}
+We set $\epsilon=10^{-6}$ and $\lambda=100$.
 \begin{figure}[hb]
 \centering
 \includegraphics[width=225pt, height=150pt]{potential1d2.png}
-\caption[\textwidth]{Test Potential 3}
+\caption[\textwidth]{Test Potential 2}
 \end{figure}
-
-\begin{center}
-\begin{figure}[lht]
-\includegraphics[width=360pt, height=200pt]{series3a.png}
-\includegraphics[width=360pt, height=200pt]{series3b.png}
-\includegraphics[width=360pt, height=200pt]{series3c.png}
-\caption[\textwidth]{Gaussian Like Potential}
+\begin{figure}
+\includegraphics[width=320pt, height=145pt]{series3a.png}
 \end{figure}
-\end{center}
-% 
-% \begin{center}
-% \begin{figure}[lht]
-% \includegraphics[width=360pt, height=200pt]{series3b.png}
-% %\caption[\textwidth]{First Case}
-% \end{figure}
-% \end{center}
-% 
-% \begin{center}
-% \begin{figure}[lht]
-% \includegraphics[width=360pt, height=200pt]{series3c.png}
-% %\caption[\textwidth]{First Case}
-% \end{figure}
-% \end{center}
-
-We see that for some energies the Born Series in the modified case converges to the exact value but diverges in the original case. We also note that
-for certain energies, the Born Series diverges in both cases but the divergence in the unmodified case is slower.
+\begin{figure}[ht]
+\includegraphics[width=320pt, height=145pt]{series3b.png}
+\includegraphics[width=320pt, height=145pt]{series3c.png}
+\includegraphics[width=320pt, height=145pt]{series3d.png}
+\caption[\textwidth]{Finite Well + Gaussian}
+\end{figure}
 
 \chapter{Conclusion}
-
-\appendix
-\addcontentsline{toc}{chapter}{Appendices}
+We see that for some energies the Born Series in the modified case converges to the exact value but diverges in the original case. We also note that
+for certain energies, the Born Series diverges in both cases but the divergence in the unmodified case is slower.
+%\appendix
+%\addcontentsline{toc}{chapter}{Appendices}
 %\chapter{Calculation of The Scattering Cross-section}\label{crosssection}
-\chapter{Python Implementation}\label{pythonimp}
-The main object of interest is the \verb=Axis= class, which is defined in the file \verb=axis.py=.
+%\chapter{Python Implementation}\label{pythonimp}
+%The main object of interest is the \verb=Axis= class, which is defined in the file \verb=axis.py=.
 
 \bibliographystyle{plain}
 \bibliography{draft1.bib}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.4)  25 JUL 2012 22:41
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.4)  31 JUL 2012 23:30
 entering extended mode
  %&-line parsing enabled.
 **draft1.tex
@@ -435,7 +435,11 @@ File: uni-0.def 2004/10/17 UCS: Unicode data U+0000..U+00FF
 Chapter 3.
 [8
 
-] [9]
+]
+
+LaTeX Warning: Reference `pythonimp' on page 9 undefined on input line 286.
+
+[9]
 Chapter 4.
 
 Overfull \hbox (4.30237pt too wide) in paragraph at lines 316--318
@@ -447,53 +451,78 @@ mm/m/it/10 c[]; c[]; [] ; c[]\OT1/cmr/m/n/10 ][]$. The Schr^^?odinger
 
 ] [11]
 Chapter 5.
+
+Overfull \hbox (0.83392pt too wide) in paragraph at lines 403--405
+\OT1/cmr/m/n/10 The orig-i-nal Green's op-er-a-tor is re-lated to the mod-i-fie
+d Green's op-er-a-tor through
+ []
+
 [12
 
-] <femexample1.png, id=274, 586.8324pt x 442.2924pt>
+] <femexample1.png, id=265, 586.8324pt x 442.2924pt>
 File: femexample1.png Graphic file (type png)
  <use femexample1.png>
-<series1a.png, id=279, 823.878pt x 442.2924pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<series1a.png, id=270, 823.878pt x 442.2924pt>
 File: series1a.png Graphic file (type png)
  <use series1a.png>
-<series1b.png, id=280, 658.3797pt x 442.2924pt>
+<series1d.png, id=271, 699.5736pt x 442.2924pt>
+File: series1d.png Graphic file (type png)
+ <use series1d.png>
+<series1b.png, id=272, 658.3797pt x 442.2924pt>
 File: series1b.png Graphic file (type png)
  <use series1b.png>
-<series1c.png, id=281, 586.8324pt x 442.2924pt>
+<series1c.png, id=273, 586.8324pt x 442.2924pt>
 File: series1c.png Graphic file (type png)
  <use series1c.png>
-Underfull \hbox (badness 10000) in paragraph at lines 434--437
+Underfull \hbox (badness 10000) in paragraph at lines 453--457
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--437
+Underfull \hbox (badness 10000) in paragraph at lines 453--457
 []
  []
 
-[13 <./femexample1.png>] [14 <./series1a.png> <./series1b.png> <./series1c.png>
-] <potential1d2.png, id=298, 586.8324pt x 442.2924pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--457
+[]
+ []
+
+
+LaTeX Warning: Float too large for page by 8.93889pt on input line 458.
+
+[13] <potential1d2.png, id=284, 586.8324pt x 442.2924pt>
 File: potential1d2.png Graphic file (type png)
- <use potential1d2.png>
-<series3a.png, id=299, 745.8264pt x 442.2924pt>
+
+<use potential1d2.png> <series3a.png, id=285, 745.8264pt x 442.2924pt>
 File: series3a.png Graphic file (type png)
- <use series3a.png>
-<series3b.png, id=300, 586.8324pt x 442.2924pt>
+
+<use series3a.png> <series3b.png, id=286, 586.8324pt x 442.2924pt>
 File: series3b.png Graphic file (type png)
- <use series3b.png>
-<series3c.png, id=301, 586.8324pt x 442.2924pt>
+
+<use series3b.png> <series3c.png, id=287, 586.8324pt x 442.2924pt>
 File: series3c.png Graphic file (type png)
- <use series3c.png>
-Underfull \hbox (badness 10000) in paragraph at lines 471--473
+
+<use series3c.png> <series3d.png, id=288, 742.2129pt x 442.2924pt>
+File: series3d.png Graphic file (type png)
+
+<use series3d.png>
+Underfull \hbox (badness 10000) in paragraph at lines 492--495
 [][]
  []
 
-[15 <./potential1d2.png> <./series3a.png>] [16 <./series3b.png> <./series3c.png
->]
-Chapter 6.
-[17
 
-]
-Appendix A.
+Underfull \hbox (badness 10000) in paragraph at lines 492--495
+[]
+ []
+
+[14 <./femexample1.png>] [15 <./series1a.png> <./series1d.png> <./series1b.png>
+ <./series1c.png>] [16 <./potential1d2.png> <./series3a.png>] [17 <./series3b.p
+ng> <./series3c.png> <./series3d.png>]
+Chapter 6.
 (./draft1.bbl [18
 
 ])
@@ -507,33 +536,36 @@ This document will not have a glossary.
 
 [19
 
-] (./draft1.aux) ) 
+] (./draft1.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 7347 strings out of 495061
- 103263 string characters out of 1182622
- 193609 words of memory out of 3000000
- 10262 multiletter control sequences out of 15000+50000
- 14184 words of font info for 55 fonts, out of 3000000 for 9000
+ 7354 strings out of 495061
+ 103396 string characters out of 1182622
+ 194657 words of memory out of 3000000
+ 10267 multiletter control sequences out of 15000+50000
+ 13680 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,18n,37p,1101b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
-10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public
-/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft1.pdf (21 pages, 535138 bytes).
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cms
+y5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texm
+f-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on draft1.pdf (21 pages, 589705 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
- 110 named destinations out of 1000 (max. 500000)
- 225 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 405 PDF objects out of 1000 (max. 8388607)
+ 112 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
