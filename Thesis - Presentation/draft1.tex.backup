@@ -6,6 +6,7 @@
 \usepackage{glossaries}
 \usepackage[menubordercolor={0 0 0}]{hyperref}
 \hypersetup{menubordercolor={0 0 0}}
+\usepackage{float}
 %opening
 \title{Rapid Convergence of The Born Series}
 \author{Anupam Prasad Vedurmudi}
@@ -378,17 +379,18 @@ the system contains bound states.
 Let the bound states (indexed by $a$) of the Hamiltonian $H$ be denoted by $|\psi_a\rangle$.
 The potential is modified by the operator $\Gamma$ given by,
 \begin{equation}\label{potmod}
-  \Gamma=\lambda\displaystyle\sum_a |\psi_a\rangle\langle\psi_a|
+  \Gamma=\displaystyle\sum_a |\psi_a\rangle\langle\psi_a|
 \end{equation}
-The rate of convergence of the Born series is controlled by the parameter $\lambda$. It is
+The above operator is multiplied by a  positive factor $\lambda$ which controls
+the rate of convergence of the Born series. It is
 seen that for weak potentials, $\lambda$ has very little influence on the convergence while
 for stronger potentials which support several bound states, $\lambda$ seems to have
 an optimal range for convergence.
 
 The modified Hamiltonian and the modified free Hamiltonian are denoted by,
 \begin{align}
- \widetilde{H}&=H+\Gamma\\
- \widetilde{H}_0&=H_0+\Gamma
+ \widetilde{H}&=H+\lambda\Gamma\\
+ \widetilde{H}_0&=H_0+\lambda\Gamma
 \end{align}
 The modified Greens functions $\widetilde{G}$ and $\widetilde{G}_0$ are defined similarly as
 in \eqref{GFdefinition}. The modified Born Series for $\widetilde{G}$ is given by,
@@ -399,21 +401,32 @@ in \eqref{GFdefinition}. The modified Born Series for $\widetilde{G}$ is given b
 Physically, this means that the modified Hamiltonian has the same continuous spectrum but the discrete
 spectrum has been shifted by $\lambda$.
 \subsubsection{Calculating Original Green's Operator}
-The original Green's operator is related to the modified Green's operator through the relation,
+The original Green's operator is related to the modified Green's operator through the following
+Lippmann-Schwinger equation,
 \begin{equation}\label{lippmannschwinger2}
- G=\widetilde{G}+\widetilde{G}\Gamma G
+ G=\widetilde{G}-\lambda\widetilde{G}\Gamma G
 \end{equation}
 We can then use the fact that,
 \begin{equation}
- G(z)\Gamma=\Gamma G(z) = \lambda\displaystyle\sum_a \frac{|\psi_a\rangle\langle\psi_a|}{z-E_a}
+ \widetilde{\Gamma}\equiv G(z)\Gamma=\Gamma G(z) = \displaystyle\sum_a \frac{|\psi_a\rangle\langle\psi_a|}{z-E_a} 
 \end{equation}
-where, $E_a$ is the energy of the bound state $|\psi_a\rangle$. Denoting the $n^{th}$ order
+where, $E_a$ is the energy of the bound state $|\psi_a\rangle$. The above operator does not diverge
+since $Re(z)>0$ and $E_a<0$. Denoting the $n^{th}$ order
 approximation of $\widetilde{G}$ in \eqref{BornSeriesModCompact} as $\widetilde{G}^{(n)}$ we get,
 \begin{equation}\label{Gapprox}
- G^{(n)}\approx =
+ G^{(n)}\approx \widetilde{G}^{(n)}+\lambda\widetilde{G}^{(n)}\widetilde{\Gamma}
 \end{equation}
 
 \subsubsection{$\lambda\rightarrow\infty$ Limit}
+Before we go on to examples where we apply the orthogonal projection method, we will briefly review the behaviour of
+the above technique in the $\lambda\rightarrow\infty$ limit as described in \cite{KukPom78}. The Lippmann-Schwinger equation \eqref{lippmannschwinger2} can also be written as,
+\begin{equation}\label{lippmannschwinger3}
+ \widetilde{G}=G+\lambda G\Gamma\widetilde{G}
+\end{equation}
+Where we have obtained an iterative expression for $\widetilde{G}$ in terms of $G$. From this we immediately obtain,
+\begin{equation}
+ \widetilde{G}=G+G\Gamma\lambda\left(\Gamma\left(I-\lambda G\right)\Gamma\right)^{-1}\Gamma G
+\end{equation}
 
 \section{Example Problem - Scattering in 1D}
 We now use the above methods in an example with scattering off a potential in 1D. Due to the simplicity of the problem,
@@ -443,18 +456,7 @@ where $\epsilon$ is a small positive number. The purpose of $\epsilon$ is to avo
 the singularity of the Green's operator on the positive real axis. We first encountered it in \eqref{GFdefinition} where
 we originally took $\epsilon\rightarrow 0$. In the numerical example, however, epsilon is fixed to be a small
 number which is larger than the energy spacing between the bound states close to the origin.
-
 \subsection{First Case}
-%\begin{center}
-\begin{figure}
-\includegraphics[width=320pt, height=145pt]{series1a.png}
-\includegraphics[width=320pt, height=145pt]{series1d.png}
-\includegraphics[width=320pt, height=145pt]{series1b.png}
-\includegraphics[width=320pt, height=145pt]{series1c.png}
-\caption[\textwidth]{First Case - Weak Finite Well}
-\end{figure}
-%\end{center}
-
 In the first case, we define the potential as a finite well of strength $0.01$ with support in $4.5 \leq x \leq 5.5$,
 \begin{equation}\label{potentialdef1}
 V = \begin{cases}
@@ -465,30 +467,41 @@ V = \begin{cases}
 The Born Series is calculated for $15$ iterations. The Hamiltonian is modified using the operator defined in \eqref{potmod} with
 $\lambda=1$.  We also set $\epsilon=10^{-3}$. 
 
-We now plot the elements of the Born Series against the number of iterations. In order
+\subsubsection{Description of Plot}
+We now plot the elements of the Born Series against the number of iterations for different scattering energies, $E_n$. In order
 to compare the modified and unmodified cases, we plot them side by side with the modified case on the left and the unmodified one
 on the right. The x-axis denotes the number of iterations of the Born series, and the y-axis the matrix element of the
-Green's operator, $\langle\mathbf{k}|G|\mathbf{k}\rangle$ in log-scale. We follow this convention in the next case as well.
+Green's operator, $\langle\mathbf{k}|G(E_n+i\epsilon)|\mathbf{k}\rangle$ ($|\mathbf{k}\rangle$ defined in \eqref{cosevec}) in log-scale. 
+We follow this convention in the next case as well.
+
+\begin{figure}[hb]
+\includegraphics[width=320pt, height=135pt]{series1a.png}
+\includegraphics[width=320pt, height=135pt]{series1d.png}
+\end{figure}
+\begin{figure}[ht]
+%\includegraphics[width=320pt, height=135pt]{series1a.png}
+%\includegraphics[width=320pt, height=135pt]{series1d.png}
+\includegraphics[width=320pt, height=140pt]{series1b.png}
+\includegraphics[width=320pt, height=140pt]{series1c.png}
+\caption[\textwidth]{First Case - Weak Finite Well}
+\end{figure}
 
 \subsection{Second Case}
 The second test potential is a mixture of a finite-well and a gaussian. Its plot is 
-given below.
-%\begin{equation}\label{potentialdef3}
-%V = -100\mathtt{exp}(-(x-3.5)^2/0.5)-100\mathtt{exp}(-(x-6.5)^2/0.5)
-%\end{equation}
-We set $\epsilon=10^{-6}$ and $\lambda=100$.
-\begin{figure}[hb]
+given below. We set $\epsilon=10^{-6}$ and $\lambda=100$.
+\begin{figure}[H]
 \centering
-\includegraphics[width=225pt, height=150pt]{potential1d2.png}
+\includegraphics[width=215pt, height=135pt]{potential1d2.png}
 \caption[\textwidth]{Test Potential 2}
 \end{figure}
-\begin{figure}
-\includegraphics[width=320pt, height=145pt]{series3a.png}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=320pt, height=135pt]{series3a.png}
+%\end{figure}
 \begin{figure}[ht]
-\includegraphics[width=320pt, height=145pt]{series3b.png}
-\includegraphics[width=320pt, height=145pt]{series3c.png}
-\includegraphics[width=320pt, height=145pt]{series3d.png}
+\includegraphics[width=320pt, height=135pt]{series3a.png}
+\includegraphics[width=320pt, height=135pt]{series3b.png}
+\includegraphics[width=320pt, height=135pt]{series3c.png}
+\includegraphics[width=320pt, height=135pt]{series3d.png}
 \caption[\textwidth]{Finite Well + Gaussian}
 \end{figure}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.4)  31 JUL 2012 23:30
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.4)  5 AUG 2012 23:23
 entering extended mode
  %&-line parsing enabled.
 **draft1.tex
@@ -330,62 +330,70 @@ Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 (/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 \Fld@listcount=\count116
+)
+(/usr/share/texmf-texlive/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count117
+\float@exts=\toks30
+\float@box=\box33
+\@float@everytoks=\toks31
+\@floatcapt=\box34
 ) (./draft1.aux)
 \openout1 = `draft1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 (/usr/share/texmf-texlive/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
 )
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count117
+\scratchcounter=\count118
 \scratchdimen=\dimen129
-\scratchbox=\box33
-\nofMPsegments=\count118
-\nofMParguments=\count119
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count120
+\scratchbox=\box35
+\nofMPsegments=\count119
+\nofMParguments=\count120
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count121
 \MPscratchDim=\dimen130
-\MPnumerator=\count121
-\everyMPtoPDFconversion=\toks31
+\MPnumerator=\count122
+\everyMPtoPDFconversion=\toks33
 )
-Package hyperref Info: Link coloring OFF on input line 14.
+Package hyperref Info: Link coloring OFF on input line 15.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count122
+\c@section@level=\count123
 )
-LaTeX Info: Redefining \ref on input line 14.
-LaTeX Info: Redefining \pageref on input line 14.
+LaTeX Info: Redefining \ref on input line 15.
+LaTeX Info: Redefining \pageref on input line 15.
  (./draft1.out)
 (./draft1.out)
 \@outlinefile=\write4
 \openout4 = `draft1.out'.
 
-\AtBeginShipoutBox=\box34
-LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+\AtBeginShipoutBox=\box36
+LaTeX Font Info:    Try loading font information for U+msa on input line 18.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 17.
+LaTeX Font Info:    Try loading font information for U+msb on input line 18.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -396,7 +404,7 @@ ination with the same identifier (name{page.1}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.20 \end{abstract}
+l.21 \end{abstract}
                     [1] (./draft1.toc)
 \tf@toc=\write5
 \openout5 = `draft1.toc'.
@@ -405,7 +413,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.23 \newpage
+l.24 \newpage
               [1
 
 ]
@@ -414,14 +422,14 @@ Chapter 1.
 
 ]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 65.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 66.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 65.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 66.
 
-Overfull \hbox (5.22751pt too wide) in paragraph at lines 68--71
+Overfull \hbox (5.22751pt too wide) in paragraph at lines 69--72
 \OT1/cmr/m/n/10 The con-tin-u-ous part of the spec-trum can be fur-ther di-vide
 d into into an $\OML/cmm/m/it/10 absolutely$
  []
@@ -437,12 +445,12 @@ Chapter 3.
 
 ]
 
-LaTeX Warning: Reference `pythonimp' on page 9 undefined on input line 286.
+LaTeX Warning: Reference `pythonimp' on page 9 undefined on input line 287.
 
 [9]
 Chapter 4.
 
-Overfull \hbox (4.30237pt too wide) in paragraph at lines 316--318
+Overfull \hbox (4.30237pt too wide) in paragraph at lines 317--319
 []\OT1/cmr/m/n/10 Finally, we de-fine the co-ef-fi-cient vec-tor, $[] = [\OML/c
 mm/m/it/10 c[]; c[]; [] ; c[]\OT1/cmr/m/n/10 ][]$. The Schr^^?odinger
  []
@@ -452,76 +460,94 @@ mm/m/it/10 c[]; c[]; [] ; c[]\OT1/cmr/m/n/10 ][]$. The Schr^^?odinger
 ] [11]
 Chapter 5.
 
-Overfull \hbox (0.83392pt too wide) in paragraph at lines 403--405
+Overfull \hbox (0.83392pt too wide) in paragraph at lines 404--406
 \OT1/cmr/m/n/10 The orig-i-nal Green's op-er-a-tor is re-lated to the mod-i-fie
 d Green's op-er-a-tor through
  []
 
 [12
 
-] <femexample1.png, id=265, 586.8324pt x 442.2924pt>
+] [13] <femexample1.png, id=281, 586.8324pt x 442.2924pt>
 File: femexample1.png Graphic file (type png)
- <use femexample1.png>
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<use femexample1.png> [14pdfTeX warning (ext4): destination with the same ident
+ifier (name{figure.5.1}) has been already used, duplicate ignored
 
-<series1a.png, id=270, 823.878pt x 442.2924pt>
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.485 \subsubsection
+                    {Description of Plot} <./femexample1.png>]
+<series1a.png, id=295, 823.878pt x 442.2924pt>
 File: series1a.png Graphic file (type png)
  <use series1a.png>
-<series1d.png, id=271, 699.5736pt x 442.2924pt>
+<series1d.png, id=296, 699.5736pt x 442.2924pt>
 File: series1d.png Graphic file (type png)
  <use series1d.png>
-<series1b.png, id=272, 658.3797pt x 442.2924pt>
+Underfull \hbox (badness 10000) in paragraph at lines 493--495
+[][]
+ []
+
+<series1b.png, id=297, 658.3797pt x 442.2924pt>
 File: series1b.png Graphic file (type png)
  <use series1b.png>
-<series1c.png, id=273, 586.8324pt x 442.2924pt>
+<series1c.png, id=298, 586.8324pt x 442.2924pt>
 File: series1c.png Graphic file (type png)
  <use series1c.png>
-Underfull \hbox (badness 10000) in paragraph at lines 453--457
+Underfull \hbox (badness 10000) in paragraph at lines 499--501
 [][]
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 453--457
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 453--457
-[]
- []
-
-
-LaTeX Warning: Float too large for page by 8.93889pt on input line 458.
-
-[13] <potential1d2.png, id=284, 586.8324pt x 442.2924pt>
+<potential1d2.png, id=299, 586.8324pt x 442.2924pt>
 File: potential1d2.png Graphic file (type png)
-
-<use potential1d2.png> <series3a.png, id=285, 745.8264pt x 442.2924pt>
+ <use potential1d2.png>
+<series3a.png, id=300, 745.8264pt x 442.2924pt>
 File: series3a.png Graphic file (type png)
-
-<use series3a.png> <series3b.png, id=286, 586.8324pt x 442.2924pt>
+ <use series3a.png>
+<series3b.png, id=301, 586.8324pt x 442.2924pt>
 File: series3b.png Graphic file (type png)
-
-<use series3b.png> <series3c.png, id=287, 586.8324pt x 442.2924pt>
+ <use series3b.png>
+<series3c.png, id=302, 586.8324pt x 442.2924pt>
 File: series3c.png Graphic file (type png)
-
-<use series3c.png> <series3d.png, id=288, 742.2129pt x 442.2924pt>
+ <use series3c.png>
+<series3d.png, id=303, 742.2129pt x 442.2924pt>
 File: series3d.png Graphic file (type png)
-
-<use series3d.png>
-Underfull \hbox (badness 10000) in paragraph at lines 492--495
+ <use series3d.png>
+Underfull \hbox (badness 10000) in paragraph at lines 516--520
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 492--495
+Underfull \hbox (badness 10000) in paragraph at lines 516--520
 []
  []
 
-[14 <./femexample1.png>] [15 <./series1a.png> <./series1d.png> <./series1b.png>
- <./series1c.png>] [16 <./potential1d2.png> <./series3a.png>] [17 <./series3b.p
-ng> <./series3c.png> <./series3d.png>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 516--520
+[]
+ []
+
+[15 <./series1a.png> <./series1d.png>] [16pdfTeX warning (ext4): destination wi
+th the same identifier (name{figure.5.2}) has been already used, duplicate igno
+red
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.523 \chapter
+              {Conclusion}pdfTeX warning (ext4): destination with the same iden
+tifier (name{figure.5.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.523 \chapter
+              {Conclusion} <./series1b.png> <./series1c.png> <./potential1d2.pn
+g>] [17pdfTeX warning (ext4): destination with the same identifier (name{figure
+.5.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.523 \chapter
+              {Conclusion} <./series3a.png> <./series3b.png> <./series3c.png> <
+./series3d.png>]
 Chapter 6.
 (./draft1.bbl [18
 
@@ -542,10 +568,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7354 strings out of 495061
- 103396 string characters out of 1182622
- 194657 words of memory out of 3000000
- 10267 multiletter control sequences out of 15000+50000
+ 7419 strings out of 495061
+ 104239 string characters out of 1182622
+ 195042 words of memory out of 3000000
+ 10321 multiletter control sequences out of 15000+50000
  13680 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,18n,37p,1101b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -563,9 +589,9 @@ onts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cms
 y5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
 /share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texm
 f-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft1.pdf (21 pages, 589705 bytes).
+Output written on draft1.pdf (21 pages, 594033 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 112 named destinations out of 1000 (max. 500000)
+ 416 PDF objects out of 1000 (max. 8388607)
+ 119 named destinations out of 1000 (max. 500000)
  219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
